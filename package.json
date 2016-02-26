@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack",
-    "http-server": "http-server ./ -p 3000",
-    "ws": "ws -d ./ -p 3000",
+    "http-server": "http-server ./ -p 8080",
+    "ws": "ws -d ./ -p 8080",
     "start": "concurrent \"npm run webpack\" \"npm run ws\" "
   },
   "author": "Ahn Hyung-Ro",
