@@ -1,12 +1,12 @@
-## React Tutorial
+## React pum
 
 ### Getting Started
 
 Just clone the repo and start hacking:
 
 ```shell
-$ git clone https://github.com/elle510/react-tutorial.git
-$ cd react-tutorial
+$ git clone https://github.com/elle510/react-pum.git
+$ cd react-pum
 $ npm install                   # Install Node.js components listed in ./package.json
 $ npm start                     # Compile and launch
 ```
