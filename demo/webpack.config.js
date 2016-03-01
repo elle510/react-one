@@ -5,12 +5,18 @@ var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 module.exports = {
+	entry: './scripts/app.js',
+	output: {
+		path: __dirname + '/scripts',
+		filename: 'bundle.js'
+	},
 	/*
 	entry: {
 		//app: ['./app/main.js', '.lib/index.js'],
 		app: './01-hello-world/app.js'
 	},
 	*/
+	/*
 	entry: fs.readdirSync(__dirname).reduce(function (entries, dir) {
 		if (fs.statSync(path.join(__dirname, dir)).isDirectory()) {
 			if(dir != 'js')
@@ -27,7 +33,7 @@ module.exports = {
 		chunkFilename: "[id].chunk.js",
 		publicPath: '/js/'
 	},
-
+	 */
 	module: {
 		loaders: [
 			{ 

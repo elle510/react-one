@@ -3,23 +3,21 @@
 <head>
 <meta charset="UTF-8">
     <title>React 시작하기</title>
-    <link rel="stylesheet" href="libs/styles/bootstrap.min.css" />
-    <link rel="stylesheet" href="libs/jqgrid/css/ui.jqgrid-bootstrap.css" />
+    <link rel="stylesheet" href="../dist/pum/libs/styles/bootstrap.min.css" />
+    <link rel="stylesheet" href="./styles/ui.jqgrid-bootstrap.css" />
 </head>
 <body>
 <div id="app"></div>
 <div id="jqgrid"></div>
-
-<!--
-<script type="text/javascript" src="libs/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="libs/jquery-ui.min.js"></script>
-<script type="text/javascript" src="libs/bootstrap.min.js"></script>
-<script type="text/javascript" src="libs/jqgrid/jquery.jqGrid.min.js"></script>
-<script type="text/javascript" src="libs/jqgrid/i18n/grid.locale-en.js"></script>
--->
+<div id="test"></div>
 
 <script type="text/javascript" src="include.js"></script>
-<script type="text/javascript" src="dist/bundle.js"></script>
+<!--<script type="text/javascript" src="../node_modules/react/dist/react.min.js"></script>-->
+<script type="text/javascript" src="../dist/pum/scripts/react-pum.js"></script>
+<script type="text/javascript" src="./scripts/bundle.js"></script>
 
+<script type="text/javascript">
+    console.log(ReactPum);
+</script>
 </body>
 </html>

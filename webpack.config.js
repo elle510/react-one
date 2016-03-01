@@ -1,9 +1,11 @@
 module.exports = {
-	entry: './src/app.js',
+	entry: './react-pum.js',
 
 	output: {
-		path: __dirname + '/dist',
-		filename: 'bundle.js'
+		path: __dirname + '/dist/pum/scripts',
+		filename: 'react-pum.js',
+		library: 'ReactPum',
+		libraryTarget: 'umd'
 	},
 
 	module: {
