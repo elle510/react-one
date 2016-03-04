@@ -1,11 +1,11 @@
 /**
- * ps-grid directives
+ * JqGrid component
  *
  * version <tt>$ Version: 1.0 $</tt> date:2016/02/29
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
- * <ps-grid options="options" data="data"></ps-grid>
+ * <ReactPum.JqGrid options={options} />
  *
  * jqGrid 라이브러리에 종속적이다.
  *
@@ -16,7 +16,11 @@ var ReactDom = require('react-dom');
 
 var Util = require('../services/util');
 
-var defaultOption = {
+function getUUID() {
+	return Util.getUUID();
+}
+
+var defaultOptions = {
 	mtype: 'POST',
 	datatype: "json",
 	styleUI : 'Bootstrap',
@@ -55,6 +59,7 @@ var defaultOption = {
 };
 
 module.exports = React.createClass({
+	displayName: 'JqGrid',
 	/*
 	getInitialState: function() {
 		return {
@@ -66,27 +71,35 @@ module.exports = React.createClass({
 	 return Util.getUUID();
 	 },
 	*/
+	/*
+	componentWillMount: function() {
+	 // 최초 렌더링이 일어나기 직전(한번 호출)
+	 console.log('componentWillMount');
+	 console.log(this.props.options);
+	 },
+	*/
 	componentDidMount: function() {
 		console.log('componentDidMount');
 		this.init();
 	},
-	gridId: Util.getUUID(),
-	pagerId: Util.getUUID(),
-	init: function() {
-		var gridId, pagerId,
-			propOptions = this.props.options,
-			options = $.extend({}, defaultOption, propOptions);
+	gridId: getUUID(),
+	pagerId: getUUID(),
+	getOptions: function() {
+		var propOptions = this.props.options,
+			options = $.extend({}, defaultOptions, propOptions);
 
 		if(propOptions && propOptions.hasOwnProperty('groupingView')) {
-			$.extend(options['groupingView'], defaultOption['groupingView'], propOptions['groupingView']);
+			$.extend(options['groupingView'], defaultOptions['groupingView'], propOptions['groupingView']);
 		}
 
 		// 페이징 처리
 		if(this.props.paging == true) {
-			//pagerId = this.getUUID();
-			//this.setState({pagerId: pagerId});
 			options.pager = '#' + this.pagerId;
 		}
+
+		return options;
+	},
+	init: function() {
 
 		//console.log(this);
 		//console.log(ReactDom.findDOMNode(this.refs.jqgrid));
@@ -95,7 +108,8 @@ module.exports = React.createClass({
 		//$(table).jqGrid(options);
 		//gridId = this.getUUID();
 		//this.setState({gridId: gridId});
-		$('#'+this.gridId).jqGrid(options);
+		//console.log(this.getOptions());
+		$('#'+this.gridId).jqGrid(this.getOptions());
 
 		/*
 		$(element).find("#eventsgrid")[0].addJSONData(this.props.eventsModel.attributes);

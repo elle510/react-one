@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp": "gulp",
     "webpack": "webpack",
-    "http-server": "http-server ./ -p 8080",
+    "http-server": "http-server ./ -p 8080 -o /index.html",
     "ws": "ws -d ./ -p 8080",
     "start": "concurrent \"npm run gulp\" \"npm run http-server\" "
   },
@@ -29,7 +29,10 @@
     "gulp-babel": "^6.1.2",
     "gulp-derequire": "^2.1.0",
     "gulp-flatten": "^0.2.0",
+    "gulp-less": "^3.0.5",
+    "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
+    "gulp-uglifycss": "^1.0.6",
     "http-server": "^0.9.0",
     "keymirror": "^0.1.1",
     "local-web-server": "^1.1.1",
@@ -39,6 +42,7 @@
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0",
     "reactify": "^1.1.1",
+    "run-sequence": "^1.1.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "webpack": "^1.12.14"

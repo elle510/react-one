@@ -2,6 +2,19 @@ var React = require('react');
 var ReactDom = require('react-dom');
 //var ReactPum = require('../../react-pum');
 
+
+var Main = require('./main/main');
+var ControllerViews = require('./controller-views/controllerViews');
+
+ReactDom.render(<Main.TreeMenu />, document.getElementById('left'));
+
+/*
+var routes = require('./routes');
+
+ReactDom.render(routes, document.getElementById('ui-view'));
+*/
+
+/*
 var Main = React.createClass({
 	render: function() {
 		return (
@@ -58,3 +71,4 @@ var options = {
 ReactDom.render(<Main />, document.getElementById('app'));
 ReactDom.render(<ReactPum.JqGrid options={options} />, document.getElementById('jqgrid'));
 ReactDom.render(<ReactPum.Test />, document.getElementById('test'));
+*/
