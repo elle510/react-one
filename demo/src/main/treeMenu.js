@@ -1,3 +1,5 @@
+'use strict';
+
 var React = require('react');
 
 var browserHistory = require('react-router').browserHistory;
@@ -20,12 +22,18 @@ module.exports = React.createClass({
             console.log('TreeMenu: onSelectNode');
             console.log(data);
             var json = data.node.original;
+            if(json.hasOwnProperty('url')) {
+                console.log(json.url);
+                browserHistory.push('#' + json.url);
+            }
+            /*
             if(json.hasOwnProperty('route')) {
                 console.log(json.route);
                 //browserHistory.push('#/repos');
             }else if(json.hasOwnProperty('url')) {
                 $window.location.href = json.url;
             }
+            */
             //event.stopPropagation();
             //event.stopImmediatePropagation();
         },

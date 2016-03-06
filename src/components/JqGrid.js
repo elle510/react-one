@@ -10,6 +10,7 @@
  * jqGrid 라이브러리에 종속적이다.
  *
  */
+'use strict';
 
 var React = require('react');
 var ReactDom = require('react-dom');

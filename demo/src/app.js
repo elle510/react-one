@@ -1,18 +1,17 @@
+'use strict';
+
 var React = require('react');
 var ReactDom = require('react-dom');
 //var ReactPum = require('../../react-pum');
 
 
 var Main = require('./main/main');
-var ControllerViews = require('./controller-views/controllerViews');
+//var ControllerViews = require('./controller-views/controllerViews');
 
 ReactDom.render(<Main.TreeMenu />, document.getElementById('left'));
 
-/*
 var routes = require('./routes');
-
 ReactDom.render(routes, document.getElementById('ui-view'));
-*/
 
 /*
 var Main = React.createClass({
