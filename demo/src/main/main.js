@@ -1,7 +1,5 @@
 'use strict';
 
-var React = require('react');
-
 var TreeMenu = require('./treeMenu');
 
 var Main = {

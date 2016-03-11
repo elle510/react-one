@@ -3,6 +3,7 @@
 var React = require('react');
 
 var browserHistory = require('react-router').browserHistory;
+var hashHistory = require('react-router').hashHistory;
 
 module.exports = React.createClass({
         displayName: 'TreeMenu',
@@ -19,21 +20,16 @@ module.exports = React.createClass({
             }
         },
         onSelectNode: function(event, data) {
-            console.log('TreeMenu: onSelectNode');
-            console.log(data);
+            //console.log('TreeMenu: onSelectNode');
+            //console.log(data);
             var json = data.node.original;
-            if(json.hasOwnProperty('url')) {
-                console.log(json.url);
-                browserHistory.push('#' + json.url);
-            }
-            /*
-            if(json.hasOwnProperty('route')) {
-                console.log(json.route);
-                //browserHistory.push('#/repos');
+            if(json.hasOwnProperty('path')) {
+                //console.log(json.path);
+                //browserHistory.push(json.path);
+                hashHistory.push(json.path);
             }else if(json.hasOwnProperty('url')) {
-                $window.location.href = json.url;
+                location.href = json.url;
             }
-            */
             //event.stopPropagation();
             //event.stopImmediatePropagation();
         },
@@ -54,9 +50,9 @@ module.exports = React.createClass({
             */
         },
         render: function() {
-            // ÇÊ¼ö Ç×¸ñ
+            // í•„ìˆ˜ í•­ëª©
             return (
-                <ReactPum.JsTree options={this.treeMenuOptions} onSelectNode={this.onSelectNode} />
+                <Pum.JsTree options={this.treeMenuOptions} onSelectNode={this.onSelectNode} />
             );
         }
 });

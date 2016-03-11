@@ -5,9 +5,9 @@
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
- * <ReactPum.JsTree options="{options}" />
+ * <Pum.JsTree options="{options}" />
  *
- * JsTree ¶óÀÌºê·¯¸®¿¡ Á¾¼ÓÀûÀÌ´Ù.
+ * JsTree ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì¢…ì†ì ì´ë‹¤.
  */
 'use strict';
 
@@ -35,7 +35,7 @@ var defaultOptions = {
     }
 };
 
-module.exports = React.createClass({
+var JsTree = React.createClass({
     displayName: 'JsTree',
     id: getUUID(),
     getOptions: function() {
@@ -81,13 +81,15 @@ module.exports = React.createClass({
         tree.on('dblclick.jstree', this.onDblClick);
     },
     componentDidMount: function() {
-        // ÃÖÃÊ ·»´õ¸µÀÌ ÀÏ¾î³­ ´ÙÀ½(ÇÑ¹ø È£Ãâ)
+        // ìµœì´ˆ ë Œë”ë§ì´ ì¼ì–´ë‚œ ë‹¤ìŒ(í•œë²ˆ í˜¸ì¶œ)
         this.init();
     },
     render: function() {
-        // ÇÊ¼ö Ç×¸ñ
+        // í•„ìˆ˜ í•­ëª©
         return (
             <div id={this.id}></div>
         );
     }
 });
+
+module.exports = JsTree;

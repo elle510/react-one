@@ -6,10 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp": "gulp",
+    "demo": "gulp build.demo",
     "webpack": "webpack",
     "http-server": "http-server ./ -p 8080 -o /index.html",
     "ws": "ws -d ./ -p 8080",
-    "start": "concurrent \"npm run gulp\" \"npm run http-server\" "
+    "start": "concurrent \"npm run gulp\" \"npm run demo\" \"npm run http-server\" "
   },
   "author": "Ahn Hyung-Ro",
   "license": "ISC",
@@ -30,6 +31,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
     "gulp-uglifycss": "^1.0.6",
+    "gulp-webpack": "^1.5.0",
     "http-server": "^0.9.0",
     "keymirror": "^0.1.1",
     "local-web-server": "^1.1.1",

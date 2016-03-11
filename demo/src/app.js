@@ -2,7 +2,7 @@
 
 var React = require('react');
 var ReactDom = require('react-dom');
-//var ReactPum = require('../../react-pum');
+//var Pum = require('../../react-pum');
 
 
 var Main = require('./main/main');
@@ -68,6 +68,6 @@ var options = {
 };
 
 ReactDom.render(<Main />, document.getElementById('app'));
-ReactDom.render(<ReactPum.JqGrid options={options} />, document.getElementById('jqgrid'));
-ReactDom.render(<ReactPum.Test />, document.getElementById('test'));
+ReactDom.render(<Pum.JqGrid options={options} />, document.getElementById('jqgrid'));
+ReactDom.render(<Pum.Test />, document.getElementById('test'));
 */

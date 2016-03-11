@@ -4,7 +4,7 @@ module.exports = {
 	output: {
 		path: __dirname + '/dist/pum/scripts',
 		filename: 'react-pum.js',
-		library: 'ReactPum',
+		library: 'Pum',
 		libraryTarget: 'umd'
 	},
 

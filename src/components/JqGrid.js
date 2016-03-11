@@ -5,7 +5,7 @@
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
- * <ReactPum.JqGrid options={options} />
+ * <Pum.JqGrid options={options} />
  *
  * jqGrid 라이브러리에 종속적이다.
  *
@@ -13,6 +13,7 @@
 'use strict';
 
 var React = require('react');
+var PropTypes = require('react').PropTypes;
 var ReactDom = require('react-dom');
 
 var Util = require('../services/util');
@@ -59,8 +60,11 @@ var defaultOptions = {
 	}
 };
 
-module.exports = React.createClass({
+var JqGrid = React.createClass({
 	displayName: 'JqGrid',
+	propTypes: {
+		paging: PropTypes.bool
+	},
 	/*
 	getInitialState: function() {
 		return {
@@ -80,7 +84,7 @@ module.exports = React.createClass({
 	 },
 	*/
 	componentDidMount: function() {
-		console.log('componentDidMount');
+		//console.log('JqGrid Component componentDidMount');
 		this.init();
 	},
 	gridId: getUUID(),
@@ -94,8 +98,12 @@ module.exports = React.createClass({
 		}
 
 		// 페이징 처리
-		if(this.props.paging == true) {
+		if(typeof this.props.paging === 'undefined') {
 			options.pager = '#' + this.pagerId;
+		}else {
+			if(this.props.paging == true) {
+				options.pager = '#' + this.pagerId;
+			}
 		}
 
 		return options;
@@ -119,22 +127,22 @@ module.exports = React.createClass({
 		//$(element).find("#eventsgrid").jqGrid('sortGrid', 'title', false, context.props.gridData.order.sortorder); Bool not fired?¿?¿¿ -> Obrir cas a tirand!!!!!!
 	},
 	componentWillUpdate: function() {
-		console.log('componentWillUpdate');
+		//console.log('JqGrid Component componentWillUpdate');
 		//var element = this.findDOMNode();//getDOMNode();
 		//$(element).find("#eventsgrid").GridUnload();
 	},
 	componentDidUpdate: function(prevProps, prevState) {
-		console.log('componentDidUpdate');
+		//console.log('JqGrid Component componentDidUpdate');
 		//var element = this.getDOMNode();
 		//this.init();
 	},
 	componentWillUnmount: function() {
-		console.log('componentWillUnmount');
+		//console.log('JqGrid Component componentWillUnmount');
 		//var element = this.getDOMNode();
 		//$(element).find("#eventsgrid").GridUnload();
 	},
 	render : function() {
-		console.log('render');
+		//console.log('JqGrid Component render');
 		/*
 		var _table = function() {
 			return React.DOM.table({ref: 'jqgrid'});
@@ -159,3 +167,5 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+module.exports = JqGrid;

@@ -6,7 +6,6 @@ var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var buffer = require("vinyl-buffer");
-var derequire = require('gulp-derequire');
 
 var less = require('gulp-less');
 var uglifycss = require('gulp-uglifycss');
@@ -14,6 +13,8 @@ var uglifycss = require('gulp-uglifycss');
 var del = require('del');
 var merge2 = require('merge2');
 var runSequence = require('run-sequence');
+
+var webpack = require('gulp-webpack');
 
 var paths = {
     entries: [
@@ -40,7 +41,7 @@ gulp.task('build.js', ['clean.js'], function () {
                 browserify({
                     entries: 'react-pum.js',
                     extensions: ['.js'],
-                    standalone: 'ReactPum',
+                    standalone: 'Pum',
                     debug: true
                 })
                     .transform(babelify, {presets: ["es2015", "react"]})
@@ -78,6 +79,35 @@ gulp.task('watch', function() {
 
  gulp.task('default', ['watch', 'css', 'js']);
 */
+
+// demo build
+gulp.task('clean.demo', function() {
+    return del('demo/scripts/app.bundle.js');
+});
+
+gulp.task('build.demo', ['clean.demo'], function(callback) {
+    //var demoWebpackConfig = require("./demo/webpack.config.js");
+    return gulp.src('demo/src/app.js')
+        .pipe(webpack({
+            output: {
+                filename: 'app.bundle.js'
+            },
+            module: {
+                loaders: [
+                    {
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        loader: 'babel-loader',
+                        query: {
+                            presets: ["react", "es2015"],
+                            cacheDirectory: true
+                        }
+                    }
+                ]
+            }
+        }))
+        .pipe(gulp.dest('demo/scripts'));
+});
 
 /**
  * CSS

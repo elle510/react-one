@@ -9,6 +9,7 @@
  *
  * JsTree 라이브러리에 종속적이다.
  */
+'use strict';
 
 var React = require('react');
 
@@ -18,9 +19,13 @@ function getUUID() {
     return Util.getUUID();
 }
 
-module.exports = React.createClass({
-    displayName: 'JsTree',
+var Temp = React.createClass({
+    displayName: 'Temp',
     id: getUUID(),
+    getInitialState: function() {
+        console.log('getInitialState');
+        return {data: []};
+    },
     componentWillMount: function() {
         // 최초 렌더링이 일어나기 직전(한번 호출)
         console.log('componentWillMount');
@@ -54,3 +59,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Temp;
