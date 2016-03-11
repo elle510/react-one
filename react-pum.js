@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('./src/ReactPum');
+module.exports = require('./src/Pum');
