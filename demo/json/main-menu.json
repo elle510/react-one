@@ -16,11 +16,11 @@
         	{ "text": "Elements", 	"id": "comp_elements", "icon": "fa fa-flag",
         		"children": [
             		{ "text": "Button", 			"id": "comp_button", 			"icon": "fa fa-flag", 	"route": "button"  },
-            		{ "text": "Button Dropdown", 	"id": "comp_button_dropdown", 	"icon": "fa fa-flag", 	"route": "buttonDropdown" },
+            		{ "text": "ButtonDropdown", 	"id": "comp_button_dropdown", 	"icon": "fa fa-flag", 	"route": "buttonDropdown" },
             		{ "text": "Alert", 				"id": "comp_alert", 			"icon": "fa fa-flag", 	"route": "alert" },
             		{ "text": "Modal", 				"id": "comp_modal", 			"icon": "fa fa-flag", 	"route": "modal" },
             		{ "text": "Panel", 				"id": "comp_panel", 			"icon": "fa fa-flag", 	"route": "panel" },
-            		{ "text": "Hidden Content", 	"id": "comp_hidden_content", 	"icon": "fa fa-flag", 	"path": "/hiddenContent" },
+            		{ "text": "HiddenContent", 		"id": "comp_hidden_content", 	"icon": "fa fa-flag", 	"path": "/hiddenContent" },
             		{ "text": "Popover Content", 	"id": "comp_popover_content", 	"icon": "fa fa-flag", 	"route": "popoverContent" },
             		{ "text": "Context Menu", 		"id": "comp_context_menu", 		"icon": "fa fa-flag", 	"route": "contextMenu" }
             	]
@@ -31,7 +31,7 @@
             		{ "text": "TextArea", 		"id": "form_textarea", 			"icon": "fa fa-flag", 		"route": "textarea"  },
             		{ "text": "CheckBox", 		"id": "form_checkbox", 			"icon": "fa fa-flag", 		"route": "checkbox"  },
             		{ "text": "Radio", 			"id": "form_radio", 			"icon": "fa fa-flag", 		"route": "radio"  },
-            		{ "text": "Select", 		"id": "form_select", 			"icon": "fa fa-flag", 		"route": "select"  },
+            		{ "text": "Select", 		"id": "form_select", 			"icon": "fa fa-flag", 		"path": "/select"  },
             		{ "text": "DatePicker", 	"id": "form_datepicker", 		"icon": "fa fa-flag", 		"route": "datepicker"  },
             		{ "text": "Stepper", 		"id": "form_stepper", 			"icon": "fa fa-flag", 		"route": "stepper"  },
             		{ "text": "DualListbox", 	"id": "form_dualListbox", 		"icon": "fa fa-flag", 		"route": "dualListbox"  },

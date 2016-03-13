@@ -50,7 +50,7 @@ module.exports = React.createClass({
             */
         },
         render: function() {
-            // 필수 항목
+            // �븘�닔 �빆紐�
             return (
                 <Pum.JsTree options={this.treeMenuOptions} onSelectNode={this.onSelectNode} />
             );

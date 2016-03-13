@@ -4,5 +4,6 @@ document.write('<script type="text/javascript" src="../dist/pum/libs/bootstrap.m
 document.write('<script type="text/javascript" src="../dist/pum/libs/plugins/jqgrid/jquery.jqGrid.min.js"></script>');
 document.write('<script type="text/javascript" src="../dist/pum/libs/plugins/jqgrid/i18n/grid.locale-en.js"></script>');
 document.write('<script type="text/javascript" src="../dist/pum/libs/plugins/jstree.min.js"></script>');
+document.write('<script type="text/javascript" src="../dist/pum/libs/plugins/bootstrap-select.min.js"></script>');
 
 document.write('<script type="text/javascript" src="./libs/prettify.js"></script>');

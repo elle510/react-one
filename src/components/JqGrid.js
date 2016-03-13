@@ -14,7 +14,8 @@
 
 var React = require('react');
 var PropTypes = require('react').PropTypes;
-var ReactDom = require('react-dom');
+//var classNames = require('classnames');
+//var ReactDom = require('react-dom');
 
 var Util = require('../services/util');
 
@@ -63,6 +64,8 @@ var defaultOptions = {
 var JqGrid = React.createClass({
 	displayName: 'JqGrid',
 	propTypes: {
+		className: PropTypes.string,
+		options: PropTypes.object,
 		paging: PropTypes.bool
 	},
 	/*
@@ -83,10 +86,6 @@ var JqGrid = React.createClass({
 	 console.log(this.props.options);
 	 },
 	*/
-	componentDidMount: function() {
-		//console.log('JqGrid Component componentDidMount');
-		this.init();
-	},
 	gridId: getUUID(),
 	pagerId: getUUID(),
 	getOptions: function() {
@@ -126,6 +125,10 @@ var JqGrid = React.createClass({
 		*/
 		//$(element).find("#eventsgrid").jqGrid('sortGrid', 'title', false, context.props.gridData.order.sortorder); Bool not fired?¿?¿¿ -> Obrir cas a tirand!!!!!!
 	},
+	componentDidMount: function() {
+		//console.log('JqGrid Component componentDidMount');
+		this.init();
+	},
 	componentWillUpdate: function() {
 		//console.log('JqGrid Component componentWillUpdate');
 		//var element = this.findDOMNode();//getDOMNode();
@@ -160,7 +163,7 @@ var JqGrid = React.createClass({
 		);
 		*/
 		return (
-			<div>
+			<div className={this.props.className}>
 				<table id={this.gridId} />
 				<div id={this.pagerId} />
 			</div>

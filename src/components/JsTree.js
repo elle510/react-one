@@ -12,6 +12,8 @@
 'use strict';
 
 var React = require('react');
+var PropTypes = require('react').PropTypes;
+//var classNames = require('classnames');
 
 var Util = require('../services/util');
 
@@ -38,6 +40,10 @@ var defaultOptions = {
 var JsTree = React.createClass({
     displayName: 'JsTree',
     id: getUUID(),
+    propTypes: {
+        className: PropTypes.string,
+        options: PropTypes.object
+    },
     getOptions: function() {
 
         var propOptions = this.props.options,
@@ -87,7 +93,7 @@ var JsTree = React.createClass({
     render: function() {
         // 필수 항목
         return (
-            <div id={this.id}></div>
+            <div className={this.props.className} id={this.id}></div>
         );
     }
 });

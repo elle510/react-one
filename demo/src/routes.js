@@ -10,6 +10,7 @@ var PsIconFont = require('./controller-views/icons/psIconFont');
 var JqGrid = require('./controller-views/jqgrid');
 var Tabs = require('./controller-views/tabs');
 var HiddenContent = require('./controller-views/hiddenContent');
+var Select = require('./controller-views/select');
 
 //var About = require('./controllers/about');
 //var Repos = require('./controllers/repos');
@@ -32,5 +33,6 @@ module.exports = (
         <Route path="/jqgrid" component={JqGrid} />
         <Route path="/tabs" component={Tabs} />
         <Route path="/hiddenContent" component={HiddenContent} />
+        <Route path="/select" component={Select} />
     </Router>
 )

@@ -5,7 +5,7 @@
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
- * <ReactPum.JsTree options="{options}" />
+ * <Pum.JsTree options="{options}" />
  *
  * JsTree 라이브러리에 종속적이다.
  */
