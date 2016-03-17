@@ -30,7 +30,7 @@
             		{ "text": "TextInput", 		"id": "form_textinput", 		"icon": "fa fa-flag", 		"route": "textinput"  },
             		{ "text": "TextArea", 		"id": "form_textarea", 			"icon": "fa fa-flag", 		"route": "textarea"  },
             		{ "text": "CheckBox", 		"id": "form_checkbox", 			"icon": "fa fa-flag", 		"path": "/checkbox"  },
-            		{ "text": "Radio", 			"id": "form_radio", 			"icon": "fa fa-flag", 		"route": "radio"  },
+            		{ "text": "Radio", 			"id": "form_radio", 			"icon": "fa fa-flag", 		"path": "/radio"  },
             		{ "text": "Select", 		"id": "form_select", 			"icon": "fa fa-flag", 		"path": "/select"  },
             		{ "text": "DatePicker", 	"id": "form_datepicker", 		"icon": "fa fa-flag", 		"route": "datepicker"  },
             		{ "text": "Stepper", 		"id": "form_stepper", 			"icon": "fa fa-flag", 		"route": "stepper"  },

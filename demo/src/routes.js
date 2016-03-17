@@ -12,6 +12,7 @@ var Tabs = require('./controller-views/tabs');
 var HiddenContent = require('./controller-views/hiddenContent');
 var Select = require('./controller-views/select');
 var CheckBox = require('./controller-views/checkbox');
+var Radio = require('./controller-views/radio');
 
 //var About = require('./controllers/about');
 //var Repos = require('./controllers/repos');
@@ -36,5 +37,6 @@ module.exports = (
         <Route path="/hiddenContent" component={HiddenContent} />
         <Route path="/select" component={Select} />
         <Route path="/checkbox" component={CheckBox} />
+        <Route path="/radio" component={Radio} />
     </Router>
 )

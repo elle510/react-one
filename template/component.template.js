@@ -7,7 +7,7 @@
  * example:
  * <Pum.Temp options="{options}" />
  *
- * JsTree ¶óÀÌºê·¯¸®¿¡ Á¾¼ÓÀûÀÌ´Ù.
+ * JsTree ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì¢…ì†ì ì´ë‹¤.
  */
 'use strict';
 
@@ -45,31 +45,31 @@ var Temp = React.createClass({
         return {data: []};
     },
     componentWillMount: function() {
-        // ÃÖÃÊ ·»´õ¸µÀÌ ÀÏ¾î³ª±â Á÷Àü(ÇÑ¹ø È£Ãâ)
+        // ìµœì´ˆ ë Œë”ë§ì´ ì¼ì–´ë‚˜ê¸° ì§ì „(í•œë²ˆ í˜¸ì¶œ)
         console.log('componentWillMount');
     },
     componentDidMount: function() {
-        // ÃÖÃÊ ·»´õ¸µÀÌ ÀÏ¾î³­ ´ÙÀ½(ÇÑ¹ø È£Ãâ)
+        // ìµœì´ˆ ë Œë”ë§ì´ ì¼ì–´ë‚œ ë‹¤ìŒ(í•œë²ˆ í˜¸ì¶œ)
         console.log('componentDidMount');
     },
     componentWillReceiveProps: function(nextProps) {
-        // ÄÄÆ÷³ÍÆ®°¡ »õ·Î¿î props¸¦ ¹ŞÀ» ¶§ È£Ãâ(ÃÖÃÊ ·»´õ¸µ ½Ã¿¡´Â È£ÃâµÇÁö ¾ÊÀ½)
+        // ì»´í¬ë„ŒíŠ¸ê°€ ìƒˆë¡œìš´ propsë¥¼ ë°›ì„ ë•Œ í˜¸ì¶œ(ìµœì´ˆ ë Œë”ë§ ì‹œì—ëŠ” í˜¸ì¶œë˜ì§€ ì•ŠìŒ)
         console.log('componentWillReceiveProps');
     },
     componentWillUpdate: function(nextProps, nextState){
-        // »õ·Î¿î props³ª state¸¦ ¹Ş¾ÒÀ» ¶§ ·»´õ¸µ Á÷Àü¿¡ È£Ãâ(ÃÖÃÊ ·»´õ¸µ ½Ã¿¡´Â È£ÃâµÇÁö ¾ÊÀ½)
+        // ìƒˆë¡œìš´ propsë‚˜ stateë¥¼ ë°›ì•˜ì„ ë•Œ ë Œë”ë§ ì§ì „ì— í˜¸ì¶œ(ìµœì´ˆ ë Œë”ë§ ì‹œì—ëŠ” í˜¸ì¶œë˜ì§€ ì•ŠìŒ)
         console.log('componentWillUpdate');
     },
     componentDidUpdate: function(prevProps, prevState) {
-        // ÄÄÆ÷³ÍÆ®ÀÇ ¾÷µ¥ÀÌÆ®°¡ DOM¿¡ ¹İ¿µµÈ Á÷ÈÄ¿¡ È£Ãâ(ÃÖÃÊ ·»´õ¸µ ½Ã¿¡´Â È£ÃâµÇÁö ¾ÊÀ½)
+        // ì»´í¬ë„ŒíŠ¸ì˜ ì—…ë°ì´íŠ¸ê°€ DOMì— ë°˜ì˜ëœ ì§í›„ì— í˜¸ì¶œ(ìµœì´ˆ ë Œë”ë§ ì‹œì—ëŠ” í˜¸ì¶œë˜ì§€ ì•ŠìŒ)
         console.log('componentDidUpdate');
     },
     componentWillUnmount: function(){
-        // ÄÄÆ÷³ÍÆ®°¡ DOM¿¡¼­ ¸¶¿îÆ® ÇØÁ¦ µÇ±â Á÷Àü¿¡ È£Ãâ
+        // ì»´í¬ë„ŒíŠ¸ê°€ DOMì—ì„œ ë§ˆìš´íŠ¸ í•´ì œ ë˜ê¸° ì§ì „ì— í˜¸ì¶œ
         console.log('componentWillUnmount');
     },
     render: function() {
-        // ÇÊ¼ö Ç×¸ñ
+        // í•„ìˆ˜ í•­ëª©
         console.log('render');
 
         return (

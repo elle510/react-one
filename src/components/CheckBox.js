@@ -5,10 +5,8 @@
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
- * <Pum.CheckBox options="{options}" />
+ * <Pum.CheckBox name="name1" value="value1" onChange={this.onChange} checked={true}> 체크박스</Pum.CheckBox>
  *
- * bootstrap-select 라이브러리에 종속적이다.
- * https://silviomoreto.github.io/bootstrap-select/
  */
 'use strict';
 
@@ -30,7 +28,7 @@ var CheckBox = React.createClass({
         name: PropTypes.string,
         value: PropTypes.string,
         checked: PropTypes.bool,
-        onClick: PropTypes.func
+        onChange: PropTypes.func
     },
     UUID: getUUID(),
     getId: function() {
@@ -78,12 +76,13 @@ var CheckBox = React.createClass({
     },
     render: function() {
         // 필수 항목
+        const {className, name, children} = this.props;
         return (
             <div className="checkbox">
                 <label>
-                    <input type="checkbox" className={this.props.className} name={this.props.name} value={this.state.value} checked={this.state.checked}
+                    <input type="checkbox" className={className} name={name} value={this.state.value} checked={this.state.checked}
                         onChange={this.onChange} />
-                    <span className="lbl">{this.props.children}</span>
+                    <span className="lbl">{children}</span>
                     {/*<input type="hidden" name={this.props.name} value={this.state.value}>*/}
                 </label>
             </div>

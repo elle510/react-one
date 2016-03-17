@@ -18,6 +18,8 @@ var TabContent = require('./components/tabs/TabContent');
 var HiddenContent = require('./components/HiddenContent');
 var Select = require('./components/Select');
 var CheckBox = require('./components/CheckBox');
+var RadioGroup = require('./components/radio/RadioGroup');
+var Radio = require('./components/radio/Radio');
 
 var Pum = {
     JqGrid: JqGrid,
@@ -29,7 +31,9 @@ var Pum = {
     TabContent: TabContent,
     HiddenContent: HiddenContent,
     Select: Select,
-    CheckBox: CheckBox
+    CheckBox: CheckBox,
+    RadioGroup: RadioGroup,
+    Radio: Radio
 };
 
 module.exports = Pum;

@@ -3552,7 +3552,7 @@ label.radio-inline input[type=radio]:checked + .lbl::before {
   vertical-align: middle;
 }
 .checkbox-horizontal .checkbox + .checkbox,
-.checkbox-horizontal .radio + .radio {
+.radio-horizontal .radio + .radio {
   margin-top: 10px;
   padding-left: 20px;
   padding-right: 0;
@@ -4407,7 +4407,7 @@ label.radio-inline input[type=radio]:checked + .lbl::before {
   vertical-align: middle;
 }
 .checkbox-horizontal .checkbox + .checkbox,
-.checkbox-horizontal .radio + .radio {
+.radio-horizontal .radio + .radio {
   margin-top: 10px;
   padding-left: 20px;
   padding-right: 0;
