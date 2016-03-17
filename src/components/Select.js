@@ -40,13 +40,16 @@ var Select = React.createClass({
         items: PropTypes.array,
         selectedIndex: PropTypes.number,
         selectedValue: PropTypes.string,
+        disabled: PropTypes.bool,
+        multiple: PropTypes.bool,
+        onChange: PropTypes.func,
         selectedItem: PropTypes.object
     },
-    id: getUUID(),
+    UUID: getUUID(),
     getId: function() {
         let id = this.props.id;
         if(typeof id === 'undefined') {
-            id = this.id;
+            id = this.UUID;
         }
         return id;
     },
@@ -56,17 +59,13 @@ var Select = React.createClass({
 
         return options;
     },
-    init: function() {
-        var select = $('#'+this.getId());
-        select.selectpicker(this.getOptions());
-    },
-    getInitialState: function() {
-        let items = this.props.items;
+    __setProps__: function(props) {
+        let items = props.items;
         if(typeof items === 'undefined') {
             items = [];
         }
 
-        let selectedIndex = this.props.selectedIndex;
+        let selectedIndex = props.selectedIndex;
         if(typeof selectedIndex === 'undefined') {
             if(this.state && this.state.selectedIndex) {
                 selectedIndex = this.state.selectedIndex;
@@ -75,11 +74,59 @@ var Select = React.createClass({
             }
         }
 
-        return {items: items, selectedIndex: selectedIndex};
+        let disabled = props.disabled;
+        if(typeof disabled === 'undefined') {
+            disabled = false;
+        }
+
+        let multiple = props.multiple;
+        if(typeof multiple === 'undefined') {
+            multiple = false;
+        }
+
+        return {
+            items: items,
+            selectedIndex: selectedIndex,
+            disabled: disabled,
+            multiple: multiple
+        };
+    },
+    onChange: function(event, index) {
+        if(typeof this.props.onChange === 'function') {
+            //console.log('select onChange');
+            //console.log(event);
+            //console.log(index);
+            this.props.onChange(event, index);
+            //event.stopImmediatePropagation();
+        }
+    },
+    init: function() {
+        var select = $('#'+this.getId());
+        select.selectpicker(this.getOptions());
+
+        // setting events
+        select.on('changed.bs.select', this.onChange);
+    },
+    getInitialState: function() {
+        return this.__setProps__(this.props);
     },
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)
         this.init();
+    },
+    componentWillReceiveProps: function(nextProps) {
+        // 컴포넌트가 새로운 props를 받을 때 호출(최초 렌더링 시에는 호출되지 않음)
+        this.setState(this.__setProps__(nextProps));
+    },
+    componentWillUpdate: function(nextProps, nextState){
+        // 새로운 props나 state를 받았을 때 렌더링 직전에 호출(최초 렌더링 시에는 호출되지 않음)
+        //console.log('componentWillUpdate');
+    },
+    componentDidUpdate: function(prevProps, prevState) {
+        // 컴포넌트의 업데이트가 DOM에 반영된 직후에 호출(최초 렌더링 시에는 호출되지 않음)
+        //console.log('componentDidUpdate');
+        var select = $('#'+this.getId());
+        select.selectpicker('refresh');
     },
     render: function() {
         // 필수 항목
@@ -96,7 +143,8 @@ var Select = React.createClass({
         });
         */}
         return (
-            <select className={classNames('selectpicker', this.props.className)} id={this.getId()} name={this.props.name}>
+            <select className={classNames('selectpicker', this.props.className)} id={this.getId()} name={this.props.name}
+                    disabled={this.state.disabled} multiple={this.state.multiple}>
                 {React.Children.toArray(items)}
             </select>
         );

@@ -21654,7 +21654,7 @@
 			}
 
 			if (Array.isArray(val)) {
-				return val.slice().sort().map(function (val2) {
+				return val.sort().map(function (val2) {
 					return strictUriEncode(key) + '=' + strictUriEncode(val2);
 				}).join('&');
 			}
@@ -24835,6 +24835,7 @@
 	var Tabs = __webpack_require__(223);
 	var HiddenContent = __webpack_require__(224);
 	var Select = __webpack_require__(225);
+	var CheckBox = __webpack_require__(226);
 
 	//var About = require('./controllers/about');
 	//var Repos = require('./controllers/repos');
@@ -24857,7 +24858,8 @@
 	    React.createElement(_reactRouter.Route, { path: '/jqgrid', component: JqGrid }),
 	    React.createElement(_reactRouter.Route, { path: '/tabs', component: Tabs }),
 	    React.createElement(_reactRouter.Route, { path: '/hiddenContent', component: HiddenContent }),
-	    React.createElement(_reactRouter.Route, { path: '/select', component: Select })
+	    React.createElement(_reactRouter.Route, { path: '/select', component: Select }),
+	    React.createElement(_reactRouter.Route, { path: '/checkbox', component: CheckBox })
 	);
 
 /***/ },
@@ -33945,9 +33947,31 @@
 
 	var colors = [{ label: 'black', value: '1', shade: 'dark' }, { label: 'white', value: '2', shade: 'light' }, { label: 'red', value: '3', shade: 'dark' }, { label: 'blue', value: '4', shade: 'dark' }, { label: 'yellow', value: '5', shade: 'light' }];
 
+	var cities = [{ label: 'Seoul', value: '1', shade: 'dark' }, { label: 'NewYork', value: '2', shade: 'light' }, { label: 'London', value: '3', shade: 'dark' }, { label: 'Paris', value: '4', shade: 'dark' }, { label: 'Shanghai', value: '5', shade: 'light' }];
+
+	function changeData() {}
+
 	var Select = React.createClass({
 	    displayName: 'Select',
 
+	    onSelectChange: function onSelectChange(event, index) {
+	        console.log('onSelectChange index: ' + index);
+	    },
+	    onChangeData: function onChangeData() {
+	        if (this.state.items[0]['label'] == 'black') {
+	            this.setState({ items: cities });
+	        } else {
+	            this.setState({ items: colors });
+	        }
+	    },
+	    onDisabled: function onDisabled() {
+	        var disabled = this.state.disabled == false,
+	            disabledText = disabled == false ? 'Disabled' : 'Enabled';
+	        this.setState({ disabled: disabled, disabledText: disabledText });
+	    },
+	    getInitialState: function getInitialState() {
+	        return { items: colors, disabled: false, disabledText: 'Disabled' };
+	    },
 	    componentDidMount: function componentDidMount() {
 	        // 최초 렌더링이 일어난 다음(한번 호출)
 	        prettyPrint();
@@ -33985,8 +34009,27 @@
 	                        { className: 'row' },
 	                        React.createElement(
 	                            'div',
-	                            { className: 'col-md-12' },
-	                            React.createElement(Pum.Select, { name: 'selectName', labelKey: 'label', valueKey: 'value', items: colors })
+	                            { className: 'col-md-3' },
+	                            React.createElement(Pum.Select, { name: 'selectName', labelKey: 'label', valueKey: 'value',
+	                                items: this.state.items, onChange: this.onSelectChange, disabled: this.state.disabled })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-2' },
+	                            React.createElement(
+	                                'button',
+	                                { onClick: this.onChangeData },
+	                                'Change Data'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            React.createElement(
+	                                'button',
+	                                { onClick: this.onDisabled },
+	                                this.state.disabledText
+	                            )
 	                        )
 	                    ),
 	                    React.createElement(
@@ -34048,6 +34091,191 @@
 	});
 
 	module.exports = Select;
+
+/***/ },
+/* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var CheckBox = React.createClass({
+	    displayName: 'CheckBox',
+
+	    checkboxChange: function checkboxChange(event) {
+	        //console.log('--- checkbox view ---');
+	        //console.log(event);
+	    },
+	    componentDidMount: function componentDidMount() {
+	        // 최초 렌더링이 일어난 다음(한번 호출)
+	        prettyPrint();
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'page-content' },
+	            React.createElement(
+	                'div',
+	                { className: 'page-header' },
+	                React.createElement(
+	                    'h1',
+	                    null,
+	                    'CheckBox'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'page-body' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'h5',
+	                            null,
+	                            'CheckBox'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(
+	                                Pum.CheckBox,
+	                                { name: 'checkbox_name', value: 'checkValue1', onChange: this.checkboxChange },
+	                                ' 체크박스1'
+	                            ),
+	                            React.createElement(
+	                                Pum.CheckBox,
+	                                { name: 'checkbox_name', value: 'checkValue2', onChange: this.checkboxChange, checked: true },
+	                                ' 체크박스2'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            Pum.HiddenContent,
+	                            { expandLabel: '소스 보기', collapseLabel: '소스 닫기',
+	                                expandIcon: 'fa fa-caret-right', collapseIcon: 'fa fa-caret-down' },
+	                            React.createElement(
+	                                Pum.TabSet,
+	                                null,
+	                                React.createElement(
+	                                    Pum.Tabs,
+	                                    null,
+	                                    React.createElement(
+	                                        Pum.Tab,
+	                                        null,
+	                                        'JSX 코드'
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    Pum.TabContents,
+	                                    null,
+	                                    React.createElement(
+	                                        Pum.TabContent,
+	                                        null,
+	                                        React.createElement(
+	                                            'pre',
+	                                            { className: 'prettyprint linenums' },
+	                                            '<Pum.CheckBox name="name1" value="value1" onChange={this.onChange}> 체크박스1</Pum.CheckBox>\n',
+	                                            '<Pum.CheckBox name="name2" value="value2" onChange={this.onChange} checked={true}> 체크박스2</Pum.CheckBox>'
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement('div', { className: 'vspace-12' }),
+	                React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'h5',
+	                            null,
+	                            'CheckBox (horizontal)'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'checkbox-horizontal' },
+	                                React.createElement(
+	                                    Pum.CheckBox,
+	                                    { name: 'checkbox_name3', value: 'checkValue3', onChange: this.checkboxChange },
+	                                    ' 체크박스3'
+	                                ),
+	                                React.createElement(
+	                                    Pum.CheckBox,
+	                                    { name: 'checkbox_name4', value: 'checkValue4', onChange: this.checkboxChange },
+	                                    ' 체크박스4'
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            Pum.HiddenContent,
+	                            { expandLabel: '소스 보기', collapseLabel: '소스 닫기',
+	                                expandIcon: 'fa fa-caret-right', collapseIcon: 'fa fa-caret-down' },
+	                            React.createElement(
+	                                Pum.TabSet,
+	                                null,
+	                                React.createElement(
+	                                    Pum.Tabs,
+	                                    null,
+	                                    React.createElement(
+	                                        Pum.Tab,
+	                                        null,
+	                                        'JSX 코드'
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    Pum.TabContents,
+	                                    null,
+	                                    React.createElement(
+	                                        Pum.TabContent,
+	                                        null,
+	                                        React.createElement(
+	                                            'pre',
+	                                            { className: 'prettyprint linenums' },
+	                                            '<div className="checkbox-horizontal">\n',
+	                                            '  <Pum.CheckBox name="name1" value="value1" onChange={this.onChange}> 체크박스1</Pum.CheckBox>\n',
+	                                            '  <Pum.CheckBox name="name2" value="value2" onChange={this.onChange}> 체크박스2</Pum.CheckBox>\n',
+	                                            '</div>'
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement('div', { className: 'vspace-12' })
+	            ),
+	            React.createElement('div', { className: 'page-footer' })
+	        );
+	    }
+	});
+
+	module.exports = CheckBox;
 
 /***/ }
 /******/ ]);

@@ -17,6 +17,7 @@ var TabContents = require('./components/tabs/TabContents');
 var TabContent = require('./components/tabs/TabContent');
 var HiddenContent = require('./components/HiddenContent');
 var Select = require('./components/Select');
+var CheckBox = require('./components/CheckBox');
 
 var Pum = {
     JqGrid: JqGrid,
@@ -27,7 +28,8 @@ var Pum = {
     TabContents: TabContents,
     TabContent: TabContent,
     HiddenContent: HiddenContent,
-    Select: Select
+    Select: Select,
+    CheckBox: CheckBox
 };
 
 module.exports = Pum;

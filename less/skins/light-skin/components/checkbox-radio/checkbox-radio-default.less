@@ -38,8 +38,7 @@
 
 @lbl: @lbl_selector;//+ .lbl   or   ~ .lbl  (for ASP.NET)
 
-.checkbox label input[type=checkbox], .radio label input[type=radio],
-label.checkbox-inline input[type=checkbox], label.radio-inline input[type=radio] {
+.checkbox label input[type=checkbox], .radio label input[type=radio] {
 	z-index: -100 !important;
 	width: 0 !important;
 	height: 0 !important;
@@ -47,8 +46,7 @@ label.checkbox-inline input[type=checkbox], label.radio-inline input[type=radio]
 	//we don't need it to be hoverable/clickable when inside a label
 }
 
-.checkbox input[type=checkbox] , .radio input[type=radio],
-.checkbox-inline input[type=checkbox], .radio-inline input[type=radio] {
+.checkbox input[type=checkbox] , .radio input[type=radio] {
 	opacity: 0;
 	position: absolute;	
 	z-index: 1;//so that it is clickable and above (.lbl)
@@ -153,17 +151,6 @@ label.checkbox-inline input[type=checkbox], label.radio-inline input[type=radio]
 		color:#BBB;
 	}
 }
-//opera fix
-//no_such_element:-o-prefocus, input[type=checkbox] @{lbl}::before, input[type=radio] @{lbl}::before {
-	//vertical-align: middle;
-//}
-.checkbox-inline input[type=checkbox], .radio-inline input[type=radio] {
-	@{lbl} {
-		position: relative;
-		//position: absolute;
-	}
-}
-
 		
 input @{lbl} {
 	.checkbox-paddings() {// a little paddings for .lbl
@@ -204,16 +191,27 @@ input[type=radio] @{lbl}::before {
 	input[type=radio]:checked @{lbl}::before {
 		content:"\f111";
 	}
-} 
+}
+
+.checkbox-horizontal > .checkbox, .radio-horizontal > .radio {
+  	display: inline-block;
+  	vertical-align: middle;
+  	//padding-left: 0;
+  	//padding-right: 20px; // 오른쪽 간격주기 위해 추가
+}
+
+.checkbox-horizontal .checkbox + .checkbox,
+.checkbox-horizontal .radio + .radio {
+  	margin-top: 10px;	// bootstrap 에 .checkbox + .checkbox 선택자로 margin-top: -5px; 설정된 것 override
+  	padding-left: 20px; // 오른쪽 간격주기 위해 추가
+  	padding-right: 0;
+}
 
 // 체크박스 앞에 bootstrap에서 padding-left: 20px; 로 되어 있는 것 override
 .checkbox label, .radio label {
-  padding-left: 0;
+  	padding-left: 0;
 }
-.checkbox-inline, .radio-inline {
-  padding-left: 0;
-  padding-right: 20px; // 오른쪽 간격주기 위해 추가
-}
+
 
 
 /* CSS3 on/off switches */

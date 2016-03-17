@@ -1,17 +1,18 @@
 /**
- * JsTree component
+ * Temp component
  *
  * version <tt>$ Version: 1.0 $</tt> date:2016/03/03
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
- * <Pum.JsTree options="{options}" />
+ * <Pum.Temp options="{options}" />
  *
  * JsTree 라이브러리에 종속적이다.
  */
 'use strict';
 
 var React = require('react');
+var PropTypes = require('react').PropTypes;
 
 var Util = require('../services/util');
 
@@ -21,7 +22,24 @@ function getUUID() {
 
 var Temp = React.createClass({
     displayName: 'Temp',
-    id: getUUID(),
+    propTypes: {
+        id: PropTypes.string,
+        className: PropTypes.string,
+        options: PropTypes.object,
+        name: PropTypes.string,
+        items: PropTypes.array,
+        selectedIndex: PropTypes.number,
+        disabled: PropTypes.bool,
+        onChange: PropTypes.func
+    },
+    UUID: getUUID(),
+    getId: function() {
+        let id = this.props.id;
+        if(typeof id === 'undefined') {
+            id = this.UUID;
+        }
+        return id;
+    },
     getInitialState: function() {
         console.log('getInitialState');
         return {data: []};
@@ -55,7 +73,7 @@ var Temp = React.createClass({
         console.log('render');
 
         return (
-            <div id={this.id}></div>
+            <div id={this.getId()}></div>
         );
     }
 });
