@@ -17,7 +17,7 @@ var PropTypes = require('react').PropTypes;
 //var classNames = require('classnames');
 //var ReactDom = require('react-dom');
 
-var Util = require('../services/util');
+var Util = require('../services/Util');
 
 function getUUID() {
 	return Util.getUUID();

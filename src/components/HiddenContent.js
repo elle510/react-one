@@ -15,7 +15,7 @@ import React, {PropTypes} from 'react';
 //var PropTypes = require('react').PropTypes;
 var classNames = require('classnames');
 
-var Util = require('../services/util');
+var Util = require('../services/Util');
 
 var HiddenContent = React.createClass({
     displayName: 'HiddenContent',

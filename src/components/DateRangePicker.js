@@ -16,7 +16,7 @@ var React = require('react');
 var PropTypes = require('react').PropTypes;
 var classNames = require('classnames');
 
-var Util = require('../services/util');
+var Util = require('../services/Util');
 var DateUtil = require('../services/DateUtil');
 
 var defaultOptions = {

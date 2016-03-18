@@ -13,7 +13,7 @@
 
 var React = require('react');
 
-var Util = require('../../services/util');
+var Util = require('../../services/Util');
 
 function getUUID() {
     return Util.getUUID();
