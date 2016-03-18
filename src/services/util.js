@@ -1,14 +1,13 @@
 /**
- * ps-util services
+ * Util services
  * 
  * version <tt>$ Version: 1.0 $</tt> date:2016/03/01
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  * 
  * example:
- * app.controller('Ctrl', ['$scope', 'psUtil', function($scope, psUtil) {
- * 	   var rootPath = psUtil.getRootPath();
- * }]);
- * 
+ * var Util = require('../services/Util');
+ * Util.getUUID();
+ *
  */
 'use strict';
 

@@ -20,6 +20,7 @@ var Select = require('./components/Select');
 var CheckBox = require('./components/CheckBox');
 var RadioGroup = require('./components/radio/RadioGroup');
 var Radio = require('./components/radio/Radio');
+var DateRangePicker = require('./components/DateRangePicker');
 
 var Pum = {
     JqGrid: JqGrid,
@@ -33,7 +34,8 @@ var Pum = {
     Select: Select,
     CheckBox: CheckBox,
     RadioGroup: RadioGroup,
-    Radio: Radio
+    Radio: Radio,
+    DateRangePicker: DateRangePicker
 };
 
 module.exports = Pum;

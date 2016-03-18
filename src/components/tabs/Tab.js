@@ -15,19 +15,12 @@ var React = require('react');
 var PropTypes = require('react').PropTypes;
 var classNames = require('classnames');
 
-var Util = require('../../services/util');
-
-function getUUID() {
-    return Util.getUUID();
-}
-
 var Tab = React.createClass({
         displayName: 'Tab',
         propTypes: {
             selected: PropTypes.bool,
             disabled: PropTypes.bool
         },
-        id: getUUID(),
         render: function() {
             // 필수 항목
             return (

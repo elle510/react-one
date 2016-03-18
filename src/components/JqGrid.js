@@ -64,30 +64,14 @@ var defaultOptions = {
 var JqGrid = React.createClass({
 	displayName: 'JqGrid',
 	propTypes: {
+		id: PropTypes.string,
+		pagerId: PropTypes.string,
 		className: PropTypes.string,
 		options: PropTypes.object,
 		paging: PropTypes.bool
 	},
-	/*
-	getInitialState: function() {
-		return {
-			gridId: '',
-			pagerId: ''
-		};
-	},
-	 getUUID: function() {
-	 return Util.getUUID();
-	 },
-	*/
-	/*
-	componentWillMount: function() {
-	 // 최초 렌더링이 일어나기 직전(한번 호출)
-	 console.log('componentWillMount');
-	 console.log(this.props.options);
-	 },
-	*/
-	gridId: getUUID(),
-	pagerId: getUUID(),
+	id: getUUID(),
+	pagerId: '',
 	getOptions: function() {
 		var propOptions = this.props.options,
 			options = $.extend({}, defaultOptions, propOptions);
@@ -109,21 +93,29 @@ var JqGrid = React.createClass({
 	},
 	init: function() {
 
-		//console.log(this);
-		//console.log(ReactDom.findDOMNode(this.refs.jqgrid));
-		//table = ReactDom.findDOMNode(this.refs.jqgrid);
-		//console.log($(table));
-		//$(table).jqGrid(options);
-		//gridId = this.getUUID();
-		//this.setState({gridId: gridId});
-		//console.log(this.getOptions());
-		$('#'+this.gridId).jqGrid(this.getOptions());
+		$('#' + this.id).jqGrid(this.getOptions());
 
 		/*
 		$(element).find("#eventsgrid")[0].addJSONData(this.props.eventsModel.attributes);
 		$(element).find("#eventsgrid").jqGrid('setSelection', this.props.eventModel.attributes.title, false);
 		*/
 		//$(element).find("#eventsgrid").jqGrid('sortGrid', 'title', false, context.props.gridData.order.sortorder); Bool not fired?¿?¿¿ -> Obrir cas a tirand!!!!!!
+	},
+	componentWillMount: function() {
+		// 최초 렌더링이 일어나기 직전(한번 호출)
+		let id = this.props.id;
+		if(typeof id === 'undefined') {
+			id = Util.getUUID();
+		}
+
+		this.id = id;
+
+		let pagerId = this.props.pagerId;
+		if(typeof pagerId === 'undefined') {
+			pagerId = Util.getUUID();
+		}
+
+		this.pagerId = pagerId;
 	},
 	componentDidMount: function() {
 		//console.log('JqGrid Component componentDidMount');
@@ -164,7 +156,7 @@ var JqGrid = React.createClass({
 		*/
 		return (
 			<div className={this.props.className}>
-				<table id={this.gridId} />
+				<table id={this.id} />
 				<div id={this.pagerId} />
 			</div>
 		);

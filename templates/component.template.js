@@ -16,10 +16,6 @@ var PropTypes = require('react').PropTypes;
 
 var Util = require('../services/util');
 
-function getUUID() {
-    return Util.getUUID();
-}
-
 var Temp = React.createClass({
     displayName: 'Temp',
     propTypes: {
@@ -32,14 +28,7 @@ var Temp = React.createClass({
         disabled: PropTypes.bool,
         onChange: PropTypes.func
     },
-    UUID: getUUID(),
-    getId: function() {
-        let id = this.props.id;
-        if(typeof id === 'undefined') {
-            id = this.UUID;
-        }
-        return id;
-    },
+    id: '',
     getInitialState: function() {
         console.log('getInitialState');
         return {data: []};
@@ -47,6 +36,12 @@ var Temp = React.createClass({
     componentWillMount: function() {
         // 최초 렌더링이 일어나기 직전(한번 호출)
         console.log('componentWillMount');
+        let id = this.props.id;
+        if(typeof id === 'undefined') {
+            id = Util.getUUID();
+        }
+
+        this.id = id;
     },
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)
@@ -73,7 +68,7 @@ var Temp = React.createClass({
         console.log('render');
 
         return (
-            <div id={this.getId()}></div>
+            <div id={this.id}></div>
         );
     }
 });

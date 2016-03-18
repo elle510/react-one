@@ -17,10 +17,6 @@ var PropTypes = require('react').PropTypes;
 
 var Util = require('../services/util');
 
-function getUUID() {
-    return Util.getUUID();
-}
-
 var defaultOptions = {
     core: {
         data: {
@@ -39,11 +35,11 @@ var defaultOptions = {
 
 var JsTree = React.createClass({
     displayName: 'JsTree',
-    id: getUUID(),
     propTypes: {
         className: PropTypes.string,
         options: PropTypes.object
     },
+    id: '',
     getOptions: function() {
 
         var propOptions = this.props.options,
@@ -85,6 +81,15 @@ var JsTree = React.createClass({
         tree.on('select_node.jstree', this.onSelectNode);
         tree.on('changed.jstree', this.onChanged);
         tree.on('dblclick.jstree', this.onDblClick);
+    },
+    componentWillMount: function() {
+        // 최초 렌더링이 일어나기 직전(한번 호출)
+        let id = this.props.id;
+        if(typeof id === 'undefined') {
+            id = Util.getUUID();
+        }
+
+        this.id = id;
     },
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)

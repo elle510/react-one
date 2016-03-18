@@ -13,15 +13,8 @@
 
 var React = require('react');
 
-var Util = require('../../services/util');
-
-function getUUID() {
-    return Util.getUUID();
-}
-
 var TabContents = React.createClass({
         displayName: 'TabContents',
-        id: getUUID(),
         render: function() {
             // 필수 항목
             return (

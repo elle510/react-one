@@ -27,6 +27,7 @@ var paths = {
     themes_less: 'less/themes/*.less',
     visualization_less: 'less/visualization/visualization.less',
     login_less: 'less/login/*.less',
+    locale: 'dist/pum/i18n',
     demo: {
 
     }
@@ -79,6 +80,23 @@ gulp.task('watch', function() {
 
  gulp.task('default', ['watch', 'css', 'js']);
 */
+
+// locale(i18n)
+gulp.task('clean.locale', function() {
+    return del(paths.locale + '/*.js');
+});
+
+gulp.task('build.locale', ['clean.locale'], function () {
+    var rename = require('gulp-rename');
+    return merge2(
+        gulp.src('src/i18n/*.js')
+            .pipe(gulp.dest(paths.locale)),
+        gulp.src('src/i18n/*.js')
+            .pipe(uglify())
+            .pipe(rename({extname: '.min.js'}))
+            .pipe(gulp.dest(paths.locale))
+    );
+});
 
 // demo build
 gulp.task('clean.demo', function() {

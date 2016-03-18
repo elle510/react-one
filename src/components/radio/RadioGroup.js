@@ -50,7 +50,7 @@ var RadioGroup = React.createClass({
             });
         });
     },
-    __setProps__: function(props) {
+    setStateObject: function(props) {
         let selectedValue = props.selectedValue;
         if(typeof selectedValue === 'undefined') {
             selectedValue = null;
@@ -61,7 +61,7 @@ var RadioGroup = React.createClass({
         };
     },
     getInitialState: function() {
-        return this.__setProps__(this.props);
+        return this.setStateObject(this.props);
     },
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)
@@ -69,7 +69,7 @@ var RadioGroup = React.createClass({
     },
     componentWillReceiveProps: function(nextProps) {
         // 컴포넌트가 새로운 props를 받을 때 호출(최초 렌더링 시에는 호출되지 않음)
-        this.setState(this.__setProps__(nextProps));
+        this.setState(this.setStateObject(nextProps));
     },
     render: function() {
         // 필수 항목

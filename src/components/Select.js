@@ -18,10 +18,6 @@ var classNames = require('classnames');
 
 var Util = require('../services/util');
 
-function getUUID() {
-    return Util.getUUID();
-}
-
 var defaultOptions = {
     //size: 4
     width: '150px'
@@ -45,21 +41,14 @@ var Select = React.createClass({
         onChange: PropTypes.func,
         selectedItem: PropTypes.object
     },
-    UUID: getUUID(),
-    getId: function() {
-        let id = this.props.id;
-        if(typeof id === 'undefined') {
-            id = this.UUID;
-        }
-        return id;
-    },
+    id: '',
     getOptions: function() {
         var propOptions = this.props.options,
             options = $.extend({}, defaultOptions, propOptions);
 
         return options;
     },
-    __setProps__: function(props) {
+    setStateObject: function(props) {
         let items = props.items;
         if(typeof items === 'undefined') {
             items = [];
@@ -101,14 +90,23 @@ var Select = React.createClass({
         }
     },
     init: function() {
-        var select = $('#'+this.getId());
+        var select = $('#'+this.id);
         select.selectpicker(this.getOptions());
 
         // setting events
         select.on('changed.bs.select', this.onChange);
     },
     getInitialState: function() {
-        return this.__setProps__(this.props);
+        return this.setStateObject(this.props);
+    },
+    componentWillMount: function() {
+        // 최초 렌더링이 일어나기 직전(한번 호출)
+        let id = this.props.id;
+        if(typeof id === 'undefined') {
+            id = Util.getUUID();
+        }
+
+        this.id = id;
     },
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)
@@ -116,7 +114,7 @@ var Select = React.createClass({
     },
     componentWillReceiveProps: function(nextProps) {
         // 컴포넌트가 새로운 props를 받을 때 호출(최초 렌더링 시에는 호출되지 않음)
-        this.setState(this.__setProps__(nextProps));
+        this.setState(this.setStateObject(nextProps));
     },
     componentWillUpdate: function(nextProps, nextState){
         // 새로운 props나 state를 받았을 때 렌더링 직전에 호출(최초 렌더링 시에는 호출되지 않음)
@@ -125,7 +123,7 @@ var Select = React.createClass({
     componentDidUpdate: function(prevProps, prevState) {
         // 컴포넌트의 업데이트가 DOM에 반영된 직후에 호출(최초 렌더링 시에는 호출되지 않음)
         //console.log('componentDidUpdate');
-        var select = $('#'+this.getId());
+        var select = $('#'+this.id);
         select.selectpicker('refresh');
     },
     render: function() {
@@ -143,7 +141,7 @@ var Select = React.createClass({
         });
         */}
         return (
-            <select className={classNames('selectpicker', this.props.className)} id={this.getId()} name={this.props.name}
+            <select className={classNames('selectpicker', this.props.className)} id={this.id} name={this.props.name}
                     disabled={this.state.disabled} multiple={this.state.multiple}>
                 {React.Children.toArray(items)}
             </select>
