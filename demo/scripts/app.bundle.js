@@ -34481,13 +34481,28 @@
 
 	var React = __webpack_require__(1);
 
-	var Radio = React.createClass({
-	    displayName: 'Radio',
+	var startDate2, endDate2;
+	var DateRangePicker = React.createClass({
+	    displayName: 'DateRangePicker',
 
-	    onRadioChange: function onRadioChange(event, value) {
-	        //console.log('--- checkbox view ---');
-	        //console.log(event);
-	        //console.log(value);
+	    onApply2: function onApply2(event, startDate, endDate, picker) {
+	        startDate2 = startDate;
+	        endDate2 = endDate;
+	    },
+	    getDate2: function getDate2() {
+	        alert('startDate: ' + startDate2 + '\n' + 'endDate: ' + endDate2);
+	    },
+	    setDate2: function setDate2() {
+	        console.log('setDate2');
+	        this.setState({ startDate2: '2016-03-10', endDate2: '2016-04-15' });
+	    },
+	    onDisabled2: function onDisabled2() {
+	        var disabled2 = this.state.disabled2 == false,
+	            disabledText2 = disabled2 == false ? 'Disabled' : 'Enabled';
+	        this.setState({ disabled2: disabled2, disabledText2: disabledText2 });
+	    },
+	    getInitialState: function getInitialState() {
+	        return { startDate2: '2016-03-01', endDate2: '2016-04-05', disabled2: false, disabledText2: 'Disabled' };
 	    },
 	    componentDidMount: function componentDidMount() {
 	        // 최초 렌더링이 일어난 다음(한번 호출)
@@ -34584,8 +34599,38 @@
 	                        { className: 'row' },
 	                        React.createElement(
 	                            'div',
-	                            { className: 'col-md-12' },
-	                            React.createElement(Pum.DateRangePicker, { startDateName: 'startDate2', endDateName: 'endDate2', timePicker: true })
+	                            { className: 'col-md-4' },
+	                            React.createElement(Pum.DateRangePicker, { startDateName: 'startDate2', endDateName: 'endDate2',
+	                                startDate: this.state.startDate2, endDate: this.state.endDate2,
+	                                onApply: this.onApply2,
+	                                timePicker: true, disabled: this.state.disabled2 })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            React.createElement(
+	                                'button',
+	                                { onClick: this.getDate2 },
+	                                'getDate'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            React.createElement(
+	                                'button',
+	                                { onClick: this.setDate2 },
+	                                'setDate'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            React.createElement(
+	                                'button',
+	                                { onClick: this.onDisabled2 },
+	                                this.state.disabledText2
+	                            )
 	                        )
 	                    ),
 	                    React.createElement(
@@ -34634,7 +34679,7 @@
 	    }
 	});
 
-	module.exports = Radio;
+	module.exports = DateRangePicker;
 
 /***/ }
 /******/ ]);

@@ -2,11 +2,26 @@
 
 var React = require('react');
 
-var Radio = React.createClass({
-    onRadioChange: function(event, value) {
-        //console.log('--- checkbox view ---');
-        //console.log(event);
-        //console.log(value);
+var startDate2, endDate2;
+var DateRangePicker = React.createClass({
+    onApply2: function(event, startDate, endDate, picker) {
+        startDate2 = startDate;
+        endDate2 = endDate;
+    },
+    getDate2: function() {
+        alert('startDate: ' + startDate2 + '\n' + 'endDate: ' + endDate2);
+    },
+    setDate2: function() {
+        console.log('setDate2');
+        this.setState({startDate2: '2016-03-10', endDate2:'2016-04-15'});
+    },
+    onDisabled2: function() {
+        let disabled2 = this.state.disabled2 == false,
+            disabledText2 = (disabled2 == false) ? 'Disabled' : 'Enabled';
+        this.setState({disabled2: disabled2, disabledText2: disabledText2});
+    },
+    getInitialState: function() {
+        return {startDate2: '2016-03-01', endDate2:'2016-04-05', disabled2: false, disabledText2: 'Disabled'};
     },
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)
@@ -55,8 +70,20 @@ var Radio = React.createClass({
                             <h5>DateRangePicker (기간선택)</h5>
                         </div>
                         <div className="row">
-                            <div className="col-md-12">
-                                <Pum.DateRangePicker startDateName="startDate2" endDateName="endDate2" timePicker={true} />
+                            <div className="col-md-4">
+                                <Pum.DateRangePicker startDateName="startDate2" endDateName="endDate2"
+                                                    startDate={this.state.startDate2} endDate={this.state.endDate2}
+                                                    onApply={this.onApply2}
+                                                    timePicker={true} disabled={this.state.disabled2} />
+                            </div>
+                            <div className="col-md-1">
+                                <button onClick={this.getDate2}>getDate</button>
+                            </div>
+                            <div className="col-md-1">
+                                <button onClick={this.setDate2}>setDate</button>
+                            </div>
+                            <div className="col-md-1">
+                                <button onClick={this.onDisabled2}>{this.state.disabledText2}</button>
                             </div>
                         </div>
                         <div className="row">
@@ -94,4 +121,4 @@ var Radio = React.createClass({
     }
 });
 
-module.exports = Radio;
+module.exports = DateRangePicker;

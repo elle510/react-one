@@ -59,12 +59,26 @@ var DateRangePicker = React.createClass({
         //options: PropTypes.object,
         startDateName: PropTypes.string,
         endDateName: PropTypes.string,
+        startDate: PropTypes.string,
+        endDate: PropTypes.string,
         disabled: PropTypes.bool,
         singlePicker: PropTypes.bool,
         timePicker: PropTypes.bool,
-        onHide: PropTypes.func
+        onHide: PropTypes.func,
+        onApply: PropTypes.func
     },
     id: '',
+    startDate: '',
+    endDate: '',
+    onApply: function(event, picker) {
+        var startDate = DateUtil.getDateToString(picker.startDate._d),
+            endDate = DateUtil.getDateToString(picker.endDate._d);
+        //console.log(startDate);
+        //console.log(endDate);
+        if(typeof this.props.onApply === 'function') {
+            this.props.onApply(event, startDate, endDate, picker);
+        }
+    },
     onHide: function(event, picker) {
         this.setHiddenValue();
         if(typeof this.props.onHide === 'function') {
@@ -79,11 +93,14 @@ var DateRangePicker = React.createClass({
 
         startDateString = DateUtil.getDateToString(startDate);
         endDateString = DateUtil.getDateToString(endDate);
-        console.log(startDateString);
-        console.log(endDateString);
+        //console.log(startDateString);
+        //console.log(endDateString);
 
         $('[name="' + this.props.startDateName + '"]').val(startDateString);
         $('[name="' + this.props.endDateName + '"]').val(endDateString);
+
+        this.startDate = startDateString;
+        this.endDate = endDateString;
     },
     getOptions: function() {
         /*
@@ -91,6 +108,18 @@ var DateRangePicker = React.createClass({
             options = $.extend({}, defaultOptions, propOptions);
         */
         let optional = {};
+
+        let startDate = this.props.startDate;
+        if(typeof startDate !== 'undefined') {
+            optional.startDate = startDate;
+            this.startDate = startDate;
+        }
+
+        let endDate = this.props.endDate;
+        if(typeof endDate !== 'undefined') {
+            optional.endDate = endDate;
+            this.endDate = endDate;
+        }
 
         let singlePicker = this.props.singlePicker;
         if(typeof singlePicker !== 'undefined') {
@@ -114,20 +143,16 @@ var DateRangePicker = React.createClass({
 
         // setting events
         dateRangePicker.on('hide.daterangepicker', this.onHide);
+        dateRangePicker.on('apply.daterangepicker', this.onApply);
     },
     setStateObject: function(props) {
-        let value = props.value;
-        if(typeof value === 'undefined') {
-            value = null;
-        }
-
+        // disabled 처리
         let disabled = props.disabled;
         if(typeof disabled === 'undefined') {
             disabled = false;
         }
 
         return {
-            value: value,
             disabled: disabled
         };
     },
@@ -149,6 +174,31 @@ var DateRangePicker = React.createClass({
     },
     componentWillReceiveProps: function(nextProps) {
         // 컴포넌트가 새로운 props를 받을 때 호출(최초 렌더링 시에는 호출되지 않음)
+        console.log(nextProps);
+        let dateRangePicker = $('#' + this.id),
+            startDate = nextProps.startDate,
+            endDate = nextProps.endDate;
+
+        if(typeof dateRangePicker.data('daterangepicker') !== 'undefined') {
+            if(typeof startDate !== 'undefined') {
+                if(this.startDate != startDate) {
+                    // startDate type: Date/moment/string
+                    console.log('setStartDate');
+                    dateRangePicker.data('daterangepicker').setStartDate(startDate);	// '2014-03-01'
+                    this.startDate = startDate;
+                }
+            }
+
+            if(typeof endDate !== 'undefined') {
+                if(this.endDate != endDate) {
+                    // endDate type: Date/moment/string
+                    console.log('setEndDate');
+                    dateRangePicker.data('daterangepicker').setEndDate(endDate);	// '2014-03-01'
+                    this.endDate = endDate;
+                }
+            }
+        }
+
         this.setState(this.setStateObject(nextProps));
     },
     componentWillUpdate: function(nextProps, nextState){
