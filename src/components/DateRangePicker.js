@@ -20,6 +20,7 @@ var Util = require('../services/Util');
 var DateUtil = require('../services/DateUtil');
 
 var defaultOptions = {
+    timePicker24Hour: true,
     locale: {
         format: "YYYY-MM-DD",
         separator: " ~ ",
@@ -59,7 +60,7 @@ var DateRangePicker = React.createClass({
         //options: PropTypes.object,
         startDateName: PropTypes.string,
         endDateName: PropTypes.string,
-        startDate: PropTypes.string,
+        startDate: PropTypes.string,    // YYYY-MM-DD hh:mm:ss 로 전달된 값을
         endDate: PropTypes.string,
         disabled: PropTypes.bool,
         singlePicker: PropTypes.bool,
@@ -71,18 +72,20 @@ var DateRangePicker = React.createClass({
     startDate: '',
     endDate: '',
     onApply: function(event, picker) {
-        var startDate = DateUtil.getDateToString(picker.startDate._d),
-            endDate = DateUtil.getDateToString(picker.endDate._d);
-        //console.log(startDate);
-        //console.log(endDate);
         if(typeof this.props.onApply === 'function') {
+            var startDate = DateUtil.getDateToString(picker.startDate._d),
+                endDate = DateUtil.getDateToString(picker.endDate._d);
+            //console.log(startDate);
+            //console.log(endDate);
             this.props.onApply(event, startDate, endDate, picker);
         }
     },
     onHide: function(event, picker) {
         this.setHiddenValue();
         if(typeof this.props.onHide === 'function') {
-            this.props.onHide(event, picker);
+            var startDate = DateUtil.getDateToString(picker.startDate._d),
+                endDate = DateUtil.getDateToString(picker.endDate._d);
+            this.props.onHide(event, startDate, endDate, picker);
         }
     },
     setHiddenValue: function() {
@@ -207,7 +210,7 @@ var DateRangePicker = React.createClass({
     },
     render: function() {
         // 필수 항목
-        const {className, startDateName, endDateName, width, disabled} = this.props;
+        const {className, startDateName, endDateName, width} = this.props;
         return (
             <div className={classNames('input-group daterange', className)}>
                 <input type="text" id={this.id} className="form-control" style={{width: width}} disabled={this.state.disabled} />

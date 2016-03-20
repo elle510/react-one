@@ -51,7 +51,7 @@ var Temp = React.createClass({
         // 컴포넌트가 새로운 props를 받을 때 호출(최초 렌더링 시에는 호출되지 않음)
         console.log('componentWillReceiveProps');
     },
-    componentWillUpdate: function(nextProps, nextState){
+    componentWillUpdate: function(nextProps, nextState) {
         // 새로운 props나 state를 받았을 때 렌더링 직전에 호출(최초 렌더링 시에는 호출되지 않음)
         console.log('componentWillUpdate');
     },

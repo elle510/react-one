@@ -13,7 +13,9 @@ var HiddenContent = require('./controller-views/hiddenContent');
 var Select = require('./controller-views/select');
 var CheckBox = require('./controller-views/checkbox');
 var Radio = require('./controller-views/radio');
+var DatePicker = require('./controller-views/datePicker');
 var DateRangePicker = require('./controller-views/dateRangePicker');
+var Stepper = require('./controller-views/Stepper');
 
 //var About = require('./controllers/about');
 //var Repos = require('./controllers/repos');
@@ -39,6 +41,8 @@ module.exports = (
         <Route path="/select" component={Select} />
         <Route path="/checkbox" component={CheckBox} />
         <Route path="/radio" component={Radio} />
-        <Route path="/dateRangePicker" component={DateRangePicker} />
+        <Route path="/datepicker" component={DatePicker} />
+        <Route path="/daterangepicker" component={DateRangePicker} />
+        <Route path="/stepper" component={Stepper} />
     </Router>
 )
