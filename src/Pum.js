@@ -10,6 +10,10 @@
 // components
 // Elements
 var Alert = require('./components/Alert');
+var Modal = require('./components/Modal').Modal;
+var ModalHeader = require('./components/Modal').ModalHeader;
+var ModalBody = require('./components/Modal').ModalBody;
+var ModalFooter = require('./components/Modal').ModalFooter;
 var HiddenContent = require('./components/HiddenContent');
 
 // Form Elements
@@ -48,7 +52,11 @@ var Pum = {
     DateRangePicker: DateRangePicker,
     DateRangePicker1: DateRangePicker1,
     Stepper: Stepper,
-    Alert: Alert
+    Alert: Alert,
+    Modal: Modal,
+    ModalHeader: ModalHeader,
+    ModalBody: ModalBody,
+    ModalFooter: ModalFooter
 };
 
 module.exports = Pum;

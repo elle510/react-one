@@ -17,6 +17,7 @@ var DatePicker = require('./controller-views/datePicker');
 var DateRangePicker1 = require('./controller-views/dateRangePicker1');
 var Stepper = require('./controller-views/stepper');
 var Alert = require('./controller-views/alert');
+var Modal = require('./controller-views/modal');
 
 //var About = require('./controllers/about');
 //var Repos = require('./controllers/repos');
@@ -46,5 +47,6 @@ module.exports = (
         <Route path="/daterangepicker" component={DateRangePicker1} />
         <Route path="/stepper" component={Stepper} />
         <Route path="/alert" component={Alert} />
+        <Route path="/modal" component={Modal} />
     </Router>
 )

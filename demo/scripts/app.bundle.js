@@ -24841,6 +24841,7 @@
 	var DateRangePicker1 = __webpack_require__(229);
 	var Stepper = __webpack_require__(230);
 	var Alert = __webpack_require__(231);
+	var Modal = __webpack_require__(232);
 
 	//var About = require('./controllers/about');
 	//var Repos = require('./controllers/repos');
@@ -24869,7 +24870,8 @@
 	    React.createElement(_reactRouter.Route, { path: '/datepicker', component: DatePicker }),
 	    React.createElement(_reactRouter.Route, { path: '/daterangepicker', component: DateRangePicker1 }),
 	    React.createElement(_reactRouter.Route, { path: '/stepper', component: Stepper }),
-	    React.createElement(_reactRouter.Route, { path: '/alert', component: Alert })
+	    React.createElement(_reactRouter.Route, { path: '/alert', component: Alert }),
+	    React.createElement(_reactRouter.Route, { path: '/modal', component: Modal })
 	);
 
 /***/ },
@@ -35260,6 +35262,187 @@
 	});
 
 	module.exports = Alert;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Modal = React.createClass({
+	    displayName: 'Modal',
+
+	    onOk: function onOk() {
+	        console.log('onOk');
+	    },
+	    onConfirm: function onConfirm() {
+	        console.log('onConfirm');
+	    },
+	    onCancel: function onCancel() {
+	        console.log('onCancel');
+	    },
+	    onShowModal: function onShowModal(event) {
+	        //console.log(event);
+	        //var alert1 = new Pum.Alert({title: 'aa'});
+	        //console.log(alert1);
+	        this.refs['modal'].show();
+	        console.log('modal');
+	    },
+	    onShowModalWidth: function onShowModalWidth(event) {
+	        this.refs['modal_width'].show();
+	    },
+	    onShowConfirm: function onShowConfirm(event) {
+	        this.refs['confirm'].show(function () {
+	            console.log('confirm ok done!!!');
+	        }, function () {
+	            console.log('confirm cancel done!!!');
+	        });
+	        console.log('confirm');
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'page-content' },
+	            React.createElement(
+	                'div',
+	                { className: 'page-header' },
+	                React.createElement(
+	                    'h1',
+	                    null,
+	                    'Modal'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'page-body' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'h5',
+	                            null,
+	                            'Modal'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            React.createElement(
+	                                'button',
+	                                { className: 'btn btn-primary', onClick: this.onShowModal },
+	                                'Modal'
+	                            ),
+	                            React.createElement(
+	                                Pum.Modal,
+	                                { ref: 'modal' },
+	                                React.createElement(
+	                                    Pum.ModalHeader,
+	                                    null,
+	                                    'Modal Title'
+	                                ),
+	                                React.createElement(
+	                                    Pum.ModalBody,
+	                                    null,
+	                                    'Modal Body'
+	                                ),
+	                                React.createElement(
+	                                    Pum.ModalFooter,
+	                                    null,
+	                                    'Modal Footer'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            React.createElement(
+	                                'button',
+	                                { className: 'btn btn-primary', onClick: this.onShowModalWidth },
+	                                'Modal(width: 700px)'
+	                            ),
+	                            React.createElement(
+	                                Pum.Modal,
+	                                { ref: 'modal_width', width: '700px' },
+	                                React.createElement(
+	                                    Pum.ModalHeader,
+	                                    null,
+	                                    'Modal Title'
+	                                ),
+	                                React.createElement(
+	                                    Pum.ModalBody,
+	                                    null,
+	                                    'Modal Body'
+	                                ),
+	                                React.createElement(
+	                                    Pum.ModalFooter,
+	                                    null,
+	                                    'Modal Footer'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            React.createElement(
+	                                'button',
+	                                { className: 'btn btn-primary', onClick: this.onShowConfirm },
+	                                'Confirm'
+	                            ),
+	                            React.createElement(Pum.Modal, { ref: 'confirm' })
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            Pum.HiddenContent,
+	                            { expandLabel: '소스 보기', collapseLabel: '소스 닫기',
+	                                expandIcon: 'fa fa-caret-right', collapseIcon: 'fa fa-caret-down' },
+	                            React.createElement(
+	                                Pum.TabSet,
+	                                null,
+	                                React.createElement(
+	                                    Pum.Tabs,
+	                                    null,
+	                                    React.createElement(
+	                                        Pum.Tab,
+	                                        null,
+	                                        'JSX 코드'
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    Pum.TabContents,
+	                                    null,
+	                                    React.createElement(
+	                                        Pum.TabContent,
+	                                        null,
+	                                        React.createElement(
+	                                            'pre',
+	                                            { className: 'prettyprint linenums' },
+	                                            '// js\n' + '안형로'
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement('div', { className: 'vspace-12' })
+	            ),
+	            React.createElement('div', { className: 'page-footer' })
+	        );
+	    }
+	});
+
+	module.exports = Modal;
 
 /***/ }
 /******/ ]);

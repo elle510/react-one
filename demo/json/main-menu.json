@@ -18,7 +18,7 @@
             		{ "text": "Button", 			"id": "comp_button", 			"icon": "fa fa-flag", 	"route": "button"  },
             		{ "text": "ButtonDropdown", 	"id": "comp_button_dropdown", 	"icon": "fa fa-flag", 	"route": "buttonDropdown" },
             		{ "text": "Alert", 				"id": "comp_alert", 			"icon": "fa fa-flag", 	"path": "/alert" },
-            		{ "text": "Modal", 				"id": "comp_modal", 			"icon": "fa fa-flag", 	"route": "modal" },
+            		{ "text": "Modal", 				"id": "comp_modal", 			"icon": "fa fa-flag", 	"path": "/modal" },
             		{ "text": "Panel", 				"id": "comp_panel", 			"icon": "fa fa-flag", 	"route": "panel" },
             		{ "text": "HiddenContent", 		"id": "comp_hidden_content", 	"icon": "fa fa-flag", 	"path": "/hiddenContent" },
             		{ "text": "Popover Content", 	"id": "comp_popover_content", 	"icon": "fa fa-flag", 	"route": "popoverContent" },
