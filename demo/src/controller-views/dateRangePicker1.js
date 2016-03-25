@@ -58,7 +58,7 @@ var DateRangePicker = React.createClass({
                         </div>
                         <div className="row">
                             <div className="col-md-4">
-                                <Pum.DateRangePicker startDateName="startDate1" endDateName="endDate1" singlePicker={true} timePicker={true}
+                                <Pum.DateRangePicker1 startDateName="startDate1" endDateName="endDate1" singlePicker={true} timePicker={true}
                                                     onHide={this.onHide1} disabled={this.state.disabled1} />
                             </div>
                             <div className="col-md-1">
@@ -98,7 +98,7 @@ var DateRangePicker = React.createClass({
                         </div>
                         <div className="row">
                             <div className="col-md-4">
-                                <Pum.DateRangePicker startDateName="startDate2" endDateName="endDate2"
+                                <Pum.DateRangePicker1 startDateName="startDate2" endDateName="endDate2"
                                                     startDate={this.state.startDate2} endDate={this.state.endDate2}
                                                     onHide={this.onHide2}
                                                     timePicker={true} disabled={this.state.disabled2} />

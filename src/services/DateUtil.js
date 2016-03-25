@@ -16,7 +16,7 @@ function getDateToString(date) {
 	var year = date.getFullYear(),
 		month = zerofill(date.getMonth() + 1, 2),
 		day = zerofill(date.getDate(), 2),
-		hours = (date.getHours() - 9 < 0) ? '00' : zerofill(date.getHours() - 9, 2),	// daterangepicker hours 9시간 오버표시되는 버그로 인해 빼준다.
+		hours = (date.getHours() < 0) ? '00' : zerofill(date.getHours(), 2),	// daterangepicker hours 9시간 오버표시되는 버그로 인해 빼준다.
 		minutes = zerofill(date.getMinutes(), 2),
 		seconds = zerofill(date.getSeconds(), 2),
 		dateString = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;

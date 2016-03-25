@@ -8,7 +8,7 @@
  * example:
  * $ps_locale.validators.passwordErrorMsg
 **/
-$ps_locale = {};
+$ps_locale = {locale: 'en'};
 $.extend($ps_locale,{
 	ok: 'OK',
 	confirm: 'Confirm',

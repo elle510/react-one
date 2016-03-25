@@ -13,6 +13,7 @@
 
 var React = require('react');
 var PropTypes = require('react').PropTypes;
+var classNames = require('classnames');
 
 var Util = require('../services/util');
 
@@ -26,6 +27,7 @@ var Temp = React.createClass({
         items: PropTypes.array,
         selectedIndex: PropTypes.number,
         disabled: PropTypes.bool,
+        onInit: PropTypes.func,
         onChange: PropTypes.func
     },
     id: '',
@@ -46,6 +48,11 @@ var Temp = React.createClass({
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)
         console.log('componentDidMount');
+        if(typeof this.props.onInit === 'function') {
+            var data = {};
+            data.key = value;
+            this.props.onInit(data);
+        }
     },
     componentWillReceiveProps: function(nextProps) {
         // 컴포넌트가 새로운 props를 받을 때 호출(최초 렌더링 시에는 호출되지 않음)

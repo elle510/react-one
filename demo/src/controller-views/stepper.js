@@ -2,17 +2,19 @@
 
 var React = require('react');
 
+var _value;
 var Stepper = React.createClass({
     onChange: function(event, value) {
         console.log(value);
+        _value = value;
     },
     onDisabled: function() {
         let disabled = this.state.disabled == false,
             disabledText = (disabled == false) ? 'Disabled' : 'Enabled';
-        this.setState({disabled: disabled, disabledText: disabledText});
+        this.setState({value: _value, disabled: disabled, disabledText: disabledText});
     },
     getInitialState: function() {
-        return {disabled: false, disabledText: 'Disabled'};
+        return {value: 10, disabled: false, disabledText: 'Disabled'};
     },
     render: function() {
         return (
@@ -28,7 +30,7 @@ var Stepper = React.createClass({
                         </div>
                         <div className="row">
                             <div className="col-md-2">
-                                <Pum.Stepper name="stepper_name" value={10} min={0} max={100} step={5} onChange={this.onChange} disabled={this.state.disabled} />
+                                <Pum.Stepper name="stepper_name" value={this.state.value} min={0} max={100} step={5} onChange={this.onChange} disabled={this.state.disabled} />
                             </div>
                             <div className="col-md-1">
                                 <button onClick={this.onDisabled}>{this.state.disabledText}</button>

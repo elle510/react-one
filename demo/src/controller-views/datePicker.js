@@ -2,43 +2,50 @@
 
 var React = require('react');
 
-var startDate1, endDate1, startDate2, endDate2;
-var DateRangePicker = React.createClass({
-    getDate1: function() {
-        alert('startDate: ' + startDate1 + '\n' + 'endDate: ' + endDate1);
+var _date, _oldDate, _fromDate, _toDate;
+var DatePicker = React.createClass({
+    getDate: function() {
+        alert('date: ' + _date + '\n' + 'oldDate: ' + _oldDate);
     },
-    setDate1: function() {
-        this.setState({startDate1: '2016-03-10', endDate1:'2016-03-10'});
+    setDate: function() {
+        this.setState({date: '2016-03-10'});
     },
-    onHide1: function(event, startDate, endDate, picker) {
-        startDate1 = startDate;
-        endDate1 = endDate;
+    onDisabled: function() {
+        let disabled = this.state.disabled == false,
+            disabledText = (disabled == false) ? 'Disabled' : 'Enabled';
+        this.setState({date: _date, disabled: disabled, disabledText: disabledText});
     },
-    onDisabled1: function() {
-        let disabled1 = this.state.disabled1 == false,
-            disabledText1 = (disabled1 == false) ? 'Disabled' : 'Enabled';
-        this.setState({disabled1: disabled1, disabledText1: disabledText1});
+    onChange: function(event, date, oldDate) {
+        _date = date;
+        _oldDate = oldDate;
     },
-    getDate2: function() {
-        alert('startDate: ' + startDate2 + '\n' + 'endDate: ' + endDate2);
+    onInit: function(data) {
+        _date = data.date;
     },
-    setDate2: function() {
-        console.log('setDate2');
-        this.setState({startDate2: '2016-03-10', endDate2:'2016-04-15'});
+    onRangeInit:function(data) {
+        _fromDate = data.fromDate;
+        _toDate = data.toDate;
     },
-    onHide2: function(event, startDate, endDate, picker) {
-        startDate2 = startDate;
-        endDate2 = endDate;
+    getRangeDate: function() {
+        alert('fromDate: ' + _fromDate + '\n' + 'toDate: ' + _toDate);
     },
-    onDisabled2: function() {
-        let disabled2 = this.state.disabled2 == false,
-            disabledText2 = (disabled2 == false) ? 'Disabled' : 'Enabled';
-        this.setState({disabled2: disabled2, disabledText2: disabledText2});
+    setRangeDate: function() {
+        this.setState({fromDate: '2016-03-10', toDate:'2016-04-15'});
+    },
+    onRangeChange: function(event, fromDate, toDate, picker) {
+        _fromDate = fromDate;
+        _toDate = toDate;
+    },
+    onRangeDisabled: function() {
+        let range_disabled = this.state.range_disabled == false,
+            range_disabledText = (range_disabled == false) ? 'Disabled' : 'Enabled';
+        this.setState({fromDate: _fromDate, toDate: _toDate, range_disabled: range_disabled, range_disabledText: range_disabledText});
     },
     getInitialState: function() {
-        startDate2 = '2016-03-01';
-        endDate2 = '2016-04-05';
-        return {disabled1: false, disabledText1: 'Disabled', startDate2: startDate2, endDate2: endDate2, disabled2: false, disabledText2: 'Disabled'};
+        _date = '2016-03-01';
+        _fromDate = '2016-03-01';
+        _toDate = '2016-04-05';
+        return {date: _date, disabled: false, disabledText: 'Disabled', fromDate: _fromDate, toDate: _toDate, range_disabled: false, range_disabledText: 'Disabled'};
     },
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)
@@ -48,27 +55,27 @@ var DateRangePicker = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>DateRangePicker</h1>
+                    <h1>DatePicker</h1>
                 </div>
 
                 <div className="page-body">
                     <div className="row">{/* start default */}
                         <div className="row">
-                            <h5>DateRangePicker(singleDatePicker)</h5>
+                            <h5>DatePicker</h5>
                         </div>
                         <div className="row">
                             <div className="col-md-4">
-                                <Pum.DateRangePicker startDateName="startDate1" endDateName="endDate1" singlePicker={true} timePicker={true}
-                                                    onHide={this.onHide1} disabled={this.state.disabled1} />
+                                <Pum.DatePicker name="datepicker_name" onInit={this.onInit} date={this.state.date} onChange={this.onChange}
+                                                timePicker={true} disabled={this.state.disabled} />
                             </div>
                             <div className="col-md-1">
-                                <button onClick={this.getDate1}>getDate</button>
+                                <button onClick={this.getDate}>getDate</button>
                             </div>
                             <div className="col-md-1">
-                                <button onClick={this.setDate1}>setDate</button>
+                                <button onClick={this.setDate}>setDate</button>
                             </div>
                             <div className="col-md-1">
-                                <button onClick={this.onDisabled1}>{this.state.disabledText1}</button>
+                                <button onClick={this.onDisabled}>{this.state.disabledText}</button>
                             </div>
                         </div>
                         <div className="row">
@@ -82,7 +89,7 @@ var DateRangePicker = React.createClass({
                                         <Pum.TabContent>
                                             <pre className="prettyprint linenums">
                                                 {/*'// html\n'*/}
-                                                {'<Pum.DateRangePicker startDateName="startDate1" endDateName="endDate1" singlePicker={true} timePicker={true} />'}
+                                                {'<Pum.DatePicker startDateName="startDate1" endDateName="endDate1" singlePicker={true} timePicker={true} />'}
                                             </pre>
                                         </Pum.TabContent>
                                     </Pum.TabContents>
@@ -97,20 +104,18 @@ var DateRangePicker = React.createClass({
                             <h5>DateRangePicker (기간선택)</h5>
                         </div>
                         <div className="row">
-                            <div className="col-md-4">
-                                <Pum.DateRangePicker startDateName="startDate2" endDateName="endDate2"
-                                                    startDate={this.state.startDate2} endDate={this.state.endDate2}
-                                                    onHide={this.onHide2}
-                                                    timePicker={true} disabled={this.state.disabled2} />
+                            <div className="col-md-5">
+                                <Pum.DateRangePicker fromName="fromDate" toName="toDate" fromDate={this.state.fromDate} toDate={this.state.toDate}
+                                                     onInit={this.onRangeInit} onChange={this.onRangeChange} timePicker={false} disabled={this.state.range_disabled} />
                             </div>
                             <div className="col-md-1">
-                                <button onClick={this.getDate2}>getDate</button>
+                                <button onClick={this.getRangeDate}>getDate</button>
                             </div>
                             <div className="col-md-1">
-                                <button onClick={this.setDate2}>setDate</button>
+                                <button onClick={this.setRangeDate}>setDate</button>
                             </div>
                             <div className="col-md-1">
-                                <button onClick={this.onDisabled2}>{this.state.disabledText2}</button>
+                                <button onClick={this.onRangeDisabled}>{this.state.range_disabledText}</button>
                             </div>
                         </div>
                         <div className="row">
@@ -148,4 +153,4 @@ var DateRangePicker = React.createClass({
     }
 });
 
-module.exports = DateRangePicker;
+module.exports = DatePicker;

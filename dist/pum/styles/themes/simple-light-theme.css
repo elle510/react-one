@@ -5572,6 +5572,13 @@ input[type=checkbox].ace.ace-switch.ace-switch-5:checked + .lbl::before {
     width: 38em;
   }
 }
+.datepicker-group > .input-group.date {
+  float: left;
+  width: 50%;
+}
+.datepicker-group .input-group.date + .input-group.date {
+  padding-left: 20px;
+}
 /* bootstrap-daterangepicker-default
 ----------------------------------*/
 .daterangepicker {
