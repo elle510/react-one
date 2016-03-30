@@ -5,7 +5,8 @@
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
- * <Pum.Alert />
+ * <Pum.Alert ref="alert" title="타이틀" message="메시지" onOk={this.onOk} />
+ * <Pum.Alert ref="confirm" type="confirm" title="타이틀" message="메시지" onOk={this.onConfirm} onCancel={this.onCancel}/>
  *
  * bootstrap component
  */
@@ -71,22 +72,8 @@ var Alert = React.createClass({
             this.props.onCancel();
         }
     },
-    getInitialState: function() {
-        var {title, okLabel, cancelLabel} = this.props;
-
-        if(typeof title === 'undefined') {
-            title = 'Title';
-        }
-
-        if(typeof okLabel === 'undefined') {
-            okLabel = $ps_locale.confirm;
-        }
-
-        if(typeof cancelLabel === 'undefined') {
-            cancelLabel = $ps_locale.cancel;
-        }
-
-        return {title: title, okLabel: okLabel, cancelLabel: cancelLabel};
+    getDefaultProps: function() {
+        return {title: 'Title', okLabel: $ps_locale.confirm, cancelLabel: $ps_locale.cancel};
     },
     componentWillMount: function() {
         // 최초 렌더링이 일어나기 직전(한번 호출)
@@ -97,13 +84,17 @@ var Alert = React.createClass({
 
         this.id = id;
     },
+    componentDidMount: function() {
+        // 최초 렌더링이 일어난 다음(한번 호출)
+        console.log('5. componentDidMount');
+    },
     render: function() {
         // 필수 항목
-        const {className, type, message, cancelable, width} = this.props;
+        const {className, type, title, message, okLabel, cancelLabel, width} = this.props;
 
         var cancelButton;
         if(type === 'confirm') {
-            cancelButton = <button type="button" className="btn btn-default" onClick={this.onCancel} data-dismiss="modal">{this.state.cancelLabel}</button>;
+            cancelButton = <button type="button" className="btn btn-default" onClick={this.onCancel} data-dismiss="modal">{cancelLabel}</button>;
         }
 
         return (
@@ -111,13 +102,13 @@ var Alert = React.createClass({
                 <div className="modal-dialog modal-sm" style={{width: width}}>
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h4 className="modal-title">{this.state.title}</h4>
+                            <h4 className="modal-title">{title}</h4>
                         </div>
                         <div className="modal-body">
                             {message}
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-default" onClick={this.onOk}>{this.state.okLabel}</button>
+                            <button type="button" className="btn btn-default" onClick={this.onOk}>{okLabel}</button>
                             {cancelButton}
                         </div>
                     </div>

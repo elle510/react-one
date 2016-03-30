@@ -14,6 +14,10 @@ var Modal = require('./components/Modal').Modal;
 var ModalHeader = require('./components/Modal').ModalHeader;
 var ModalBody = require('./components/Modal').ModalBody;
 var ModalFooter = require('./components/Modal').ModalFooter;
+var Panel = require('./components/Panel').Panel;
+var PanelHeader = require('./components/Panel').PanelHeader;
+var PanelBody = require('./components/Panel').PanelBody;
+var PanelFooter = require('./components/Panel').PanelFooter;
 var HiddenContent = require('./components/HiddenContent');
 
 // Form Elements
@@ -25,6 +29,7 @@ var DatePicker = require('./components/DatePicker').DatePicker;
 var DateRangePicker = require('./components/DatePicker').DateRangePicker;
 var DateRangePicker1 = require('./components/DateRangePicker1');
 var Stepper = require('./components/Stepper');
+var Fieldset = require('./components/Fieldset');
 
 // Etc Elements
 var JqGrid = require('./components/JqGrid');
@@ -56,7 +61,12 @@ var Pum = {
     Modal: Modal,
     ModalHeader: ModalHeader,
     ModalBody: ModalBody,
-    ModalFooter: ModalFooter
+    ModalFooter: ModalFooter,
+    Panel: Panel,
+    PanelHeader: PanelHeader,
+    PanelBody: PanelBody,
+    PanelFooter: PanelFooter,
+    Fieldset: Fieldset
 };
 
 module.exports = Pum;

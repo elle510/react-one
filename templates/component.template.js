@@ -5,7 +5,7 @@
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
- * <Pum.Temp options="{options}" />
+ * <Pum.Temp options={options} />
  *
  * JsTree 라이브러리에 종속적이다.
  */
@@ -28,16 +28,30 @@ var Temp = React.createClass({
         selectedIndex: PropTypes.number,
         disabled: PropTypes.bool,
         onInit: PropTypes.func,
-        onChange: PropTypes.func
+        onChange: PropTypes.func,
+		category: PropTypes.oneOf(['News','Photos']).isRequired,
+		dialog: PropTypes.instanceOf(Dialog).isRequired,
+		value: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+            PropTypes.bool,
+        ])
     },
     id: '',
+	getDefaultProps: function() {
+		// 클래스가 생성될 때 한번 호출되고 캐시된다.
+		// 부모 컴포넌트에서 prop이 넘어오지 않은 경우 (in 연산자로 확인) 매핑의 값이 this.props에 설정된다.
+		console.log('1. getDefaultProps');
+		return {value: 'default value'};
+	},
     getInitialState: function() {
-        console.log('getInitialState');
+		// 컴포넌트가 마운트되기 전 (한번 호출) / 리턴값은 this.state의 초기값으로 사용
+        console.log('2. getInitialState');
         return {data: []};
     },
     componentWillMount: function() {
         // 최초 렌더링이 일어나기 직전(한번 호출)
-        console.log('componentWillMount');
+        console.log('3. componentWillMount');
         let id = this.props.id;
         if(typeof id === 'undefined') {
             id = Util.getUUID();
@@ -47,7 +61,7 @@ var Temp = React.createClass({
     },
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)
-        console.log('componentDidMount');
+        console.log('5. componentDidMount');
         if(typeof this.props.onInit === 'function') {
             var data = {};
             data.key = value;
@@ -72,10 +86,11 @@ var Temp = React.createClass({
     },
     render: function() {
         // 필수 항목
-        console.log('render');
+        console.log('4. render');
+        const {className} = this.props;
 
         return (
-            <div id={this.id}></div>
+            <div id={this.id} className={classNames('panel', className)}></div>
         );
     }
 });

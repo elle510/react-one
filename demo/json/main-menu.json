@@ -19,7 +19,7 @@
             		{ "text": "ButtonDropdown", 	"id": "comp_button_dropdown", 	"icon": "fa fa-flag", 	"route": "buttonDropdown" },
             		{ "text": "Alert", 				"id": "comp_alert", 			"icon": "fa fa-flag", 	"path": "/alert" },
             		{ "text": "Modal", 				"id": "comp_modal", 			"icon": "fa fa-flag", 	"path": "/modal" },
-            		{ "text": "Panel", 				"id": "comp_panel", 			"icon": "fa fa-flag", 	"route": "panel" },
+            		{ "text": "Panel", 				"id": "comp_panel", 			"icon": "fa fa-flag", 	"path": "/panel" },
             		{ "text": "HiddenContent", 		"id": "comp_hidden_content", 	"icon": "fa fa-flag", 	"path": "/hiddenContent" },
             		{ "text": "Popover Content", 	"id": "comp_popover_content", 	"icon": "fa fa-flag", 	"route": "popoverContent" },
             		{ "text": "Context Menu", 		"id": "comp_context_menu", 		"icon": "fa fa-flag", 	"route": "contextMenu" }
@@ -36,7 +36,7 @@
             		{ "text": "DateRangePicker(not use)","id": "form_dateRangePicker", 	"icon": "fa fa-flag", 		"path": "/daterangepicker" },
             		{ "text": "Stepper", 			"id": "form_stepper", 			"icon": "fa fa-flag", 		"path": "/stepper" },
             		{ "text": "DualListbox", 		"id": "form_dualListbox", 		"icon": "fa fa-flag", 		"route": "dualListbox" },
-            		{ "text": "Fieldset", 			"id": "form_fieldset", 			"icon": "fa fa-flag", 		"route": "fieldset" },
+            		{ "text": "Fieldset", 			"id": "form_fieldset", 			"icon": "fa fa-flag", 		"path": "/fieldset" },
             		{ "text": "Validation", 		"id": "comp_validation", 		"icon": "fa fa-flag", 		"route": "validation" },
             		{ "text": "Wizard", 			"id": "comp_wizard", 			"icon": "fa fa-flag", 		"route": "wizard" },
             		{ "text": "Upload", 			"id": "comp_upload", 			"icon": "fa fa-flag", 		"route": "upload" }

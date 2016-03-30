@@ -2,39 +2,31 @@
 
 var React = require('react');
 
-var HiddenContent = React.createClass({
+var Panel = React.createClass({
+    onInit: function() {
+        console.log('Panel onInit');
+    },
     render: function() {
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>HiddenContent</h1>
+                    <h1>Panel</h1>
                 </div>
 
                 <div className="page-body">
                     <div className="row">{/* start default */}
                         <div className="row">
                             <div className="col-md-12">
-                                <span className="component-title">Hidden Content(내용 접기/펼치기)</span>
+                                <h5>Panel</h5>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12">
-                                <Pum.HiddenContent expandLabel="펼치기" collapseLabel="접기"
-                                                expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down"
-                                                isBottom={true}>
-                                    <div>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                    </div>
-                                </Pum.HiddenContent>
+                                <Pum.Panel onInit={this.onInit}>
+                                    <Pum.PanelHeader>Panel Title</Pum.PanelHeader>
+                                    <Pum.PanelBody>Panel Body</Pum.PanelBody>
+                                    <Pum.PanelFooter>Panel Footer</Pum.PanelFooter>
+                                </Pum.Panel>
                             </div>
                         </div>
                         <div className="row">
@@ -70,4 +62,4 @@ var HiddenContent = React.createClass({
     }
 });
 
-module.exports = HiddenContent;
+module.exports = Panel;

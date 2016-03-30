@@ -5,7 +5,11 @@
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
- * <Pum.Modal />
+ * <Pum.Modal ref="modal" width="700px">
+ *   <Pum.ModalHeader>Modal Title</Pum.ModalHeader>
+ *   <Pum.ModalBody>Modal Body</Pum.ModalBody>
+ *   <Pum.ModalFooter>Modal Footer</Pum.ModalFooter>
+ * </Pum.Modal>
  *
  * bootstrap component
  */
@@ -55,19 +59,41 @@ var Modal = React.createClass({
     propTypes: {
         id: PropTypes.string,
         className: PropTypes.string,
-        width: PropTypes.string
+        width: PropTypes.string,
+        backdrop: PropTypes.bool,
+        onShow: PropTypes.func,
+        onHide: PropTypes.func
     },
     id: '',
-    show: function(okFunc, cancelFunc) {
+    show: function() {
         var alert = $('#'+this.id);
         alert.modal('show');
-
-        this.okFunc = okFunc;
-        this.cancelFunc = cancelFunc;
+        /*
+        if(this.props.backdrop === true) {
+            alert.modal('show');
+        }else {
+            alert.modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        }
+        */
     },
     hide: function() {
         var alert = $('#'+this.id);
         alert.modal('hide');
+    },
+    onShow: function(event) {
+        if(typeof this.props.onShow === 'function') {
+            this.props.onShow(event);
+            //event.stopImmediatePropagation();
+        }
+    },
+    onHide: function(event) {
+        if(typeof this.props.onHide === 'function') {
+            this.props.onHide(event);
+            //event.stopImmediatePropagation();
+        }
     },
     getChildren: function() {
         var children = this.props.children;
@@ -80,6 +106,9 @@ var Modal = React.createClass({
             return React.cloneElement(child, {});
         });
     },
+    getDefaultProps: function() {
+        return {backdrop: false};
+    },
     componentWillMount: function() {
         // 최초 렌더링이 일어나기 직전(한번 호출)
         let id = this.props.id;
@@ -88,6 +117,17 @@ var Modal = React.createClass({
         }
 
         this.id = id;
+    },
+    componentDidMount: function() {
+        // 최초 렌더링이 일어난 다음(한번 호출)
+        var alert = $('#'+this.id);
+        if(this.props.backdrop === false) {
+            alert.attr('data-backdrop', 'static');
+            alert.attr('data-keyboard', false);
+        }
+
+        alert.on('shown.bs.modal', this.onShow);
+        alert.on('hidden.bs.modal', this.onHide);
     },
     render: function() {
         // 필수 항목

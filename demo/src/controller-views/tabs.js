@@ -13,22 +13,48 @@ var Tabs = React.createClass({
                 <div className="page-body">
                     <div className="row">{/* start default */}
                         <div className="row">
-                            <h5>Tab</h5>
+                            <div className="col-md-12">
+                                <h5>Tab</h5>
+                            </div>
                         </div>
-                        <Pum.TabSet>
-                            <Pum.Tabs>
-                                <Pum.Tab>Tab1</Pum.Tab>
-                                <Pum.Tab>Tab2</Pum.Tab>
-                            </Pum.Tabs>
-                            <Pum.TabContents>
-                                <Pum.TabContent>
-                                    하하
-                                </Pum.TabContent>
-                                <Pum.TabContent>
-                                    호호
-                                </Pum.TabContent>
-                            </Pum.TabContents>
-                        </Pum.TabSet>
+                        <div className="row">
+                            <div className="col-md-12">
+                                <Pum.TabSet>
+                                    <Pum.Tabs>
+                                        <Pum.Tab>Tab1</Pum.Tab>
+                                        <Pum.Tab>Tab2</Pum.Tab>
+                                    </Pum.Tabs>
+                                    <Pum.TabContents>
+                                        <Pum.TabContent>
+                                            하하
+                                        </Pum.TabContent>
+                                        <Pum.TabContent>
+                                            호호
+                                        </Pum.TabContent>
+                                    </Pum.TabContents>
+                                </Pum.TabSet>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12">
+                                <Pum.HiddenContent expandLabel="소스 보기" collapseLabel="소스 닫기"
+                                                    expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down">
+                                    <Pum.TabSet>
+                                        <Pum.Tabs>
+                                            <Pum.Tab>JSX 코드</Pum.Tab>
+                                        </Pum.Tabs>
+                                        <Pum.TabContents>
+                                            <Pum.TabContent>
+                                                <pre className="prettyprint linenums">
+                                                    {/*'// html\n'*/}
+                                                    {'<Pum.Stepper name="stepper_name" value={10} min={0} max={100} step={5} />'}
+                                                </pre>
+                                            </Pum.TabContent>
+                                        </Pum.TabContents>
+                                    </Pum.TabSet>
+                                </Pum.HiddenContent>
+                            </div>
+                        </div>
                         {/*
                         <div className="row">
                             <div className="row col-md-12">

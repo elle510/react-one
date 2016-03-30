@@ -18,6 +18,8 @@ var DateRangePicker1 = require('./controller-views/dateRangePicker1');
 var Stepper = require('./controller-views/stepper');
 var Alert = require('./controller-views/alert');
 var Modal = require('./controller-views/modal');
+var Panel = require('./controller-views/panel');
+var Fieldset = require('./controller-views/fieldset');
 
 //var About = require('./controllers/about');
 //var Repos = require('./controllers/repos');
@@ -48,5 +50,7 @@ module.exports = (
         <Route path="/stepper" component={Stepper} />
         <Route path="/alert" component={Alert} />
         <Route path="/modal" component={Modal} />
+        <Route path="/panel" component={Panel} />
+        <Route path="/fieldset" component={Fieldset} />
     </Router>
 )

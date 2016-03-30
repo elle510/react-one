@@ -3,14 +3,13 @@
 var React = require('react');
 
 var Modal = React.createClass({
-    onOk: function() {
-        console.log('onOk');
+    onShow: function(event) {
+        console.log('onShow');
+        console.log(event);
     },
-    onConfirm: function() {
-        console.log('onConfirm');
-    },
-    onCancel: function() {
-        console.log('onCancel');
+    onHide: function(event) {
+        console.log('onHide');
+        console.log(event);
     },
     onShowModal: function(event) {
         //console.log(event);
@@ -22,14 +21,6 @@ var Modal = React.createClass({
     onShowModalWidth: function(event) {
         this.refs['modal_width'].show();
     },
-    onShowConfirm: function(event) {
-        this.refs['confirm'].show(function() {
-            console.log('confirm ok done!!!');
-        }, function() {
-            console.log('confirm cancel done!!!');
-        });
-        console.log('confirm');
-    },
     render: function() {
         return (
             <div className="page-content">
@@ -40,7 +31,9 @@ var Modal = React.createClass({
                 <div className="page-body">
                     <div className="row">{/* start default */}
                         <div className="row">
-                            <h5>Modal</h5>
+                            <div className="col-md-12">
+                                <h5>Modal</h5>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col-md-1">
@@ -53,7 +46,7 @@ var Modal = React.createClass({
                                     <Pum.ModalFooter>Modal Footer</Pum.ModalFooter>
                                 </Pum.Modal>
                             </div>
-                            <div className="col-md-1">
+                            <div className="col-md-3">
                                 <button className="btn btn-primary" onClick={this.onShowModalWidth}>
                                     Modal(width: 700px)
                                 </button>
@@ -63,33 +56,90 @@ var Modal = React.createClass({
                                     <Pum.ModalFooter>Modal Footer</Pum.ModalFooter>
                                 </Pum.Modal>
                             </div>
-                            <div className="col-md-1">
-                                <button className="btn btn-primary" onClick={this.onShowConfirm}>
-                                    Confirm
+                            <div className="col-md-3">
+                                <button className="btn btn-primary" data-toggle="modal" data-target="#target_modal">
+                                    Modal(data-target))
                                 </button>
-                                <Pum.Modal ref="confirm" />
+                                <Pum.Modal id="target_modal">
+                                    <Pum.ModalHeader>Modal Title</Pum.ModalHeader>
+                                    <Pum.ModalBody>Modal Body</Pum.ModalBody>
+                                    <Pum.ModalFooter>Modal Footer</Pum.ModalFooter>
+                                </Pum.Modal>
                             </div>
                         </div>
                         <div className="row">
-                            <Pum.HiddenContent expandLabel="소스 보기" collapseLabel="소스 닫기"
-                                            expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down">
-                                <Pum.TabSet>
-                                    <Pum.Tabs>
-                                        <Pum.Tab>JSX 코드</Pum.Tab>
-                                    </Pum.Tabs>
-                                    <Pum.TabContents>
-                                        <Pum.TabContent>
-                                            <pre className="prettyprint linenums">
-                                                {'// js\n' +
-                                                '안형로'}
-                                            </pre>
-                                        </Pum.TabContent>
-                                    </Pum.TabContents>
-                                </Pum.TabSet>
-                            </Pum.HiddenContent>
+                            <div className="col-md-12">
+                                <Pum.HiddenContent expandLabel="소스 보기" collapseLabel="소스 닫기"
+                                                expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down">
+                                    <Pum.TabSet>
+                                        <Pum.Tabs>
+                                            <Pum.Tab>JSX 코드</Pum.Tab>
+                                        </Pum.Tabs>
+                                        <Pum.TabContents>
+                                            <Pum.TabContent>
+                                                <pre className="prettyprint linenums">
+                                                    {'// js\n' +
+                                                    '안형로'}
+                                                </pre>
+                                            </Pum.TabContent>
+                                        </Pum.TabContents>
+                                    </Pum.TabSet>
+                                </Pum.HiddenContent>
+                            </div>
                         </div>
                     </div>{/* end default */}
                     <div className="vspace-12" />
+
+                    <div className="row">{/* start backdrop */}
+                        <div className="row">
+                            <div className="col-md-12">
+                                <h5>Modal - backdrop / listener</h5>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-2">
+                                <button className="btn btn-primary" data-toggle="modal" data-target="#modal_backdrop">
+                                    Modal(backdrop)
+                                </button>
+                                <Pum.Modal id="modal_backdrop" backdrop={true}>
+                                    <Pum.ModalHeader>Modal Title</Pum.ModalHeader>
+                                    <Pum.ModalBody>Modal Body</Pum.ModalBody>
+                                    <Pum.ModalFooter>Modal Footer</Pum.ModalFooter>
+                                </Pum.Modal>
+                            </div>
+                            <div className="col-md-2">
+                                <button className="btn btn-primary" data-toggle="modal" data-target="#modal_listener">
+                                Modal(listener)
+                                </button>
+                                <Pum.Modal id="modal_listener" onShow={this.onShow} onHide={this.onHide}>
+                                    <Pum.ModalHeader>Modal Title</Pum.ModalHeader>
+                                    <Pum.ModalBody>Modal Body</Pum.ModalBody>
+                                </Pum.Modal>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12">
+                                <Pum.HiddenContent expandLabel="소스 보기" collapseLabel="소스 닫기"
+                                                    expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down">
+                                    <Pum.TabSet>
+                                        <Pum.Tabs>
+                                            <Pum.Tab>JSX 코드</Pum.Tab>
+                                        </Pum.Tabs>
+                                        <Pum.TabContents>
+                                            <Pum.TabContent>
+                                                <pre className="prettyprint linenums">
+                                                    {'// js\n' +
+                                                        '안형로'}
+                                                </pre>
+                                            </Pum.TabContent>
+                                        </Pum.TabContents>
+                                    </Pum.TabSet>
+                                </Pum.HiddenContent>
+                            </div>
+                        </div>
+                    </div>{/* end backdrop */}
+                    <div className="vspace-12" />
+
                 </div>
 
                 <div className="page-footer">

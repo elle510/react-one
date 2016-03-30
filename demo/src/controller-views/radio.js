@@ -22,7 +22,9 @@ var Radio = React.createClass({
                 <div className="page-body">
                     <div className="row">{/* start default */}
                         <div className="row">
-                            <h5>Radio</h5>
+                            <div className="col-md-12">
+                                <h5>Radio</h5>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12">
@@ -33,32 +35,36 @@ var Radio = React.createClass({
                             </div>
                         </div>
                         <div className="row">
-                            <Pum.HiddenContent expandLabel="소스 보기" collapseLabel="소스 닫기"
-                                            expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down">
-                                <Pum.TabSet>
-                                    <Pum.Tabs>
-                                        <Pum.Tab>JSX 코드</Pum.Tab>
-                                    </Pum.Tabs>
-                                    <Pum.TabContents>
-                                        <Pum.TabContent>
-                                            <pre className="prettyprint linenums">
-                                                {/*'// html\n'*/}
-                                                {'<Pum.RadioGroup name="radio_name" selectedValue="value2" onChange={this.onChange}>\n'}
-                                                {'  <Pum.Radio value="value1"> 라디오1</Pum.Radio>\n'}
-                                                {'  <Pum.Radio value="value2"> 라디오2</Pum.Radio>\n'}
-                                                {'</Pum.RadioGroup>'}
-                                            </pre>
-                                        </Pum.TabContent>
-                                    </Pum.TabContents>
-                                </Pum.TabSet>
-                            </Pum.HiddenContent>
+                            <div className="col-md-12">
+                                <Pum.HiddenContent expandLabel="소스 보기" collapseLabel="소스 닫기"
+                                                expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down">
+                                    <Pum.TabSet>
+                                        <Pum.Tabs>
+                                            <Pum.Tab>JSX 코드</Pum.Tab>
+                                        </Pum.Tabs>
+                                        <Pum.TabContents>
+                                            <Pum.TabContent>
+                                                <pre className="prettyprint linenums">
+                                                    {/*'// html\n'*/}
+                                                    {'<Pum.RadioGroup name="radio_name" selectedValue="value2" onChange={this.onChange}>\n'}
+                                                    {'  <Pum.Radio value="value1"> 라디오1</Pum.Radio>\n'}
+                                                    {'  <Pum.Radio value="value2"> 라디오2</Pum.Radio>\n'}
+                                                    {'</Pum.RadioGroup>'}
+                                                </pre>
+                                            </Pum.TabContent>
+                                        </Pum.TabContents>
+                                    </Pum.TabSet>
+                                </Pum.HiddenContent>
+                            </div>
                         </div>
                     </div>{/* end default */}
                     <div className="vspace-12" />
 
                     <div className="row">{/* start horizontal checkbox */}
                         <div className="row">
-                            <h5>Radio (horizontal)</h5>
+                            <div className="col-md-12">
+                                <h5>Radio (horizontal)</h5>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12">
@@ -69,25 +75,27 @@ var Radio = React.createClass({
                             </div>
                         </div>
                         <div className="row">
-                            <Pum.HiddenContent expandLabel="소스 보기" collapseLabel="소스 닫기"
-                                            expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down">
-                                <Pum.TabSet>
-                                    <Pum.Tabs>
-                                        <Pum.Tab>JSX 코드</Pum.Tab>
-                                    </Pum.Tabs>
-                                    <Pum.TabContents>
-                                        <Pum.TabContent>
-                                            <pre className="prettyprint linenums">
-                                                {/*'// html\n'*/}
-                                                {'<Pum.RadioGroup name="radio_name" selectedValue="value1" onChange={this.onChange} horizontal={true}>\n'}
-                                                {'  <Pum.Radio value="value1"> 라디오1</Pum.Radio>\n'}
-                                                {'  <Pum.Radio value="value2"> 라디오2</Pum.Radio>\n'}
-                                                {'</Pum.RadioGroup>'}
-                                            </pre>
-                                        </Pum.TabContent>
-                                    </Pum.TabContents>
-                                </Pum.TabSet>
-                            </Pum.HiddenContent>
+                            <div className="col-md-12">
+                                <Pum.HiddenContent expandLabel="소스 보기" collapseLabel="소스 닫기"
+                                                expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down">
+                                    <Pum.TabSet>
+                                        <Pum.Tabs>
+                                            <Pum.Tab>JSX 코드</Pum.Tab>
+                                        </Pum.Tabs>
+                                        <Pum.TabContents>
+                                            <Pum.TabContent>
+                                                <pre className="prettyprint linenums">
+                                                    {/*'// html\n'*/}
+                                                    {'<Pum.RadioGroup name="radio_name" selectedValue="value1" onChange={this.onChange} horizontal={true}>\n'}
+                                                    {'  <Pum.Radio value="value1"> 라디오1</Pum.Radio>\n'}
+                                                    {'  <Pum.Radio value="value2"> 라디오2</Pum.Radio>\n'}
+                                                    {'</Pum.RadioGroup>'}
+                                                </pre>
+                                            </Pum.TabContent>
+                                        </Pum.TabContents>
+                                    </Pum.TabSet>
+                                </Pum.HiddenContent>
+                            </div>
                         </div>
                     </div>{/* end horizontal checkbox */}
                     <div className="vspace-12" />
