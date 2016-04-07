@@ -5,10 +5,14 @@ var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 module.exports = {
-	entry: './src/app.js',
+	//entry: './src/app.js',
+	entry: {
+		app: './src/app.js',
+		liveobject: './link/liveobject/app.js'
+	},
 	output: {
 		path: __dirname + '/scripts',
-		filename: 'app.bundle.js'
+		filename: '[name].bundle.js'
 	},
 	/*
 	entry: {

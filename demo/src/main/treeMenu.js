@@ -28,7 +28,8 @@ module.exports = React.createClass({
                 //browserHistory.push(json.path);
                 hashHistory.push(json.path);
             }else if(json.hasOwnProperty('url')) {
-                location.href = json.url;
+                //location.href = json.url;
+                window.open(json.url, '_blank');
             }
             //event.stopPropagation();
             //event.stopImmediatePropagation();

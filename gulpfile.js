@@ -100,15 +100,19 @@ gulp.task('build.locale', ['clean.locale'], function () {
 
 // demo build
 gulp.task('clean.demo', function() {
-    return del('demo/scripts/app.bundle.js');
+    return del('demo/scripts/*.bundle.js');
 });
 
 gulp.task('build.demo', ['clean.demo'], function(callback) {
     //var demoWebpackConfig = require("./demo/webpack.config.js");
     return gulp.src('demo/src/app.js')
         .pipe(webpack({
+            entry: {
+                app: './demo/src/app.js',
+                liveobject: './demo/link/liveobject/app.js'
+            },
             output: {
-                filename: 'app.bundle.js'
+                filename: '[name].bundle.js'
             },
             module: {
                 loaders: [

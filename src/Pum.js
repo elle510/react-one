@@ -19,6 +19,8 @@ var PanelHeader = require('./components/Panel').PanelHeader;
 var PanelBody = require('./components/Panel').PanelBody;
 var PanelFooter = require('./components/Panel').PanelFooter;
 var HiddenContent = require('./components/HiddenContent');
+var Splitter = require('./components/Splitter').Splitter;
+var SplitterPane = require('./components/Splitter').SplitterPane;
 
 // Form Elements
 var Select = require('./components/Select');
@@ -66,7 +68,9 @@ var Pum = {
     PanelHeader: PanelHeader,
     PanelBody: PanelBody,
     PanelFooter: PanelFooter,
-    Fieldset: Fieldset
+    Fieldset: Fieldset,
+    Splitter: Splitter,
+    SplitterPane: SplitterPane
 };
 
 module.exports = Pum;

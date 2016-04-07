@@ -1,0 +1,58 @@
+//
+// splitter-default.less
+// splitter Theme 기본 CSS - 직접 작성
+//
+// 컴포넌트 사이트
+// http://methvin.com/splitter/
+// --------------------------------------------------
+
+/* splitter
+----------------------------------*/
+// Color variables (appears count calculates by raw css)
+@color0: #cc6666; // Appears 4 times
+@color1: #aaaaaa; // Appears 3 times
+
+// Width variables (appears count calculates by raw css)
+@width0: 3px; // Appears 3 times
+
+// Height variables (appears count calculates by raw css)
+@height0: 3px; // Appears 3 times
+
+.splitter {
+    border: 3px solid @color1;
+    .splitter-pane {
+        overflow: auto;
+    }
+    .vsplitbar {
+        background: @color1;
+        width: @width0;
+        &:hover {
+            background-color: @color0;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+            width: @width0;
+        }
+    }
+    .vsplitbar.active {
+        background-color: @color0;
+        filter: alpha(opacity=50);
+        opacity: 0.5;
+        width: @width0;
+    }
+    .hsplitbar {
+        background: @color1;
+        height: @height0;
+        &:hover {
+            background-color: @color0;
+            filter: alpha(opacity=50);
+            height: @height0;
+            opacity: 0.5;
+        }
+    }
+    .hsplitbar.active {
+        background-color: @color0;
+        filter: alpha(opacity=50);
+        height: @height0;
+        opacity: 0.5;
+    }
+}

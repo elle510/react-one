@@ -20,6 +20,7 @@ var Alert = require('./controller-views/alert');
 var Modal = require('./controller-views/modal');
 var Panel = require('./controller-views/panel');
 var Fieldset = require('./controller-views/fieldset');
+var Splitter = require('./controller-views/splitter');
 
 //var About = require('./controllers/about');
 //var Repos = require('./controllers/repos');
@@ -52,5 +53,6 @@ module.exports = (
         <Route path="/modal" component={Modal} />
         <Route path="/panel" component={Panel} />
         <Route path="/fieldset" component={Fieldset} />
+        <Route path="/splitter" component={Splitter} />
     </Router>
 )
