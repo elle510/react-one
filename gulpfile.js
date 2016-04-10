@@ -109,7 +109,8 @@ gulp.task('build.demo', ['clean.demo'], function(callback) {
         .pipe(webpack({
             entry: {
                 app: './demo/src/app.js',
-                liveobject: './demo/link/liveobject/app.js'
+                liveobject: './demo/link/liveobject/app.js',
+                report: './demo/link/report/app.js'
             },
             output: {
                 filename: '[name].bundle.js'

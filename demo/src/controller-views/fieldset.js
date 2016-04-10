@@ -22,7 +22,7 @@ var Fieldset = React.createClass({
                         </div>
                         <div className="row">
                             <div className="col-md-12">
-                                <Pum.Fieldset legend="검색" collapsible={true} onToggle={this.onToggle}>
+                                <Pum.Fieldset legend="검색" collapsible={false} onToggle={this.onToggle}>
                                     <div>
                                         내용<br/>
                                         내용<br/>

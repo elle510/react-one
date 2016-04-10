@@ -760,14 +760,14 @@ body {
   padding-bottom: 16px;
   padding-top: 7px;
 }
-.page-header h1 {
+.page-header .title {
   padding: 0;
   margin: 0 8px;
   font-size: 24px;
   font-weight: lighter;
   color: #2679B5;
 }
-.page-header h1 small {
+.page-header .title small {
   margin: 0 6px;
   font-size: 14px;
   font-weight: normal;
@@ -780,6 +780,11 @@ body {
 .page-footer {
   margin: 0;
   padding: 5px;
+}
+.container-980 {
+  width: 980px;
+  margin-right: auto;
+  margin-left: auto;
 }
 .search-group {
   margin-bottom: 5px;
