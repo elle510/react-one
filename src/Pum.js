@@ -24,7 +24,7 @@ var SplitterPane = require('./components/Splitter').SplitterPane;
 
 // Form Elements
 var Select = require('./components/Select');
-var CheckBox = require('./components/CheckBox');
+var Checkbox = require('./components/Checkbox');
 var RadioGroup = require('./components/radio/RadioGroup');
 var Radio = require('./components/radio/Radio');
 var DatePicker = require('./components/DatePicker').DatePicker;
@@ -32,6 +32,7 @@ var DateRangePicker = require('./components/DatePicker').DateRangePicker;
 var DateRangePicker1 = require('./components/DateRangePicker1');
 var Stepper = require('./components/Stepper');
 var Fieldset = require('./components/Fieldset');
+var Autocomplete = require('./components/Autocomplete');
 
 // Etc Elements
 var JqGrid = require('./components/JqGrid');
@@ -52,7 +53,7 @@ var Pum = {
     TabContent: TabContent,
     HiddenContent: HiddenContent,
     Select: Select,
-    CheckBox: CheckBox,
+    Checkbox: Checkbox,
     RadioGroup: RadioGroup,
     Radio: Radio,
     DatePicker: DatePicker,
@@ -70,7 +71,8 @@ var Pum = {
     PanelFooter: PanelFooter,
     Fieldset: Fieldset,
     Splitter: Splitter,
-    SplitterPane: SplitterPane
+    SplitterPane: SplitterPane,
+    Autocomplete: Autocomplete
 };
 
 module.exports = Pum;

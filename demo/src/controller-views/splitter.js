@@ -7,7 +7,7 @@ var HiddenContent = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>Splitter</h1>
+                    <span className="title">Splitter</span>
                 </div>
 
                 <div className="page-body">

@@ -20,7 +20,7 @@ var Stepper = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>Stepper</h1>
+                    <span className="title">Stepper</span>
                 </div>
 
                 <div className="page-body">

@@ -34,7 +34,7 @@ var Temp = React.createClass({
 		value: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number,
-            PropTypes.bool,
+            PropTypes.bool
         ])
     },
     id: '',

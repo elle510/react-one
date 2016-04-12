@@ -49,7 +49,7 @@ var Select = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>Select</h1>
+                    <span className="title">Select</span>
                 </div>
 
                 <div className="page-body">

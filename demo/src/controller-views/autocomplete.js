@@ -2,39 +2,49 @@
 
 var React = require('react');
 
-var HiddenContent = React.createClass({
+var autoList = [
+    "ActionScript",
+    "AppleScript",
+    "Asp",
+    "BASIC",
+    "C",
+    "C++",
+    "Clojure",
+    "COBOL",
+    "ColdFusion",
+    "Erlang",
+    "Fortran",
+    "Groovy",
+    "Haskell",
+    "Java",
+    "JavaScript",
+    "Lisp",
+    "Perl",
+    "PHP",
+    "Python",
+    "Ruby",
+    "Scala",
+    "Scheme"
+];
+
+var Autocomplete = React.createClass({
     render: function() {
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <span className="title">HiddenContent</span>
+                    <span className="title">Autocomplete</span>
                 </div>
 
                 <div className="page-body">
                     <div className="row">{/* start default */}
                         <div className="row">
                             <div className="col-md-12">
-                                <span className="component-title">Hidden Content(내용 접기/펼치기)</span>
+                                <span className="component-title">Autocomplete</span>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-12">
-                                <Pum.HiddenContent expandLabel="펼치기" collapseLabel="접기"
-                                                expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down"
-                                                isBottom={true}>
-                                    <div>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                        내용<br/>
-                                    </div>
-                                </Pum.HiddenContent>
+                                <Pum.Autocomplete name="auto" source={autoList} />
                             </div>
                         </div>
                         <div className="row">
@@ -70,4 +80,4 @@ var HiddenContent = React.createClass({
     }
 });
 
-module.exports = HiddenContent;
+module.exports = Autocomplete;

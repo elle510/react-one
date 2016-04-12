@@ -2,12 +2,12 @@
 
 var React = require('react');
 
-var ReportTempView = React.createClass({
+var ReportTempForm = React.createClass({
     render: function() {
         return (
-            <div>Report Form</div>
+            <div>Report Template Form</div>
         );
     }
 });
 
-module.exports = ReportTempView;
+module.exports = ReportTempForm;

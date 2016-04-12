@@ -10,7 +10,7 @@ var Fieldset = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>Fieldset</h1>
+                    <span className="title">Fieldset</span>
                 </div>
 
                 <div className="page-body">

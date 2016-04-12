@@ -6,12 +6,14 @@ var ReactDom = require('react-dom');
 import { Router, Route, browserHistory, hashHistory } from 'react-router';
 
 var ReportTempList = require('./views/tempList');
-var ReportTempView = require('./views/tempView');
+var ReportTempForm = require('./views/tempForm');
+var ReportList = require('./views/reportList');
 
 ReactDom.render((
 	<Router history={hashHistory}>
-	<Route path="/" component={ReportTempList} />
-	<Route path="/template/view" component={ReportTempView} />
+		<Route path="/" component={ReportTempList} />
+		<Route path="/template-form" component={ReportTempForm} />
+		<Route path="/report-list" component={ReportList} />
 	</Router>
 ), document.getElementById('app'));
 

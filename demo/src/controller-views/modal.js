@@ -25,7 +25,7 @@ var Modal = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>Modal</h1>
+                    <span className="title">Modal</span>
                 </div>
 
                 <div className="page-body">

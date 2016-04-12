@@ -55,7 +55,7 @@ var DatePicker = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>DatePicker</h1>
+                    <span className="title">DatePicker</span>
                 </div>
 
                 <div className="page-body">

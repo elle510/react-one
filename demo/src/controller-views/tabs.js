@@ -7,7 +7,7 @@ var Tabs = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>Tabs</h1>
+                    <span className="title">Tabs</span>
                 </div>
 
                 <div className="page-body">

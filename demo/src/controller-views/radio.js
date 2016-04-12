@@ -16,7 +16,7 @@ var Radio = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>Radio</h1>
+                    <span className="title">Radio</span>
                 </div>
 
                 <div className="page-body">

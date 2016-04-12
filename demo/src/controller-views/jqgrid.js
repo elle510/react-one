@@ -50,7 +50,7 @@ var JqGrid = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>jqGrid</h1>
+                    <span className="title">jqGrid</span>
                 </div>
 
                 <div className="page-body">

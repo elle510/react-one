@@ -7,7 +7,7 @@ var Home = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>Home</h1>
+                    <span className="title">Home</span>
                 </div>
 
                 <div className="page-body">

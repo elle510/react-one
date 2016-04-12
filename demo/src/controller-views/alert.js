@@ -38,7 +38,7 @@ var Alert = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>Alert</h1>
+                    <span className="title">Alert</span>
                 </div>
 
                 <div className="page-body">

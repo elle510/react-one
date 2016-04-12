@@ -10,7 +10,7 @@ var Panel = React.createClass({
         return (
             <div className="page-content">
                 <div className="page-header">
-                    <h1>Panel</h1>
+                    <span className="title">Panel</span>
                 </div>
 
                 <div className="page-body">

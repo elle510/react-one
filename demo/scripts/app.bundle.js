@@ -21655,7 +21655,7 @@
 			}
 
 			if (Array.isArray(val)) {
-				return val.slice().sort().map(function (val2) {
+				return val.sort().map(function (val2) {
 					return strictUriEncode(key) + '=' + strictUriEncode(val2);
 				}).join('&');
 			}
@@ -24846,6 +24846,7 @@
 	var Panel = __webpack_require__(233);
 	var Fieldset = __webpack_require__(234);
 	var Splitter = __webpack_require__(235);
+	var Autocomplete = __webpack_require__(236);
 
 	//var About = require('./controllers/about');
 	//var Repos = require('./controllers/repos');
@@ -24878,7 +24879,8 @@
 	    React.createElement(_reactRouter.Route, { path: '/modal', component: Modal }),
 	    React.createElement(_reactRouter.Route, { path: '/panel', component: Panel }),
 	    React.createElement(_reactRouter.Route, { path: '/fieldset', component: Fieldset }),
-	    React.createElement(_reactRouter.Route, { path: '/splitter', component: Splitter })
+	    React.createElement(_reactRouter.Route, { path: '/splitter', component: Splitter }),
+	    React.createElement(_reactRouter.Route, { path: '/autocomplete', component: Autocomplete })
 	);
 
 /***/ },
@@ -24900,8 +24902,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'Home'
 	                )
 	            ),
@@ -33629,8 +33631,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'jqGrid'
 	                )
 	            ),
@@ -33757,8 +33759,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'Tabs'
 	                )
 	            ),
@@ -33889,8 +33891,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'HiddenContent'
 	                )
 	            ),
@@ -34047,8 +34049,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'Select'
 	                )
 	            ),
@@ -34171,8 +34173,8 @@
 
 	var React = __webpack_require__(1);
 
-	var CheckBox = React.createClass({
-	    displayName: 'CheckBox',
+	var Checkbox = React.createClass({
+	    displayName: 'Checkbox',
 
 	    checkboxChange: function checkboxChange(event) {
 	        //console.log('--- checkbox view ---');
@@ -34190,9 +34192,9 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
-	                    'CheckBox'
+	                    'span',
+	                    { className: 'title' },
+	                    'Checkbox'
 	                )
 	            ),
 	            React.createElement(
@@ -34210,7 +34212,7 @@
 	                            React.createElement(
 	                                'h5',
 	                                null,
-	                                'CheckBox'
+	                                'Checkbox'
 	                            )
 	                        )
 	                    ),
@@ -34221,12 +34223,12 @@
 	                            'div',
 	                            { className: 'col-md-12' },
 	                            React.createElement(
-	                                Pum.CheckBox,
+	                                Pum.Checkbox,
 	                                { name: 'checkbox_name', value: 'checkValue1', onChange: this.checkboxChange },
 	                                ' 체크박스1'
 	                            ),
 	                            React.createElement(
-	                                Pum.CheckBox,
+	                                Pum.Checkbox,
 	                                { name: 'checkbox_name', value: 'checkValue2', onChange: this.checkboxChange, checked: true },
 	                                ' 체크박스2'
 	                            )
@@ -34263,8 +34265,8 @@
 	                                            React.createElement(
 	                                                'pre',
 	                                                { className: 'prettyprint linenums' },
-	                                                '<Pum.CheckBox name="name1" value="value1" onChange={this.onChange}> 체크박스1</Pum.CheckBox>\n',
-	                                                '<Pum.CheckBox name="name2" value="value2" onChange={this.onChange} checked={true}> 체크박스2</Pum.CheckBox>'
+	                                                '<Pum.Checkbox name="name1" value="value1" onChange={this.onChange}> 체크박스1</Pum.Checkbox>\n',
+	                                                '<Pum.Checkbox name="name2" value="value2" onChange={this.onChange} checked={true}> 체크박스2</Pum.Checkbox>'
 	                                            )
 	                                        )
 	                                    )
@@ -34286,7 +34288,7 @@
 	                            React.createElement(
 	                                'h5',
 	                                null,
-	                                'CheckBox (horizontal)'
+	                                'Checkbox (horizontal)'
 	                            )
 	                        )
 	                    ),
@@ -34300,12 +34302,12 @@
 	                                'div',
 	                                { className: 'checkbox-horizontal' },
 	                                React.createElement(
-	                                    Pum.CheckBox,
+	                                    Pum.Checkbox,
 	                                    { name: 'checkbox_name3', value: 'checkValue3', onChange: this.checkboxChange },
 	                                    ' 체크박스3'
 	                                ),
 	                                React.createElement(
-	                                    Pum.CheckBox,
+	                                    Pum.Checkbox,
 	                                    { name: 'checkbox_name4', value: 'checkValue4', onChange: this.checkboxChange },
 	                                    ' 체크박스4'
 	                                )
@@ -34344,8 +34346,8 @@
 	                                                'pre',
 	                                                { className: 'prettyprint linenums' },
 	                                                '<div className="checkbox-horizontal">\n',
-	                                                '  <Pum.CheckBox name="name1" value="value1" onChange={this.onChange}> 체크박스1</Pum.CheckBox>\n',
-	                                                '  <Pum.CheckBox name="name2" value="value2" onChange={this.onChange}> 체크박스2</Pum.CheckBox>\n',
+	                                                '  <Pum.Checkbox name="name1" value="value1" onChange={this.onChange}> 체크박스1</Pum.Checkbox>\n',
+	                                                '  <Pum.Checkbox name="name2" value="value2" onChange={this.onChange}> 체크박스2</Pum.Checkbox>\n',
 	                                                '</div>'
 	                                            )
 	                                        )
@@ -34362,7 +34364,7 @@
 	    }
 	});
 
-	module.exports = CheckBox;
+	module.exports = Checkbox;
 
 /***/ },
 /* 227 */
@@ -34392,8 +34394,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'Radio'
 	                )
 	            ),
@@ -34639,8 +34641,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'DatePicker'
 	                )
 	            ),
@@ -35131,8 +35133,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'Stepper'
 	                )
 	            ),
@@ -35272,8 +35274,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'Alert'
 	                )
 	            ),
@@ -35423,8 +35425,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'Modal'
 	                )
 	            ),
@@ -35718,8 +35720,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'Panel'
 	                )
 	            ),
@@ -35840,8 +35842,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'Fieldset'
 	                )
 	            ),
@@ -36070,8 +36072,8 @@
 	                'div',
 	                { className: 'page-header' },
 	                React.createElement(
-	                    'h1',
-	                    null,
+	                    'span',
+	                    { className: 'title' },
 	                    'Splitter'
 	                )
 	            ),
@@ -36419,6 +36421,109 @@
 	});
 
 	module.exports = HiddenContent;
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var autoList = ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"];
+
+	var Autocomplete = React.createClass({
+	    displayName: 'Autocomplete',
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'page-content' },
+	            React.createElement(
+	                'div',
+	                { className: 'page-header' },
+	                React.createElement(
+	                    'span',
+	                    { className: 'title' },
+	                    'Autocomplete'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'page-body' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(
+	                                'span',
+	                                { className: 'component-title' },
+	                                'Autocomplete'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(Pum.Autocomplete, { name: 'auto', source: autoList })
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(
+	                                Pum.HiddenContent,
+	                                { expandLabel: '소스 보기', collapseLabel: '소스 닫기',
+	                                    expandIcon: 'fa fa-caret-right', collapseIcon: 'fa fa-caret-down' },
+	                                React.createElement(
+	                                    Pum.TabSet,
+	                                    null,
+	                                    React.createElement(
+	                                        Pum.Tabs,
+	                                        null,
+	                                        React.createElement(
+	                                            Pum.Tab,
+	                                            null,
+	                                            'JSX 코드'
+	                                        )
+	                                    ),
+	                                    React.createElement(
+	                                        Pum.TabContents,
+	                                        null,
+	                                        React.createElement(
+	                                            Pum.TabContent,
+	                                            null,
+	                                            React.createElement(
+	                                                'pre',
+	                                                { className: 'prettyprint linenums' },
+	                                                '// js\n' + '안형로'
+	                                            )
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement('div', { className: 'vspace-12' })
+	            ),
+	            React.createElement('div', { className: 'page-footer' })
+	        );
+	    }
+	});
+
+	module.exports = Autocomplete;
 
 /***/ }
 /******/ ]);
