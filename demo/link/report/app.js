@@ -8,12 +8,14 @@ import { Router, Route, browserHistory, hashHistory } from 'react-router';
 var ReportTempList = require('./views/tempList');
 var ReportTempForm = require('./views/tempForm');
 var ReportList = require('./views/reportList');
+var ReportForm = require('./views/reportForm');
 
 ReactDom.render((
 	<Router history={hashHistory}>
 		<Route path="/" component={ReportTempList} />
 		<Route path="/template-form" component={ReportTempForm} />
 		<Route path="/report-list" component={ReportList} />
+		<Route path="/report-form" component={ReportForm} />
 	</Router>
 ), document.getElementById('app'));
 

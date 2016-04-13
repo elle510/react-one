@@ -54,13 +54,15 @@
 	var ReportTempList = __webpack_require__(238);
 	var ReportTempForm = __webpack_require__(239);
 	var ReportList = __webpack_require__(240);
+	var ReportForm = __webpack_require__(241);
 
 	ReactDom.render(React.createElement(
 		_reactRouter.Router,
 		{ history: _reactRouter.hashHistory },
 		React.createElement(_reactRouter.Route, { path: '/', component: ReportTempList }),
 		React.createElement(_reactRouter.Route, { path: '/template-form', component: ReportTempForm }),
-		React.createElement(_reactRouter.Route, { path: '/report-list', component: ReportList })
+		React.createElement(_reactRouter.Route, { path: '/report-list', component: ReportList }),
+		React.createElement(_reactRouter.Route, { path: '/report-form', component: ReportForm })
 	), document.getElementById('app'));
 
 	/*
@@ -21548,7 +21550,7 @@
 			}
 
 			if (Array.isArray(val)) {
-				return val.sort().map(function (val2) {
+				return val.slice().sort().map(function (val2) {
 					return strictUriEncode(key) + '=' + strictUriEncode(val2);
 				}).join('&');
 			}
@@ -24743,27 +24745,43 @@
 	var React = __webpack_require__(1);
 
 
+	var TempForm = __webpack_require__(239);
+
 	var mydata = [{ id: '1', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '2', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '3', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '4', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '5', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '6', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '7', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '8', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '9', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '10', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '11', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '12', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '13', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '14', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '15', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '16', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '17', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '18', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }];
 
-	function detailViewLink(cellvalue, options, rowObject) {
+	function tempFormLink(cellvalue, options, rowObject) {
 	    //return '<a href="template/view/' + rowObject.id + '">' + cellvalue + '</a>';
-	    return '<a href="#/template-form">' + cellvalue + '</a>';
+	    return '<a href="javascript:void(0);">' + cellvalue + '</a>';
 	    //return <Link to="/template/view">{cellvalue}</Link>;
+	};
+
+	var modalId;
+	function updateTempForm() {
+	    $('#' + modalId).modal('show');
 	};
 
 	var ReportTempList = React.createClass({
 	    displayName: 'ReportTempList',
 
+	    onInit: function onInit(data) {
+	        modalId = data.id;
+	    },
 	    search: function search() {},
-	    registerTemp: function registerTemp() {},
+	    registerTemp: function registerTemp() {
+	        this.refs['tempForm'].show();
+	    },
 	    deleteTemp: function deleteTemp() {},
+	    save: function save() {},
+	    onHide: function onHide() {
+	        this.refs['tempForm'].hide();
+	    },
 	    gridOptions: {
 	        data: mydata,
 	        datatype: "local",
 	        rowNum: 10,
 	        rowList: [10, 20, 30],
 	        colNames: ['id', '타입', '템플릿 이름', '설명', '보고서', '생성'],
-	        colModel: [{ name: 'id', index: 'id', hidden: true }, { name: 'type', index: 'type', width: 80 }, { name: 'name', index: 'name', width: 100, formatter: detailViewLink }, { name: 'desc', index: 'desc', width: 150 }, { name: 'report', index: 'report', width: 50, align: "center", formatter: function formatter(cellvalue, options, rowObject) {
+	        colModel: [{ name: 'id', index: 'id', hidden: true }, { name: 'type', index: 'type', width: 80 }, { name: 'name', index: 'name', width: 100, formatter: tempFormLink }, { name: 'desc', index: 'desc', width: 150 }, { name: 'report', index: 'report', width: 50, align: "center", formatter: function formatter(cellvalue, options, rowObject) {
 	                return '<a href="#/report-list">' + cellvalue + ' <i class="fa fa-list-alt"></i>' + '</a>';
 	            } }, { name: 'create', index: 'create', width: 50, align: "center" }]
 	    },
@@ -24871,7 +24889,21 @@
 	                        )
 	                    )
 	                ),
-	                React.createElement('div', { className: 'vspace-12' })
+	                React.createElement('div', { className: 'vspace-12' }),
+	                React.createElement(
+	                    Pum.Modal,
+	                    { ref: 'tempForm', onInit: this.onInit },
+	                    React.createElement(
+	                        Pum.ModalHeader,
+	                        null,
+	                        '보고서 템플릿 등록'
+	                    ),
+	                    React.createElement(
+	                        Pum.ModalBody,
+	                        null,
+	                        React.createElement(TempForm, { onHide: this.onHide })
+	                    )
+	                )
 	            ),
 	            React.createElement('div', { className: 'page-footer' })
 	        );
@@ -24887,15 +24919,112 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
+	var PropTypes = __webpack_require__(1).PropTypes;
 
 	var ReportTempForm = React.createClass({
 	    displayName: 'ReportTempForm',
 
+	    propTypes: {
+	        onHide: PropTypes.func
+	    },
+	    onCancel: function onCancel() {
+	        if (typeof this.props.onHide === 'function') {
+	            this.props.onHide();
+	            //event.stopImmediatePropagation();
+	        }
+	    },
 	    render: function render() {
 	        return React.createElement(
-	            'div',
-	            null,
-	            'Report Template Form'
+	            'form',
+	            { className: 'form-horizontal' },
+	            React.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement(
+	                    'label',
+	                    { className: 'col-md-3 control-label' },
+	                    '타입'
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-md-9' },
+	                    React.createElement('input', { type: 'text', className: 'form-control', name: 'type' })
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement(
+	                    'label',
+	                    { className: 'col-md-3 control-label' },
+	                    '템플릿 이름'
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-md-9' },
+	                    React.createElement('input', { type: 'text', className: 'form-control', name: 'templateName' })
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement(
+	                    'label',
+	                    { className: 'col-md-3 control-label' },
+	                    '설명'
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-md-9' },
+	                    React.createElement('textarea', { className: 'form-control', rows: '5', name: 'desc', placeholder: '설명을 입력하세요.' })
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement(
+	                    'label',
+	                    { className: 'col-md-3 control-label' },
+	                    'ODI 명'
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-md-9' },
+	                    React.createElement('input', { type: 'file', id: 'odi', name: 'upload', multiple: true })
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement(
+	                    'label',
+	                    { className: 'col-md-3 control-label' },
+	                    'OZR 명'
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-md-9' },
+	                    React.createElement('input', { type: 'file', id: 'ozr', name: 'upload', multiple: true })
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-md-offset-3 col-md-9' },
+	                    React.createElement(
+	                        'button',
+	                        { type: 'submit', className: 'btn btn-default' },
+	                        '저장'
+	                    ),
+	                    React.createElement(
+	                        'button',
+	                        { type: 'button', className: 'btn btn-default', onClick: this.onCancel },
+	                        '취소'
+	                    )
+	                )
+	            )
 	        );
 	    }
 	});
@@ -24909,19 +25038,23 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
+	var hashHistory = __webpack_require__(161).hashHistory;
 
-	var mydata = [{ id: '1', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '2', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '3', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '4', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '5', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '6', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '7', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '8', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '9', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '10', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '11', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '12', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '13', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '14', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '15', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '16', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }, { id: '17', type: '서버', name: '서버 인벤토리', desc: '서버 인벤토리에 대한 보고서 템플릿', report: '2', create: '2111.00' }, { id: '18', type: '작업', name: '서버별 작업 결과', desc: '서버별 작업에 대한 결과 보고서 템플릿', report: '3', create: '2111.00' }];
+	var mydata = [{ id: '1', name: '보고서 이름 #1', display: '시별', period: '지난 24시간', schedule: '매주 월요일 00시', recipient: 'nkia@nkia.co.kr', registrant: 'admin' }, { id: '2', name: '보고서 이름 #2', display: '일별', period: '지난주', schedule: '매일 02시', recipient: 'user01@nkia.co.kr', registrant: 'admin' }, { id: '3', name: '보고서 이름 #3', display: '시별', period: '지난 24시간', schedule: '매주 월요일 00시', recipient: 'nkia@nkia.co.kr', registrant: 'admin' }, { id: '4', name: '보고서 이름 #4', display: '일별', period: '지난주', schedule: '매일 02시', recipient: 'user01@nkia.co.kr', registrant: 'admin' }, { id: '5', name: '보고서 이름 #5', display: '시별', period: '지난 24시간', schedule: '매주 월요일 00시', recipient: 'nkia@nkia.co.kr', registrant: 'admin' }, { id: '6', name: '보고서 이름 #6', display: '일별', period: '지난주', schedule: '매일 02시', recipient: 'user01@nkia.co.kr', registrant: 'admin' }, { id: '7', name: '보고서 이름 #7', display: '시별', period: '지난 24시간', schedule: '매주 월요일 00시', recipient: 'nkia@nkia.co.kr', registrant: 'admin' }, { id: '8', name: '보고서 이름 #8', display: '일별', period: '지난주', schedule: '매일 02시', recipient: 'user01@nkia.co.kr', registrant: 'admin' }, { id: '9', name: '보고서 이름 #9', display: '시별', period: '지난 24시간', schedule: '매주 월요일 00시', recipient: 'nkia@nkia.co.kr', registrant: 'admin' }, { id: '10', name: '보고서 이름 #10', display: '일별', period: '지난주', schedule: '매일 02시', recipient: 'user01@nkia.co.kr', registrant: 'admin' }, { id: '11', name: '보고서 이름 #11', display: '시별', period: '지난 24시간', schedule: '매주 월요일 00시', recipient: 'nkia@nkia.co.kr', registrant: 'admin' }, { id: '12', name: '보고서 이름 #12', display: '일별', period: '지난주', schedule: '매일 02시', recipient: 'user01@nkia.co.kr', registrant: 'admin' }, { id: '13', name: '보고서 이름 #13', display: '시별', period: '지난 24시간', schedule: '매주 월요일 00시', recipient: 'nkia@nkia.co.kr', registrant: 'admin' }, { id: '14', name: '보고서 이름 #14', display: '일별', period: '지난주', schedule: '매일 02시', recipient: 'user01@nkia.co.kr', registrant: 'admin' }, { id: '15', name: '보고서 이름 #15', display: '시별', period: '지난 24시간', schedule: '매주 월요일 00시', recipient: 'nkia@nkia.co.kr', registrant: 'admin' }, { id: '16', name: '보고서 이름 #16', display: '일별', period: '지난주', schedule: '매일 02시', recipient: 'user01@nkia.co.kr', registrant: 'admin' }, { id: '17', name: '보고서 이름 #17', display: '시별', period: '지난 24시간', schedule: '매주 월요일 00시', recipient: 'nkia@nkia.co.kr', registrant: 'admin' }, { id: '18', name: '보고서 이름 #18', display: '일별', period: '지난주', schedule: '매일 02시', recipient: 'user01@nkia.co.kr', registrant: 'admin' }];
 
 	function detailViewLink(cellvalue, options, rowObject) {
 	    //return '<a href="template/view/' + rowObject.id + '">' + cellvalue + '</a>';
-	    return '<a href="#/template-form">' + cellvalue + '</a>';
+	    return '<a href="#/report-form">' + cellvalue + '</a>';
 	    //return <Link to="/template/view">{cellvalue}</Link>;
 	};
 
 	var ReportList = React.createClass({
 	    displayName: 'ReportList',
 
-	    addReport: function addReport() {},
+	    search: function search() {},
+	    addReport: function addReport() {
+	        hashHistory.push('/report-form');
+	    },
 	    deleteTemp: function deleteTemp() {},
 	    refresh: function refresh() {},
 	    gridOptions: {
@@ -24929,10 +25062,8 @@
 	        datatype: "local",
 	        rowNum: 10,
 	        rowList: [10, 20, 30],
-	        colNames: ['id', '타입', '템플릿 이름', '설명', '보고서', '생성'],
-	        colModel: [{ name: 'id', index: 'id', hidden: true }, { name: 'type', index: 'type', width: 80 }, { name: 'name', index: 'name', width: 100, formatter: detailViewLink }, { name: 'desc', index: 'desc', width: 150 }, { name: 'report', index: 'report', width: 50, align: "center", formatter: function formatter(cellvalue, options, rowObject) {
-	                return '<a href="#/report-list">' + cellvalue + ' <i class="fa fa-list-alt"></i>' + '</a>';
-	            } }, { name: 'create', index: 'create', width: 50, align: "center" }]
+	        colNames: ['id', '보고서 이름', '데이터 표시', '조회 기간', '스케줄', '받는 사람', '등록자'],
+	        colModel: [{ name: 'id', index: 'id', hidden: true }, { name: 'name', index: 'name', width: 120, formatter: detailViewLink }, { name: 'display', index: 'display', width: 100 }, { name: 'period', index: 'period', width: 100 }, { name: 'schedule', index: 'schedule', width: 150 }, { name: 'recipient', index: 'recipient', width: 150 }, { name: 'registrant', index: 'registrant', width: 80 }]
 	    },
 	    render: function render() {
 	        return React.createElement(
@@ -24960,8 +25091,53 @@
 	                            'div',
 	                            { className: 'col-md-12' },
 	                            React.createElement(
+	                                Pum.Panel,
+	                                null,
+	                                React.createElement(
+	                                    Pum.PanelHeader,
+	                                    null,
+	                                    '보고서 템플릿'
+	                                ),
+	                                React.createElement(
+	                                    Pum.PanelBody,
+	                                    null,
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'row' },
+	                                        React.createElement(
+	                                            'div',
+	                                            { className: 'col-md-1' },
+	                                            '타입'
+	                                        ),
+	                                        React.createElement(
+	                                            'div',
+	                                            { className: 'col-md-2' },
+	                                            '작업'
+	                                        ),
+	                                        React.createElement(
+	                                            'div',
+	                                            { className: 'col-md-2' },
+	                                            '템플릿 이름'
+	                                        ),
+	                                        React.createElement(
+	                                            'div',
+	                                            { className: 'col-md-5' },
+	                                            '서버별 작업결과'
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(
 	                                Pum.Fieldset,
-	                                { legend: '검색' },
+	                                { legend: '검색', expand: false },
 	                                React.createElement(
 	                                    'div',
 	                                    { className: 'row' },
@@ -24974,7 +25150,7 @@
 	                                            React.createElement(
 	                                                'label',
 	                                                { className: 'search-label' },
-	                                                '타입'
+	                                                '보고서 이름'
 	                                            ),
 	                                            React.createElement(
 	                                                'div',
@@ -24992,7 +25168,47 @@
 	                                            React.createElement(
 	                                                'label',
 	                                                { className: 'search-label' },
-	                                                '템플릿 이름'
+	                                                '조회 기간'
+	                                            ),
+	                                            React.createElement(
+	                                                'div',
+	                                                { className: 'search-item' },
+	                                                React.createElement('input', { type: 'text' })
+	                                            )
+	                                        )
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'row' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-md-5' },
+	                                        React.createElement(
+	                                            'div',
+	                                            { className: 'search-group' },
+	                                            React.createElement(
+	                                                'label',
+	                                                { className: 'search-label' },
+	                                                '스케줄'
+	                                            ),
+	                                            React.createElement(
+	                                                'div',
+	                                                { className: 'search-item' },
+	                                                React.createElement('input', { type: 'text' })
+	                                            )
+	                                        )
+	                                    ),
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-md-5' },
+	                                        React.createElement(
+	                                            'div',
+	                                            { className: 'search-group' },
+	                                            React.createElement(
+	                                                'label',
+	                                                { className: 'search-label' },
+	                                                '받는 사람'
 	                                            ),
 	                                            React.createElement(
 	                                                'div',
@@ -25013,6 +25229,11 @@
 	                            { className: 'col-md-12' },
 	                            React.createElement(
 	                                'button',
+	                                { type: 'button', className: 'btn btn-default', onClick: this.search },
+	                                '조회'
+	                            ),
+	                            React.createElement(
+	                                'button',
 	                                { type: 'button', className: 'btn btn-default', onClick: this.addReport },
 	                                '추가'
 	                            ),
@@ -25020,11 +25241,6 @@
 	                                'button',
 	                                { type: 'button', className: 'btn btn-default', onClick: this.deleteTemp },
 	                                '삭제'
-	                            ),
-	                            React.createElement(
-	                                'button',
-	                                { type: 'button', className: 'btn btn-default', onClick: this.refresh },
-	                                React.createElement('i', { className: 'fa fa-refresh' })
 	                            )
 	                        )
 	                    ),
@@ -25046,6 +25262,209 @@
 	});
 
 	module.exports = ReportList;
+
+/***/ },
+/* 241 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var hashHistory = __webpack_require__(161).hashHistory;
+
+	var dataDisplay = [{ label: '시별', value: '1' }, { label: '일별', value: '2' }, { label: '주별', value: '3' }, { label: '월별', value: '4' }, { label: '년별', value: '5' }];
+
+	var periods = [{ label: '지난 1시간', value: '1' }, { label: '지난 3시간', value: '2' }, { label: '지난 6시간', value: '3' }, { label: '지난 12시간', value: '4' }, { label: '지난 24시간', value: '5' }, { label: '금일', value: '6' }, { label: '어제', value: '7' }, { label: '이번주', value: '8' }, { label: '지난주', value: '9' }, { label: '이번달', value: '10' }];
+
+	var ReportForm = React.createClass({
+	    displayName: 'ReportForm',
+
+	    onCancel: function onCancel() {
+	        hashHistory.push('/report-list');
+	    },
+	    getInitialState: function getInitialState() {
+	        return { items: dataDisplay, periods: periods };
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'page-content container-980' },
+	            React.createElement(
+	                'div',
+	                { className: 'page-header' },
+	                React.createElement(
+	                    'span',
+	                    { className: 'title' },
+	                    '보고서'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'page-body' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'form',
+	                        { className: 'form-horizontal' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            React.createElement(
+	                                'label',
+	                                { className: 'col-md-3 control-label' },
+	                                '보고서 템플릿'
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-9' },
+	                                React.createElement('input', { type: 'text', className: 'form-control', name: 'type', value: '서버별 작업결과', disabled: true })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            React.createElement(
+	                                'label',
+	                                { className: 'col-md-3 control-label' },
+	                                '보고서 이름'
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-9' },
+	                                React.createElement('input', { type: 'text', className: 'form-control', name: 'reportName' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            React.createElement(
+	                                'label',
+	                                { className: 'col-md-3 control-label' },
+	                                '대상 리소스'
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-9' },
+	                                React.createElement('input', { type: 'text', className: 'form-control', name: 'target' })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            React.createElement(
+	                                'label',
+	                                { className: 'col-md-3 control-label' },
+	                                '데이터 표시'
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-9' },
+	                                React.createElement(Pum.Select, { name: 'datadisplay', labelKey: 'label', valueKey: 'value', items: this.state.items })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            React.createElement(
+	                                'label',
+	                                { className: 'col-md-3 control-label' },
+	                                '조회 기간'
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-9' },
+	                                React.createElement(Pum.Select, { name: 'period', labelKey: 'label', valueKey: 'value', items: this.state.periods })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            React.createElement(
+	                                'label',
+	                                { className: 'col-md-3 control-label' },
+	                                '스케줄'
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-9' },
+	                                React.createElement(Pum.Select, { name: 'schedule', labelKey: 'label', valueKey: 'value', items: this.state.items })
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            React.createElement(
+	                                'label',
+	                                { className: 'col-md-3 control-label' },
+	                                '첨부파일'
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-9' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'checkbox-horizontal' },
+	                                    React.createElement(
+	                                        Pum.Checkbox,
+	                                        { name: 'xls', value: 'xls' },
+	                                        ' XLS'
+	                                    ),
+	                                    React.createElement(
+	                                        Pum.Checkbox,
+	                                        { name: 'pdf', value: 'pdf' },
+	                                        ' PDF'
+	                                    ),
+	                                    React.createElement(
+	                                        Pum.Checkbox,
+	                                        { name: 'doc', value: 'doc' },
+	                                        ' DOC'
+	                                    ),
+	                                    React.createElement(
+	                                        Pum.Checkbox,
+	                                        { name: 'hwp', value: 'hwp' },
+	                                        ' HWP'
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-3' },
+	                                React.createElement(
+	                                    'button',
+	                                    { type: 'button', className: 'btn btn-primary' },
+	                                    '생성'
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'col-md-9' },
+	                                React.createElement(
+	                                    'button',
+	                                    { type: 'submit', className: 'btn btn-default' },
+	                                    '저장'
+	                                ),
+	                                React.createElement(
+	                                    'button',
+	                                    { type: 'button', className: 'btn btn-default', onClick: this.onCancel },
+	                                    '취소'
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement('div', { className: 'vspace-12' })
+	            ),
+	            React.createElement('div', { className: 'page-footer' })
+	        );
+	    }
+	});
+
+	module.exports = ReportForm;
 
 /***/ }
 /******/ ]);

@@ -62,7 +62,8 @@ var Modal = React.createClass({
         width: PropTypes.string,
         backdrop: PropTypes.bool,
         onShow: PropTypes.func,
-        onHide: PropTypes.func
+        onHide: PropTypes.func,
+        onInit: PropTypes.func
     },
     id: '',
     show: function() {
@@ -120,14 +121,20 @@ var Modal = React.createClass({
     },
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)
-        var alert = $('#'+this.id);
+        var modal = $('#'+this.id);
         if(this.props.backdrop === false) {
-            alert.attr('data-backdrop', 'static');
-            alert.attr('data-keyboard', false);
+            modal.attr('data-backdrop', 'static');
+            modal.attr('data-keyboard', false);
         }
 
-        alert.on('shown.bs.modal', this.onShow);
-        alert.on('hidden.bs.modal', this.onHide);
+        modal.on('shown.bs.modal', this.onShow);
+        modal.on('hidden.bs.modal', this.onHide);
+
+        if(typeof this.props.onInit === 'function') {
+            var data = {};
+            data.id = this.id;
+            this.props.onInit(data);
+        }
     },
     render: function() {
         // 필수 항목

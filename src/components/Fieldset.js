@@ -48,11 +48,11 @@ var Fieldset = React.createClass({
 	getDefaultProps: function() {
 		// 클래스가 생성될 때 한번 호출되고 캐시된다.
 		// 부모 컴포넌트에서 prop이 넘어오지 않은 경우 (in 연산자로 확인) 매핑의 값이 this.props에 설정된다.
-		return {legend: 'Title', collapsible: true};
+		return {legend: 'Title', collapsible: true, expand: true};
 	},
     getInitialState: function() {
 		// 컴포넌트가 마운트되기 전 (한번 호출) / 리턴값은 this.state의 초기값으로 사용
-        return {expand: true};
+        return {expand: this.props.expand};
     },
     componentWillMount: function() {
         // 최초 렌더링이 일어나기 직전(한번 호출)

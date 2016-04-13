@@ -3,6 +3,8 @@
 var React = require('react');
 import { Link } from 'react-router'
 
+var TempForm = require('./tempForm');
+
 var mydata = [
     {id:'1',type:'서버',name:'서버 인벤토리',desc:'서버 인벤토리에 대한 보고서 템플릿',report:'2',create:'2111.00'},
     {id:'2',type:'작업',name:'서버별 작업 결과',desc:'서버별 작업에 대한 결과 보고서 템플릿',report:'3',create:'2111.00'},
@@ -24,23 +26,35 @@ var mydata = [
     {id:'18',type:'작업',name:'서버별 작업 결과',desc:'서버별 작업에 대한 결과 보고서 템플릿',report:'3',create:'2111.00'},
 ];
 
-function detailViewLink(cellvalue, options, rowObject) {
+function tempFormLink(cellvalue, options, rowObject) {
     //return '<a href="template/view/' + rowObject.id + '">' + cellvalue + '</a>';
-    return '<a href="#/template-form">' + cellvalue + '</a>';
+    return '<a href="javascript:void(0);">' + cellvalue + '</a>';
     //return <Link to="/template/view">{cellvalue}</Link>;
 };
 
-
+var modalId;
+function updateTempForm() {
+    $('#'+modalId).modal('show');
+};
 
 var ReportTempList = React.createClass({
+    onInit: function(data) {
+        modalId = data.id;
+    },
     search: function() {
 
     },
     registerTemp: function() {
-
+        this.refs['tempForm'].show();
     },
     deleteTemp: function() {
 
+    },
+    save: function() {
+
+    },
+    onHide: function() {
+        this.refs['tempForm'].hide();
     },
     gridOptions: {
         data: mydata,
@@ -51,7 +65,7 @@ var ReportTempList = React.createClass({
         colModel:[
             {name: 'id', index: 'id', hidden: true},
             {name: 'type', index: 'type', width: 80},
-            {name: 'name', index: 'name', width: 100, formatter: detailViewLink},
+            {name: 'name', index: 'name', width: 100, formatter: tempFormLink},
             {name: 'desc', index: 'desc', width: 150},
             {name: 'report', index: 'report', width: 50, align:"center", formatter: function(cellvalue, options, rowObject) {
                 return '<a href="#/report-list">' + cellvalue + ' <i class="fa fa-list-alt"></i>' + '</a>';
@@ -113,6 +127,14 @@ var ReportTempList = React.createClass({
 
                     </div>
                     <div className="vspace-12" />
+
+                    <Pum.Modal ref="tempForm" onInit={this.onInit}>
+                        <Pum.ModalHeader>보고서 템플릿 등록</Pum.ModalHeader>
+                        <Pum.ModalBody>
+                            <TempForm onHide={this.onHide}/>
+                        </Pum.ModalBody>
+                    </Pum.Modal>
+
                 </div>
 
                 <div className="page-footer">
