@@ -33,6 +33,7 @@ var DateRangePicker1 = require('./components/DateRangePicker1');
 var Stepper = require('./components/Stepper');
 var Fieldset = require('./components/Fieldset');
 var Autocomplete = require('./components/Autocomplete');
+var TagsInput = require('./components/TagsInput');
 
 // Etc Elements
 var JqGrid = require('./components/JqGrid');
@@ -72,7 +73,8 @@ var Pum = {
     Fieldset: Fieldset,
     Splitter: Splitter,
     SplitterPane: SplitterPane,
-    Autocomplete: Autocomplete
+    Autocomplete: Autocomplete,
+    TagsInput: TagsInput
 };
 
 module.exports = Pum;
