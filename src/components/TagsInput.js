@@ -31,7 +31,7 @@ var TagsInput = React.createClass({
         onInit: PropTypes.func,
         onChange: PropTypes.func,
 		category: PropTypes.oneOf(['News','Photos']).isRequired,
-		dialog: PropTypes.instanceOf(Dialog).isRequired,
+		//dialog: PropTypes.instanceOf(Dialog).isRequired,
 		value: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number,

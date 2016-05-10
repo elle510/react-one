@@ -5,7 +5,7 @@
  * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
- * <Pum.DatePicker id="datepicker" name="datepicker_name" date="2016-03-19"
+ * <Puf.DatePicker id="datepicker" name="datepicker_name" date="2016-03-19"
  *                 disabled={true} timePicker={true} onChange={this.onChange} options={this.options} />
  *
  * Bootstrap 3 DatePicker 라이브러리에 종속적이다.
@@ -56,7 +56,7 @@ var DatePicker = React.createClass({
         onInit: PropTypes.func,
         onChange: PropTypes.func,
         options: PropTypes.object,
-        toDatePicker: PropTypes.bool        // DateRangePicker 에서 toDate로 사용시 true(DateRangePicker 내에서만 사용)
+        endDatePicker: PropTypes.bool        // DateRangePicker 에서 toDate로 사용시 true(DateRangePicker 내에서만 사용)
     },
     id: '',
     getOptions: function() {
@@ -91,7 +91,7 @@ var DatePicker = React.createClass({
             oldDate = DateUtil.getDateToString(event.oldDate._d);
 
         // name 의 value 값 설정
-        if(this.props.toDatePicker === true && (typeof this.props.timePicker === 'undefined' || !this.props.timePicker)) {
+        if(this.props.endDatePicker === true && (typeof this.props.timePicker === 'undefined' || !this.props.timePicker)) {
             var arr = date.split(' '), oldArr = oldDate.split(' ');
             date = arr[0] + ' 23:59:59';
             oldDate = oldArr[0] + ' 23:59:59';
@@ -109,7 +109,7 @@ var DatePicker = React.createClass({
 
         // name 의 value 값 설정
         var date = DateUtil.getDateToString(datepicker.data("DateTimePicker").date()._d);
-        if(this.props.toDatePicker === true && (typeof this.props.timePicker === 'undefined' || !this.props.timePicker)) {
+        if(this.props.endDatePicker === true && (typeof this.props.timePicker === 'undefined' || !this.props.timePicker)) {
             var arr = date.split(' ');
             date = arr[0] + ' 23:59:59';
         }
@@ -139,7 +139,7 @@ var DatePicker = React.createClass({
 
             // name 의 value 값 설정
             var date = DateUtil.getDateToString(datepicker.data("DateTimePicker").date()._d);
-            if(this.props.toDatePicker === true && (typeof this.props.timePicker === 'undefined' || !this.props.timePicker)) {
+            if(this.props.endDatePicker === true && (typeof this.props.timePicker === 'undefined' || !this.props.timePicker)) {
                 var arr = date.split(' ');
                 date = arr[0] + ' 23:59:59';
             }
@@ -160,7 +160,7 @@ var DatePicker = React.createClass({
 
             // name 의 value 값 설정
             var date = DateUtil.getDateToString(datepicker.data("DateTimePicker").date()._d);
-            if(this.props.toDatePicker === true && (typeof this.props.timePicker === 'undefined' || !this.props.timePicker)) {
+            if(this.props.endDatePicker === true && (typeof this.props.timePicker === 'undefined' || !this.props.timePicker)) {
                 var arr = date.split(' ');
                 date = arr[0] + ' 23:59:59';
             }
@@ -208,61 +208,61 @@ var DateRangePicker = React.createClass({
     displayName: 'DateRangePicker',
     propTypes: {
         className: PropTypes.string,
-        fromName: PropTypes.string,
-        toName: PropTypes.string,
-        fromDate: PropTypes.string,         // YYYY-MM-DD HH:mm:ss format의 string
-        toDate: PropTypes.string,           // YYYY-MM-DD HH:mm:ss format의 string
+        startName: PropTypes.string,
+        endName: PropTypes.string,
+        startDate: PropTypes.string,         // YYYY-MM-DD HH:mm:ss format의 string
+        endDate: PropTypes.string,           // YYYY-MM-DD HH:mm:ss format의 string
         disabled: PropTypes.bool,
         timePicker: PropTypes.bool,
         onInit: PropTypes.func,
         onChange: PropTypes.func
     },
-    fromDate: '',
-    toDate: '',
-    fromOldDate: '',
-    toOldDate: '',
-    fromPicker: '',
-    toPicker: '',
+    startDate: '',
+    endDate: '',
+    startOldDate: '',
+    endOldDate: '',
+    startPicker: '',
+    endPicker: '',
     onFromInit: function(data) {
-        this.fromDate = data.date;
-        this.fromPicker = data.datepicker;
+        this.startDate = data.date;
+        this.startPicker = data.datepicker;
     },
     onToInit: function(data) {
-        this.toDate = data.date;
-        this.toPicker = data.datepicker;
+        this.endDate = data.date;
+        this.endPicker = data.datepicker;
     },
-    onFromChange: function(event, date, oldDate) {
+    onStartChange: function(event, date, oldDate) {
         // minDate 설정
         var minDate = moment(date);
         //$(event.target).next().data('DateTimePicker').minDate(minDate);
-        this.toPicker.data('DateTimePicker').minDate(minDate);
+        this.endPicker.data('DateTimePicker').minDate(minDate);
 
         if(typeof this.props.onChange === 'function') {
-            this.fromDate = date;
-            this.fromOldDate = oldDate;
-            this.props.onChange(event, this.fromDate, this.toDate, this.fromOldDate, this.toOldDate);
+            this.startDate = date;
+            this.startOldDate = oldDate;
+            this.props.onChange(event, this.startDate, this.endDate, this.startOldDate, this.endOldDate);
             //event.stopImmediatePropagation();
         }
     },
-    onToChange: function(event, date, oldDate) {
+    onEndChange: function(event, date, oldDate) {
         // maxDate 설정
         var maxDate = moment(date);
         //$(event.target).prev().data('DateTimePicker').maxDate(maxDate);
-        this.fromPicker.data('DateTimePicker').maxDate(maxDate);
+        this.startPicker.data('DateTimePicker').maxDate(maxDate);
 
         if(typeof this.props.onChange === 'function') {
-            this.toDate = date;
-            this.toOldDate = oldDate;
-            this.props.onChange(event, this.fromDate, this.toDate, this.fromOldDate, this.toOldDate);
+            this.endDate = date;
+            this.endOldDate = oldDate;
+            this.props.onChange(event, this.startDate, this.endDate, this.startOldDate, this.endOldDate);
             //event.stopImmediatePropagation();
         }
     },
     setStateObject: function(props) {
-        // fromDate 처리
-        let fromDate = props.fromDate;
+        // startDate 처리
+        let startDate = props.startDate;
 
-        // toDate 처리
-        let toDate = props.toDate;
+        // endDate 처리
+        let endDate = props.endDate;
 
         // disabled 처리
         let disabled = props.disabled;
@@ -271,8 +271,8 @@ var DateRangePicker = React.createClass({
         }
 
         return {
-            fromDate: fromDate,
-            toDate: toDate,
+            startDate: startDate,
+            endDate: endDate,
             disabled: disabled
         };
     },
@@ -283,17 +283,17 @@ var DateRangePicker = React.createClass({
         // 최초 렌더링이 일어난 다음(한번 호출)
 
         // minDate/maxDate 설정
-        var maxDate = moment(this.toDate);
-        this.fromPicker.data('DateTimePicker').maxDate(maxDate);
+        var maxDate = moment(this.endDate);
+        this.startPicker.data('DateTimePicker').maxDate(maxDate);
 
-        var minDate = moment(this.fromDate);
-        this.toPicker.data('DateTimePicker').minDate(minDate);
+        var minDate = moment(this.startDate);
+        this.endPicker.data('DateTimePicker').minDate(minDate);
 
         // onInit
         if(typeof this.props.onInit === 'function') {
             var data = {};
-            data.fromDate = this.fromDate;
-            data.toDate = this.toDate;
+            data.startDate = this.startDate;
+            data.endDate = this.endDate;
             this.props.onInit(data);
         }
     },
@@ -305,10 +305,10 @@ var DateRangePicker = React.createClass({
         // 필수 항목
         return (
             <div className="datepicker-group">
-                <Pum.DatePicker className={this.props.className} name={this.props.fromName} date={this.state.fromDate}
-                                onInit={this.onFromInit} onChange={this.onFromChange} timePicker={this.props.timePicker} disabled={this.state.disabled} />
-                <Pum.DatePicker className={this.props.className} name={this.props.toName} date={this.state.toDate} toDatePicker={true}
-                                onInit={this.onToInit} onChange={this.onToChange} timePicker={this.props.timePicker} disabled={this.state.disabled}
+                <Pum.DatePicker className={this.props.className} name={this.props.startName} date={this.state.startDate}
+                                onInit={this.onFromInit} onChange={this.onStartChange} timePicker={this.props.timePicker} disabled={this.state.disabled} />
+                <Pum.DatePicker className={this.props.className} name={this.props.endName} date={this.state.endDate} endDatePicker={true}
+                                onInit={this.onToInit} onChange={this.onEndChange} timePicker={this.props.timePicker} disabled={this.state.disabled}
                                 options={{useCurrent: false}} />
             </div>
         );

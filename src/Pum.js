@@ -29,6 +29,7 @@ var RadioGroup = require('./components/radio/RadioGroup');
 var Radio = require('./components/radio/Radio');
 var DatePicker = require('./components/DatePicker').DatePicker;
 var DateRangePicker = require('./components/DatePicker').DateRangePicker;
+var DateRanges = require('./components/DateRanges');
 var DateRangePicker1 = require('./components/DateRangePicker1');
 var Stepper = require('./components/Stepper');
 var Fieldset = require('./components/Fieldset');
@@ -59,6 +60,7 @@ var Pum = {
     Radio: Radio,
     DatePicker: DatePicker,
     DateRangePicker: DateRangePicker,
+	DateRanges: DateRanges,
     DateRangePicker1: DateRangePicker1,
     Stepper: Stepper,
     Alert: Alert,

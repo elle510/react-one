@@ -53,7 +53,7 @@ gulp.task('build.js', ['clean.js'], function () {
                 browserify({
                     entries: 'react-pum.js',
                     extensions: ['.js'],
-                    standalone: 'ReactPum',
+                    standalone: 'Pum',
                     debug: true
                 })
                     .transform(babelify, {presets: ["es2015", "react"]})

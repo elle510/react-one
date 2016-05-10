@@ -34582,7 +34582,23 @@
 
 	var React = __webpack_require__(1);
 
-	var _date, _oldDate, _fromDate, _toDate;
+	var _date,
+	    _oldDate,
+	    _startDate,
+	    _endDate,
+	    _startRangeDate,
+	    _endRangeDate,
+
+	// Predefined Ranges
+	predefined_ranges = {
+	    '금일': [moment(), moment()],
+	    '전일': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+	    '일주일전': [moment().subtract(6, 'days'), moment()],
+	    '한달전': [moment().subtract(29, 'days'), moment()],
+	    '이번달': [moment().startOf('month'), moment().endOf('month')],
+	    '지난달': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+	};
+
 	var DatePicker = React.createClass({
 	    displayName: 'DatePicker',
 
@@ -34605,29 +34621,48 @@
 	        _date = data.date;
 	    },
 	    onRangeInit: function onRangeInit(data) {
-	        _fromDate = data.fromDate;
-	        _toDate = data.toDate;
+	        _startDate = data.startDate;
+	        _endDate = data.endDate;
 	    },
 	    getRangeDate: function getRangeDate() {
-	        alert('fromDate: ' + _fromDate + '\n' + 'toDate: ' + _toDate);
+	        alert('startDate: ' + _startDate + '\n' + 'endDate: ' + _endDate);
 	    },
 	    setRangeDate: function setRangeDate() {
-	        this.setState({ fromDate: '2016-03-10', toDate: '2016-04-15' });
+	        this.setState({ startDate: '2016-03-10', endDate: '2016-04-15' });
 	    },
-	    onRangeChange: function onRangeChange(event, fromDate, toDate, picker) {
-	        _fromDate = fromDate;
-	        _toDate = toDate;
+	    onRangeChange: function onRangeChange(event, startDate, endDate, picker) {
+	        _startDate = startDate;
+	        _endDate = endDate;
 	    },
 	    onRangeDisabled: function onRangeDisabled() {
 	        var range_disabled = this.state.range_disabled == false,
 	            range_disabledText = range_disabled == false ? 'Disabled' : 'Enabled';
-	        this.setState({ fromDate: _fromDate, toDate: _toDate, range_disabled: range_disabled, range_disabledText: range_disabledText });
+	        this.setState({ startDate: _startDate, endDate: _endDate, range_disabled: range_disabled, range_disabledText: range_disabledText });
+	    },
+	    rangesInit: function rangesInit(data) {
+	        _startRangeDate = data.startDate;
+	        _endRangeDate = data.endDate;
+	    },
+	    getRangesDate: function getRangesDate() {
+	        alert('startDate: ' + _startRangeDate + '\n' + 'endDate: ' + _endRangeDate);
+	    },
+	    setRangesDate: function setRangesDate() {
+	        this.setState({ startRangeDate: predefined_ranges['일주일전'][0], endRangeDate: predefined_ranges['일주일전'][1] });
+	    },
+	    onRangesHide: function onRangesHide(event, startDate, endDate, picker) {
+	        _startRangeDate = startDate;
+	        _endRangeDate = endDate;
+	    },
+	    onRangesDisabled: function onRangesDisabled() {
+	        var ranges_disabled = this.state.ranges_disabled == false,
+	            ranges_disabledText = ranges_disabled == false ? 'Disabled' : 'Enabled';
+	        this.setState({ ranges_disabled: ranges_disabled, ranges_disabledText: ranges_disabledText });
 	    },
 	    getInitialState: function getInitialState() {
 	        _date = '2016-03-01';
-	        _fromDate = '2016-03-01';
-	        _toDate = '2016-04-05';
-	        return { date: _date, disabled: false, disabledText: 'Disabled', fromDate: _fromDate, toDate: _toDate, range_disabled: false, range_disabledText: 'Disabled' };
+	        _startDate = '2016-03-01';
+	        _endDate = '2016-04-05';
+	        return { date: _date, disabled: false, disabledText: 'Disabled', startDate: _startDate, endDate: _endDate, range_disabled: false, range_disabledText: 'Disabled', startRangeDate: _startRangeDate, endRangeDate: _endRangeDate, ranges_disabled: false, ranges_disabledText: 'Disabled' };
 	    },
 	    componentDidMount: function componentDidMount() {
 	        // 최초 렌더링이 일어난 다음(한번 호출)
@@ -34733,7 +34768,7 @@
 	                                            React.createElement(
 	                                                'pre',
 	                                                { className: 'prettyprint linenums' },
-	                                                '<Pum.DatePicker startDateName="startDate1" endDateName="endDate1" singlePicker={true} timePicker={true} />'
+	                                                '<Pum.DatePicker name="datepicker_name" onInit={this.onInit} date={this.state.date} onChange={this.onChange} timePicker={true} disabled={this.state.disabled} />'
 	                                            )
 	                                        )
 	                                    )
@@ -34765,7 +34800,7 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'col-md-5' },
-	                            React.createElement(Pum.DateRangePicker, { fromName: 'fromDate', toName: 'toDate', fromDate: this.state.fromDate, toDate: this.state.toDate,
+	                            React.createElement(Pum.DateRangePicker, { startName: 'startDate', endName: 'endDate', startDate: this.state.startDate, endDate: this.state.endDate,
 	                                onInit: this.onRangeInit, onChange: this.onRangeChange, timePicker: false, disabled: this.state.range_disabled })
 	                        ),
 	                        React.createElement(
@@ -34827,10 +34862,101 @@
 	                                            React.createElement(
 	                                                'pre',
 	                                                { className: 'prettyprint linenums' },
-	                                                '<Pum.RadioGroup name="radio_name" selectedValue="value1" onChange={this.onChange} horizontal={true}>\n',
-	                                                '  <Pum.Radio value="value1"> 라디오1</Pum.Radio>\n',
-	                                                '  <Pum.Radio value="value2"> 라디오2</Pum.Radio>\n',
-	                                                '</Pum.RadioGroup>'
+	                                                '<Pum.DateRangePicker fromName="startDate" toName="endDate" startDate={this.state.startDate} endDate={this.state.endDate} onInit={this.onRangeInit} onChange={this.onRangeChange} timePicker={false} disabled={this.state.range_disabled} />'
+	                                            )
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement('div', { className: 'vspace-12' }),
+	                React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(
+	                                'h5',
+	                                null,
+	                                'Predefined Ranges'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-4' },
+	                            React.createElement(Pum.DateRanges, { startName: 'startDate1', endName: 'endDate1', ranges: predefined_ranges, disabled: this.state.ranges_disabled,
+	                                startDate: this.state.startRangeDate, endDate: this.state.endRangeDate, init: this.rangesInit, onHide: this.onRangesHide })
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            React.createElement(
+	                                'button',
+	                                { onClick: this.getRangesDate },
+	                                'getRangesDate'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            React.createElement(
+	                                'button',
+	                                { onClick: this.setRangesDate },
+	                                'setRangesDate'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            React.createElement(
+	                                'button',
+	                                { onClick: this.onRangesDisabled },
+	                                this.state.ranges_disabledText
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(
+	                                Pum.HiddenContent,
+	                                { expandLabel: '소스 보기', collapseLabel: '소스 닫기',
+	                                    expandIcon: 'fa fa-caret-right', collapseIcon: 'fa fa-caret-down' },
+	                                React.createElement(
+	                                    Pum.TabSet,
+	                                    null,
+	                                    React.createElement(
+	                                        Pum.Tabs,
+	                                        null,
+	                                        React.createElement(
+	                                            Pum.Tab,
+	                                            null,
+	                                            'JSX 코드'
+	                                        )
+	                                    ),
+	                                    React.createElement(
+	                                        Pum.TabContents,
+	                                        null,
+	                                        React.createElement(
+	                                            Pum.TabContent,
+	                                            null,
+	                                            React.createElement(
+	                                                'pre',
+	                                                { className: 'prettyprint linenums' },
+	                                                '<Pum.DateRanges startName="startDate" endName="endDate" ranges={predefined_ranges} disabled={this.state.ranges_disabled} />'
 	                                            )
 	                                        )
 	                                    )
