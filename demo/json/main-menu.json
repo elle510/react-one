@@ -39,7 +39,7 @@
             		{ "text": "Stepper", 			"id": "form_stepper", 			"icon": "fa fa-flag", 		"path": "/stepper" },
             		{ "text": "DualListbox", 		"id": "form_dualListbox", 		"icon": "fa fa-flag", 		"route": "dualListbox" },
             		{ "text": "Fieldset", 			"id": "form_fieldset", 			"icon": "fa fa-flag", 		"path": "/fieldset" },
-            		{ "text": "Validation", 		"id": "comp_validation", 		"icon": "fa fa-flag", 		"route": "validation" },
+            		{ "text": "Validation", 		"id": "comp_validation", 		"icon": "fa fa-flag", 		"path": "/validation" },
             		{ "text": "Wizard", 			"id": "comp_wizard", 			"icon": "fa fa-flag", 		"route": "wizard" },
             		{ "text": "Upload", 			"id": "comp_upload", 			"icon": "fa fa-flag", 		"route": "upload" }
             	]

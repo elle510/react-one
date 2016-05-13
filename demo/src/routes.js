@@ -22,6 +22,7 @@ var Panel = require('./controller-views/panel');
 var Fieldset = require('./controller-views/fieldset');
 var Splitter = require('./controller-views/splitter');
 var Autocomplete = require('./controller-views/autocomplete');
+var Validation = require('./controller-views/validation');
 
 //var About = require('./controllers/about');
 //var Repos = require('./controllers/repos');
@@ -56,5 +57,6 @@ module.exports = (
         <Route path="/fieldset" component={Fieldset} />
         <Route path="/splitter" component={Splitter} />
         <Route path="/autocomplete" component={Autocomplete} />
+		<Route path="/validation" component={Validation} />
     </Router>
 )
