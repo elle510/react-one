@@ -1,0 +1,119 @@
+/* Main Layout
+----------------------------------*/
+/* {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+}
+*/
+body {
+  /*
+    background-color: #fff;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #333;
+    font-size: 14px;
+    */
+}
+/* wrapper
+----------------------------------*/
+.wrapper {
+  margin: 0 auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+/* header area
+----------------------------------*/
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  /* 	position: relative; */
+  margin: 0;
+  padding-right: 0;
+  padding-left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  border: 1px solid /*transparent*/;
+}
+/* main area
+----------------------------------*/
+.main {
+  /* 	position: relative; */
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  /*   	height: 100% !important; */
+  /*   	min-height: 100%; */
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  /*   display: -webkit-flex; */
+  /*   display: flex; */
+}
+
+.path-breadcrumb {
+    
+}
+
+.left-frame {
+  /* animation
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -ms-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    */
+  /* 	float: left; */
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 330px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* 	overflow-y: auto; */
+  border: 1px solid;
+}
+.center-frame {
+  /* animation
+    -webkit-transition-property: left;
+    -moz-transition-property: left;
+    -ms-transition-property: left;
+    -o-transition-property: left;
+    transition-property: left;
+
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -ms-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    */
+  /* 	float: left; */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 332px;
+  /* 	height: 100% !important; */
+  border: 1px solid;
+}
+.center-frame > .center-frame-content {
+    
+}
+
+/* footer 영역
+----------------------------------*/
+
+/* Demo Page 영역 
+----------------------------------*/
+.page-body {
+  margin: 2rem;
+}

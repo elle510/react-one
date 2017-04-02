@@ -2,10 +2,10 @@
  * Temp component
  *
  * version <tt>$ Version: 1.0 $</tt> date:2016/03/03
- * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
+ * author <a href="mailto:elle0510@gmail.com">Ahn Hyung-Ro</a>
  *
  * example:
- * <Pum.Temp options={options} />
+ * <Puf.Temp options={options} />
  *
  * JsTree 라이브러리에 종속적이다.
  */
@@ -15,7 +15,7 @@ var React = require('react');
 var PropTypes = require('react').PropTypes;
 var classNames = require('classnames');
 
-var Util = require('../services/util');
+var Util = require('../services/Util');
 
 var Temp = React.createClass({
     displayName: 'Temp',
@@ -27,7 +27,7 @@ var Temp = React.createClass({
         items: PropTypes.array,
         selectedIndex: PropTypes.number,
         disabled: PropTypes.bool,
-        onInit: PropTypes.func,
+        init: PropTypes.func,
         onChange: PropTypes.func,
 		category: PropTypes.oneOf(['News','Photos']).isRequired,
 		dialog: PropTypes.instanceOf(Dialog).isRequired,
@@ -62,23 +62,30 @@ var Temp = React.createClass({
     componentDidMount: function() {
         // 최초 렌더링이 일어난 다음(한번 호출)
         console.log('5. componentDidMount');
-        if(typeof this.props.onInit === 'function') {
+        if(typeof this.props.init === 'function') {
             var data = {};
             data.key = value;
-            this.props.onInit(data);
+            this.props.init(data);
         }
     },
     componentWillReceiveProps: function(nextProps) {
         // 컴포넌트가 새로운 props를 받을 때 호출(최초 렌더링 시에는 호출되지 않음)
-        console.log('componentWillReceiveProps');
+        console.log('6. componentWillReceiveProps');
+    },
+    shouldComponentUpdate: function(nextProps, nextState) {
+        // 새로운 props나 state를 받았을 때 렌더링 전에 호출(최초 렌더링 시에는 호출되지 않음)
+        console.log('7. shouldComponentUpdate');
+
+        // false 면 render 호출하지 않음(componentWillUpdate 와 componentDidUpdate 역시 호출되지 않음)
+        return true;    // default true
     },
     componentWillUpdate: function(nextProps, nextState) {
         // 새로운 props나 state를 받았을 때 렌더링 직전에 호출(최초 렌더링 시에는 호출되지 않음)
-        console.log('componentWillUpdate');
+        console.log('8. componentWillUpdate');
     },
     componentDidUpdate: function(prevProps, prevState) {
         // 컴포넌트의 업데이트가 DOM에 반영된 직후에 호출(최초 렌더링 시에는 호출되지 않음)
-        console.log('componentDidUpdate');
+        console.log('10. componentDidUpdate');
     },
     componentWillUnmount: function(){
         // 컴포넌트가 DOM에서 마운트 해제 되기 직전에 호출
@@ -87,7 +94,7 @@ var Temp = React.createClass({
     render: function() {
         // 필수 항목
         console.log('4. render');
-        const {className} = this.props;
+        const { className } = this.props;
 
         return (
             <div id={this.id} className={classNames('panel', className)}></div>

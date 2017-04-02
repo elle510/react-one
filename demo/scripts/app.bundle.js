@@ -21655,7 +21655,7 @@
 			}
 
 			if (Array.isArray(val)) {
-				return val.sort().map(function (val2) {
+				return val.slice().sort().map(function (val2) {
 					return strictUriEncode(key) + '=' + strictUriEncode(val2);
 				}).join('&');
 			}
@@ -24847,6 +24847,7 @@
 	var Fieldset = __webpack_require__(234);
 	var Splitter = __webpack_require__(235);
 	var Autocomplete = __webpack_require__(236);
+	var Validation = __webpack_require__(237);
 
 	//var About = require('./controllers/about');
 	//var Repos = require('./controllers/repos');
@@ -24880,7 +24881,8 @@
 	    React.createElement(_reactRouter.Route, { path: '/panel', component: Panel }),
 	    React.createElement(_reactRouter.Route, { path: '/fieldset', component: Fieldset }),
 	    React.createElement(_reactRouter.Route, { path: '/splitter', component: Splitter }),
-	    React.createElement(_reactRouter.Route, { path: '/autocomplete', component: Autocomplete })
+	    React.createElement(_reactRouter.Route, { path: '/autocomplete', component: Autocomplete }),
+	    React.createElement(_reactRouter.Route, { path: '/validation', component: Validation })
 	);
 
 /***/ },
@@ -36650,6 +36652,224 @@
 	});
 
 	module.exports = Autocomplete;
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Validation = React.createClass({
+	    displayName: 'Validation',
+
+	    componentDidMount: function componentDidMount() {
+	        // 최초 렌더링이 일어난 다음(한번 호출)
+	        $("#validationForm").validate({
+	            rules: {
+	                text: "required",
+	                email: {
+	                    required: true,
+	                    email: true
+	                }
+	                /*lastname: "required",
+	                username: {
+	                    required: true,
+	                    minlength: 2
+	                },
+	                password: {
+	                    required: true,
+	                    minlength: 5
+	                },
+	                confirm_password: {
+	                    required: true,
+	                    minlength: 5,
+	                    equalTo: "#password"
+	                },
+	                topic: {
+	                    required: "#newsletter:checked",
+	                    minlength: 2
+	                },
+	                agree: "required"*/
+	            },
+	            messages: {
+	                text: "Please enter your text",
+	                email: "Please enter a valid email address",
+	                lastname: "Please enter your lastname",
+	                username: {
+	                    required: "Please enter a username",
+	                    minlength: "Your username must consist of at least 2 characters"
+	                },
+	                password: {
+	                    required: "Please provide a password",
+	                    minlength: "Your password must be at least 5 characters long"
+	                },
+	                confirm_password: {
+	                    required: "Please provide a password",
+	                    minlength: "Your password must be at least 5 characters long",
+	                    equalTo: "Please enter the same password as above"
+	                },
+	                agree: "Please accept our policy"
+	            },
+	            submitHandler: function submitHandler(form) {
+	                console.log('submitHandler');
+	                /*
+	                $(form).ajaxSubmit();
+	                // !!! Important !!!
+	                // always return false to prevent standard browser submit and page navigation
+	                return false;
+	                */
+	            }
+	        });
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'page-content' },
+	            React.createElement(
+	                'div',
+	                { className: 'page-header' },
+	                React.createElement(
+	                    'span',
+	                    { className: 'title' },
+	                    'Validation'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'page-body' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(
+	                                'span',
+	                                { className: 'component-title' },
+	                                'validation 체크'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(
+	                                'form',
+	                                { id: 'validationForm', className: 'form-horizontal' },
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'form-group' },
+	                                    React.createElement(
+	                                        'label',
+	                                        { className: 'col-md-2 control-label' },
+	                                        'Text'
+	                                    ),
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-md-10' },
+	                                        React.createElement('input', { type: 'text', className: 'form-control', name: 'text', placeholder: 'input text' })
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'form-group' },
+	                                    React.createElement(
+	                                        'label',
+	                                        { className: 'col-md-2 control-label' },
+	                                        'Email'
+	                                    ),
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-md-10' },
+	                                        React.createElement('input', { type: 'email', className: 'form-control', name: 'email', placeholder: 'Email' })
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'form-group' },
+	                                    React.createElement(
+	                                        'label',
+	                                        { className: 'col-md-2 control-label' },
+	                                        'Password'
+	                                    ),
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-md-10' },
+	                                        React.createElement('input', { type: 'password', className: 'form-control', id: 'inputPassword3', placeholder: 'Password' })
+	                                    )
+	                                ),
+	                                React.createElement(
+	                                    'div',
+	                                    { className: 'form-group' },
+	                                    React.createElement(
+	                                        'div',
+	                                        { className: 'col-md-offset-2 col-md-10' },
+	                                        React.createElement(
+	                                            'button',
+	                                            { type: 'submit', className: 'btn btn-default' },
+	                                            'submit'
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            React.createElement(
+	                                Puf.HiddenContent,
+	                                { expandLabel: '소스 보기', collapseLabel: '소스 닫기',
+	                                    expandIcon: 'fa fa-caret-right', collapseIcon: 'fa fa-caret-down' },
+	                                React.createElement(
+	                                    Puf.TabSet,
+	                                    null,
+	                                    React.createElement(
+	                                        Puf.Tabs,
+	                                        null,
+	                                        React.createElement(
+	                                            Puf.Tab,
+	                                            null,
+	                                            'JSX 코드'
+	                                        )
+	                                    ),
+	                                    React.createElement(
+	                                        Puf.TabContents,
+	                                        null,
+	                                        React.createElement(
+	                                            Puf.TabContent,
+	                                            null,
+	                                            React.createElement(
+	                                                'pre',
+	                                                { className: 'prettyprint linenums' },
+	                                                '// js\n' + '안형로'
+	                                            )
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement('div', { className: 'vspace-12' })
+	            ),
+	            React.createElement('div', { className: 'page-footer' })
+	        );
+	    }
+	});
+
+	module.exports = Validation;
 
 /***/ }
 /******/ ]);

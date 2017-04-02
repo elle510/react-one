@@ -2,6 +2,8 @@
 
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
+var gutil = require("gulp-util");
+
 var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
@@ -14,7 +16,11 @@ var del = require('del');
 var merge2 = require('merge2');
 var runSequence = require('run-sequence');
 
-var webpack = require('gulp-webpack');
+var gulpWebpack = require('gulp-webpack');
+
+var webpack = require('webpack');
+var webpackConfig = require('./webpack.config.js');
+var webpackConfig_examples = require('./examples/webpack.config.js');
 
 var paths = {
     entries: [
@@ -33,32 +39,72 @@ var paths = {
     }
 };
 
+/**
+ * react-one build
+ */
+gulp.task('clean.one', function() {
+    return del(['dist/*.js', 'dist/*.map', 'dist/*.css', 'dist/images/']);
+});
+
+gulp.task('build.one', ['clean.one'], function(callback) {
+    webpack(webpackConfig, function(err, stats) {
+		if(err) throw new gutil.PluginError('build.one', err);
+		gutil.log('[build.one]', stats.toString({
+			colors: true
+		}));
+		callback();
+	});
+});
+
+/**
+ * examples build
+ */
+gulp.task('clean.examples', function() {
+    return del(['examples/build/*.js', 'examples/build/*.map']);
+});
+
+gulp.task('build.examples', ['clean.examples'], function(callback) {
+    webpack(webpackConfig_examples, function(err, stats) {
+		if(err) throw new gutil.PluginError('build.examples', err);
+		gutil.log('[build.examples]', stats.toString({
+			colors: true
+		}));
+		callback();
+	});
+});
+
+
+
+
+/**
+ * webpack (old)
+ */
 gulp.task('clean.js', function() {
-    return del([paths.dist + '/react-pum.js', paths.dist + '/react-pum.min.js']);
+    return del([paths.dist + '/react-one.js', paths.dist + '/react-one.min.js']);
 });
 
 gulp.task('build.js', ['clean.js'], function () {
     return merge2(
                 browserify({
-                    entries: 'react-pum.js',
+                    entries: 'react-one.js',
                     extensions: ['.js'],
                     standalone: 'Pum',
                     debug: true
                 })
                     .transform(babelify, {presets: ["es2015", "react"]})
                     .bundle()
-                    .pipe(source('react-pum.js'))
+                    .pipe(source('react-one.js'))
                     //.pipe(derequire())
                     .pipe(gulp.dest(paths.dist)),
                 browserify({
-                    entries: 'react-pum.js',
+                    entries: 'react-one.js',
                     extensions: ['.js'],
                     standalone: 'Pum',
                     debug: true
                 })
                     .transform(babelify, {presets: ["es2015", "react"]})
                     .bundle()
-                    .pipe(source('react-pum.min.js'))
+                    .pipe(source('react-one.min.js'))
                     //.pipe(derequire())
                     .pipe(buffer())
                     .pipe(uglify())
@@ -106,7 +152,7 @@ gulp.task('clean.demo', function() {
 gulp.task('build.demo', ['clean.demo'], function(callback) {
     //var demoWebpackConfig = require("./demo/webpack.config.js");
     return gulp.src('demo/src/app.js')
-        .pipe(webpack({
+        .pipe(gulpWebpack({
             entry: {
                 app: './demo/src/app.js',
                 liveobject: './demo/link/liveobject/app.js',

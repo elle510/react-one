@@ -2,73 +2,84 @@
  * HiddenContent component
  *
  * version <tt>$ Version: 1.0 $</tt> date:2016/03/10
- * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
+ * author <a href="mailto:elle0510@gmail.com">Ahn Hyung-Ro</a>
  *
  * example:
- * <Pum.HiddenContent id={id} />
+ * <One.HiddenContent id={id} />
  *
  */
 'use strict';
 
-import React, {PropTypes} from 'react';
-//var React = require('react');
-//var PropTypes = require('react').PropTypes;
-var classNames = require('classnames');
+import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
+import { Util } from '../utils';
 
-var Util = require('../services/Util');
+const propTypes = {
+    id: PropTypes.string,
+    className: PropTypes.string,
+    expandLabel: PropTypes.string,
+    collapseLabel: PropTypes.string,
+    expandIcon: PropTypes.string,
+    collapseIcon: PropTypes.string,
+    isBottom: PropTypes.bool
+};
 
-var HiddenContent = React.createClass({
-    displayName: 'HiddenContent',
-    propTypes: {
-        id: PropTypes.string,
-        className: PropTypes.string,
-        expandLabel: PropTypes.string,
-        collapseLabel: PropTypes.string,
-        expandIcon: PropTypes.string,
-        collapseIcon: PropTypes.string,
-        isBottom: PropTypes.bool
-    },
-    id: '',
-    onExpandCollapse: function(event) {
-        //console.log(event);
-        let node = event.target;
-        let aTag = node.parentNode;
-        if($(aTag).next().css('display') === 'none') {
-            this.setState({label: this.props.collapseLabel, icon: this.props.collapseIcon});
-            $(aTag).next().css('display', 'block');
-        }else {
-            this.setState({label: this.props.expandLabel, icon: this.props.expandIcon});
-            $(aTag).next().css('display', 'none');
-        }
+const defaultProps = {
+    
+};
 
-    },
-    onBottomCollapse: function(event) {
-        let node = event.target,
-            div = node.parentNode.parentNode;
-        $(div).css('display', 'none');
-        this.setState({label: this.props.expandLabel, icon: this.props.expandIcon});
-    },
-    getInitialState: function() {
+/** Class representing a HiddenContent. */
+class HiddenContent extends Component {
+    constructor(props) {
+        super(props);
 
-        let label = this.props.expandLabel;
+        let label = props.expandLabel;
         if(typeof label === 'undefined') {
             label = 'Expand';
         }
+        let icon = props.expandIcon;
+        this.state = {
+            label: label, 
+            icon: icon
+        };
 
-        let icon = this.props.expandIcon;
-
-        return {label: label, icon: icon};
-    },
-    componentWillMount: function() {
-        // 최초 렌더링이 일어나기 직전(한번 호출)
-        let id = this.props.id;
+        // Operations usually carried out in componentWillMount go here
+        let id = props.id;
         if(typeof id === 'undefined') {
             id = Util.getUUID();
         }
 
         this.id = id;
-    },
-    render: function() {
+
+        // Manually bind this method to the component instance...
+        this.onExpandCollapse = this.onExpandCollapse.bind(this);
+        this.onBottomCollapse = this.onBottomCollapse.bind(this);
+    }
+
+    //-----------------------------
+    // events
+    onExpandCollapse(e) {
+        //var node = e.target,
+        //    aTag = node.parentNode;
+        var aTag = e.target;
+        if($(aTag).next().css('display') === 'none') {
+            this.setState({ label: this.props.collapseLabel, icon: this.props.collapseIcon });
+            $(aTag).next().css('display', 'block');
+        }else {
+            this.setState({ label: this.props.expandLabel, icon: this.props.expandIcon });
+            $(aTag).next().css('display', 'none');
+        }
+
+    }
+
+    onBottomCollapse(e) {
+        let node = e.target,
+            div = node.parentNode;//.parentNode;
+        $(div).css('display', 'none');
+        this.setState({ label: this.props.expandLabel, icon: this.props.expandIcon });
+    }
+    
+    render() {
         // 필수 항목
         var Icon;
         if(typeof this.state.icon === 'string') {
@@ -83,6 +94,7 @@ var HiddenContent = React.createClass({
                 CollapseIcon = <i className={this.props.collapseIcon}>{'\u00A0'}</i>;
             }
 
+            // # 와 react-router 충돌문제 해결해야 함
             BottomButton = <a href={'#' + this.id} onClick={this.onBottomCollapse}>{CollapseIcon}{this.props.collapseLabel}</a>
         }
 
@@ -96,6 +108,9 @@ var HiddenContent = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = HiddenContent;
+HiddenContent.propTypes = propTypes;
+HiddenContent.defaultProps = defaultProps;
+
+export default HiddenContent;
