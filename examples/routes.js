@@ -9,7 +9,7 @@ import App from './app';
 import Home from './Home';
 
 // Components
-import * as Components from './components';
+import * as Components from './views/components';
 
 export default (
     <Router history={hashHistory}>

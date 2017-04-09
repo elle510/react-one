@@ -2,7 +2,7 @@
  * Temp component
  *
  * version <tt>$ Version: 1.0 $</tt> date:2016/03/03
- * author <a href="mailto:elle0510@gmail.com">Ahn Hyung-Ro</a>
+ * author <a href="mailto:hrahn@nkia.co.kr">Ahn Hyung-Ro</a>
  *
  * example:
  * <Puf.Temp options={options} />

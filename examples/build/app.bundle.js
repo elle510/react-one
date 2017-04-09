@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 119);
+/******/ 	return __webpack_require__(__webpack_require__.s = 117);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -12905,7 +12905,7 @@ var _Home = __webpack_require__(114);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _components = __webpack_require__(118);
+var _components = __webpack_require__(119);
 
 var Components = _interopRequireWildcard(_components);
 
@@ -13110,6 +13110,29 @@ exports.default = App;
 "use strict";
 
 
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(113);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _routes = __webpack_require__(112);
+
+var _routes2 = _interopRequireDefault(_routes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_reactDom2.default.render(_routes2.default, document.getElementById('app'));
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -13214,7 +13237,7 @@ ButtonDemo.defaultProps = defaultProps;
 exports.default = ButtonDemo;
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13225,36 +13248,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ButtonDemo = undefined;
 
-var _ButtonDemo = __webpack_require__(117);
+var _ButtonDemo = __webpack_require__(118);
 
 var _ButtonDemo2 = _interopRequireDefault(_ButtonDemo);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.ButtonDemo = _ButtonDemo2.default; // Components
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(113);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _routes = __webpack_require__(112);
-
-var _routes2 = _interopRequireDefault(_routes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_reactDom2.default.render(_routes2.default, document.getElementById('app'));
 
 /***/ }),
 /* 120 */

@@ -53,6 +53,12 @@ gulp.task('build.one', ['clean.one'], function(callback) {
 			colors: true
 		}));
 		callback();
+
+        var rename = require('gulp-rename');
+        return gulp.src('dist/react-one.js')
+                .pipe(uglify())
+                .pipe(rename({extname: '.min.js'}))
+                .pipe(gulp.dest('dist'));
 	});
 });
 
