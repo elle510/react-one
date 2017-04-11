@@ -9,6 +9,9 @@
     "demo": "gulp build.demo",
     "webpack": "webpack",
     "http-server": "http-server ./ -p 8080 -o /index.html",
+    "dev-puf": "node ./dev.puf.js",
+    "dev-demo": "node ./dev.demo.js",
+    "dev": "concurrent \"npm run dev-puf\" \"npm run dev-demo\" ",
     "start": "concurrent \"npm run gulp\" \"npm run demo\" \"npm run http-server\" "
   },
   "author": "Ahn Hyung-Ro",
