@@ -9,7 +9,10 @@
     "webpack": "webpack",
     "http-server": "http-server ./ -p 8080 -o /index.html",
     "build-start": "concurrent \"npm run build\" \"npm run http-server\" ",
-    "start": "npm run http-server"
+    "start": "npm run http-server",
+    "dev-puf": "node ./dev.puf.js",
+    "dev-demo": "node ./dev.demo.js",
+    "dev": "concurrent \"npm run dev-puf\" \"npm run dev-demo\" "
   },
   "author": "Ahn Hyung-Ro",
   "license": "ISC",
