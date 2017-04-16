@@ -44,7 +44,7 @@ module.exports = React.createClass({
         render: function() {
             // 필수 항목
             return (
-                <One.Tree url="./data/main-menu.json" method="GET" onClick={this.onTreeClick} />
+                <UI.Tree url="./data/main-menu.json" method="GET" onClick={this.onTreeClick} />
             );
         }
 });

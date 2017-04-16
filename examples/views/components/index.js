@@ -1,19 +1,8 @@
 // Components
 import ButtonDemo from './ButtonDemo';
+import TreeDemo from './TreeDemo';
 
 export {
-    ButtonDemo/*,
-    Button,
-    ToggleButton,
-    ButtonDropdown,
-    HiddenContent,
-    MainFrameSplitter,
-    Modal, ModalHeader, ModalBody, ModalFooter,
-    Panel, PanelHeader, PanelBody, PanelFooter,
-    Checkbox,
-    RadioGroup,
-    Radio,
-    RadioDivider,
-    Fieldset,
-    FineUploader*/
+    ButtonDemo,
+    TreeDemo
 };

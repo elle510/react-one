@@ -6,9 +6,9 @@
         "children": [
             { "name": "Button",		"icon": "fa fa-flag", 	    "path": "/button" },
             { "name": "Grid", 		"icon": "fa fa-flag", 	    "path": "psIconFont" },
-			{ "name": "Tree", 		"icon": "fa fa-flag", 	    "path": "psIconFont" }
+			{ "name": "Tree", 		"icon": "fa fa-flag", 	    "path": "/tree" }
         ]
-    },
+    }/*,
     {
         "name": "Charts",
         "icon": "fa fa-flag",
@@ -16,5 +16,5 @@
             { "name": "LineChart", 		"icon": "fa fa-flag" },
             { "name": "ColumnChart",	"icon": "fa fa-flag" }
         ]
-    }
+    }*/
 ]

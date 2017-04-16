@@ -4,14 +4,14 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["One"] = factory();
+		exports["UI"] = factory();
 	else
-		root["One"] = factory();
+		root["UI"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
-/******/ 	var parentJsonpFunction = window["webpackJsonpOne"];
-/******/ 	window["webpackJsonpOne"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
+/******/ 	var parentJsonpFunction = window["webpackJsonpUI"];
+/******/ 	window["webpackJsonpUI"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
 /******/ 		// add "moreModules" to the modules object,
 /******/ 		// then flag all "chunkIds" as loaded and fire callback
 /******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
@@ -25744,4 +25744,4 @@ module.exports = __webpack_require__(18);
 
 /******/ });
 });
-//# sourceMappingURL=one-vendor.js.map
+//# sourceMappingURL=ui-vendor.js.map

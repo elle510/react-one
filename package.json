@@ -5,11 +5,11 @@
   "main": "react-one.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "gulp",
-    "demo": "gulp build.demo",
+    "build": "gulp",
     "webpack": "webpack",
     "http-server": "http-server ./ -p 8080 -o /index.html",
-    "start": "concurrent \"npm run gulp\" \"npm run demo\" \"npm run http-server\" "
+    "build-start": "concurrent \"npm run build\" \"npm run http-server\" ",
+    "start": "npm run http-server"
   },
   "author": "Ahn Hyung-Ro",
   "license": "ISC",

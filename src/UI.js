@@ -55,7 +55,7 @@ import * as Utils from './utils';
 
 // var dt      = require('datatables.net');
 
-var One = {
+var UI = {
     Button: Components.Button,
     Tree: Components.Tree,
     HiddenContent: Components.HiddenContent
@@ -91,4 +91,4 @@ var One = {
     // TagsInput: TagsInput
 };
 
-module.exports = One;
+module.exports = UI;

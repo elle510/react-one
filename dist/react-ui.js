@@ -4,11 +4,11 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["One"] = factory();
+		exports["UI"] = factory();
 	else
-		root["One"] = factory();
+		root["UI"] = factory();
 })(this, function() {
-return webpackJsonpOne([0],[
+return webpackJsonpUI([0],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1252,7 +1252,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 // var dt      = require('datatables.net');
 
-var One = {
+var UI = {
     Button: Components.Button,
     Tree: Components.Tree,
     HiddenContent: Components.HiddenContent
@@ -1291,7 +1291,7 @@ var One = {
 // Utils
 
 
-module.exports = One;
+module.exports = UI;
 
 /***/ }),
 /* 18 */,
@@ -8063,4 +8063,4 @@ module.exports = traverseAllChildren;
 /***/ })
 ],[19]);
 });
-//# sourceMappingURL=react-one.js.map
+//# sourceMappingURL=react-ui.js.map

@@ -40,22 +40,22 @@ var paths = {
 };
 
 /**
- * react-one build
+ * react-ui build
  */
-gulp.task('clean.one', function() {
+gulp.task('clean.ui', function() {
     return del(['dist/*.js', 'dist/*.map', 'dist/*.css', 'dist/images/']);
 });
 
-gulp.task('build.one', ['clean.one'], function(callback) {
+gulp.task('build.ui', ['clean.ui'], function(callback) {
     webpack(webpackConfig, function(err, stats) {
-		if(err) throw new gutil.PluginError('build.one', err);
-		gutil.log('[build.one]', stats.toString({
+		if(err) throw new gutil.PluginError('build.ui', err);
+		gutil.log('[build.ui]', stats.toString({
 			colors: true
 		}));
 		callback();
 
         var rename = require('gulp-rename');
-        return gulp.src('dist/react-one.js')
+        return gulp.src('dist/react-ui.js')
                 .pipe(uglify())
                 .pipe(rename({extname: '.min.js'}))
                 .pipe(gulp.dest('dist'));

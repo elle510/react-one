@@ -10,8 +10,8 @@ const defaultProps = {
     
 };
 
-/** Class representing a ButtonDemo. */
-class ButtonDemo extends Component {
+/** Class representing a TreeDemo. */
+class TreeDemo extends Component {
     constructor(props) {
         super(props);
 
@@ -21,12 +21,11 @@ class ButtonDemo extends Component {
 
     componentDidMount() {
         // 최초 렌더링이 일어난 다음(한번 호출)
-        //this.refs.Btn.enable(false);
         prettyPrint();
     }
 
     onClick() {
-        console.log('Button onClick');
+        console.log('Tree onClick');
     }
 
     render() {
@@ -34,20 +33,19 @@ class ButtonDemo extends Component {
             <div className="page-body">
                 <div className="ui grid">{/* start default */}
                     <div className="row">
-                        <span className="title">Button</span>
+                        <span className="title">Tree</span>
                     </div>
                     <div className="row">
-                        <UI.Button ref="Btn" className="ui primary button" 
-                                    onClick={this.onClick} tooltip="버튼버튼버튼툴팁<br>버튼버튼버튼툴팁">
-                                    버튼
-                        </UI.Button>
+                        <UI.Tree url="./data/main-menu.json" method="GET" onClick={this.onClick} />
                     </div>
-                    <div className="row">      
+                    <div className="sixteen wide column">      
                         <UI.HiddenContent expandLabel="소스 보기" collapseLabel="소스 닫기"
                                         expandIcon="fa fa-caret-right" collapseIcon="fa fa-caret-down">
                             <pre className="prettyprint linenums">
-                                {'// js\n' +
-                                '안형로'}
+                                {/*'// jsx\n'*/}
+                                {'<UI.Tree url="/demo/json/kendo/tree.json"\n'}
+                                {'         method="GET"\n'}
+                                {'         onClick={this.onClick} />'}
                             </pre>
                         </UI.HiddenContent>
                     </div>
@@ -57,7 +55,7 @@ class ButtonDemo extends Component {
     }
 }
 
-ButtonDemo.propTypes = propTypes;
-ButtonDemo.defaultProps = defaultProps;
+TreeDemo.propTypes = propTypes;
+TreeDemo.defaultProps = defaultProps;
 
-export default ButtonDemo;
+export default TreeDemo;
