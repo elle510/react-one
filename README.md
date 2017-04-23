@@ -1,12 +1,12 @@
-## React pum
+## React UI
 
 ### Getting Started
 
 Just clone the repo and start hacking:
 
 ```shell
-$ git clone https://github.com/elle510/react-pum.git
-$ cd react-pum
+$ git clone https://github.com/elle510/react-ui.git
+$ cd react-ui
 $ npm install                   # Install Node.js components listed in ./package.json
 $ npm start                     # Compile and launch
 ```
