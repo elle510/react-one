@@ -7,12 +7,13 @@ module.exports = {
 	// entry: './react-one.js',
 	entry: {
 		'react-ui': './react-ui.js',
-		'ui-vendor': [/*'react', 'react-dom',*/ 'datatables.net'/*, 'datatables.net-dt'*/]
+		'ui-vendor': [/*'react', 'react-dom',*/ 'datatables.net'/*, 'datatables.net-dt'*/, 
+						'ztree', 'select2']
 	},
 	
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		// filename: 'react-one.js',
+		// filename: 'react-ui.js',
 		filename: '[name].js',
 		library: 'UI',
 		libraryTarget: 'umd'

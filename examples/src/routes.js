@@ -18,6 +18,7 @@ export default (
             
             <Route path='button' component={Components.ButtonDemo} />
             <Route path='tree' component={Components.TreeDemo} />
+            <Route path='select' component={Components.SelectDemo} />
             {/*
             <Route path="toggleButton" component={Components.ToggleButton} />
             <Route path="checkbox" component={Components.Checkbox} />

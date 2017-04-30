@@ -5,7 +5,7 @@
  * author <a href="mailto:elle0510@gmail.com">Ahn Hyung-Ro</a>
  *
  * example:
- * <One.Tree options={options} />
+ * <UI.Tree options={options} />
  *
  * zTree React Component
  * version: 3.5.24

@@ -35,7 +35,7 @@ class Menu extends Component {
         // 필수 항목
         return (
             <div className="ui bulleted list">
-                <div className="item">Button</div>
+                <div className="item"><Link to="/button">Button</Link></div>
                 <div className="item">Grid</div>
                 <div className="item"><Link to="/tree">Tree</Link></div>
                 {/*<div className="item">
@@ -48,7 +48,7 @@ class Menu extends Component {
                 </div>*/}
                 <div className="item">TextInput</div>
                 <div className="item">TextArea</div>
-                <div className="item">Select</div>
+                <div className="item"><Link to="/select">Select</Link></div>
                 <div className="item">Datepicker</div>
             </div>
         );

@@ -1,5 +1,5 @@
 /**
- * React Pum Bundle
+ * React UI Bundle
  *
  * version <tt>$ Version: 1.0 $</tt> date:2016/03/08
  * author <a href="mailto:elle0510@gmail.com">Ahn Hyung-Ro</a>
@@ -58,7 +58,8 @@ import * as Utils from './utils';
 var UI = {
     Button: Components.Button,
     Tree: Components.Tree,
-    HiddenContent: Components.HiddenContent
+    HiddenContent: Components.HiddenContent,
+    Select: Components.Select
     // JqGrid: JqGrid,
     // JsTree: JsTree,
     // TabSet: TabSet,
