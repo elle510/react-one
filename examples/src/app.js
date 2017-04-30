@@ -2,7 +2,8 @@
 
 import React, { Component, PropTypes } from 'react';
 
-import Menu from './Menu';
+import Menu from './mainView/Menu';
+import Header from './mainView/Header';
 
 class App extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class App extends Component {
         return (
             <div className="wrapper">
 				<div className="header">
-                    React UI
+                    <Header />
 				</div>
 
 				<div className="main">

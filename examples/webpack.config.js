@@ -10,7 +10,7 @@ const path = require('path');
 // });
 
 module.exports = {
-    entry: __dirname + '/index.js',
+    entry: __dirname + '/src/index.js',
     output: {
         filename: 'app.bundle.js',
         path: path.resolve(__dirname, 'build')
