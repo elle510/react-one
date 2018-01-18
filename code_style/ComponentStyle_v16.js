@@ -7,6 +7,11 @@ import Util from '../services/Util';
 // https://reactjs.org/docs/react-component.html
 
 class ComponentStyle extends Component {
+	static defaultProps = {
+		value: 'default value',
+		boolValue: true
+	};
+	
 	static propTypes = {
 		id: PropTypes.string,
 		className: PropTypes.string,
@@ -25,12 +30,7 @@ class ComponentStyle extends Component {
 			PropTypes.bool
 		])
 	};
-
-	static defaultProps = {
-		value: 'default value',
-		boolValue: true
-	};
-
+	
     constructor(props) {
         super(props);
 
