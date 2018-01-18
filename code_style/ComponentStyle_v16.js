@@ -6,10 +6,6 @@ import Util from '../services/Util';
 // 참고
 // https://reactjs.org/docs/react-component.html
 
-// 클래스가 생성될 때 한번 호출되고 캐시된다.
-// 부모 컴포넌트에서 prop이 넘어오지 않은 경우 (in 연산자로 확인) 매핑의 값이 this.props에 설정된다.
-
-
 class ComponentStyle extends Component {
 	static propTypes = {
 		id: PropTypes.string,
